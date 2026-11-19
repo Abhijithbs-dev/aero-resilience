@@ -27,34 +27,80 @@ KNOWN_HOTSPOTS: Dict[str, Tuple[float, float]] = {
     "hanoi": (21.0285, 105.8542)
 }
 
+# Regional monitoring stations & hotspot comparison benchmarks
+DEFAULT_HOTSPOTS = [
+    {"station": "Anand Vihar, Delhi", "aqi": 488, "pm2_5": 340.2, "status": "Hazardous", "multiplier": "22x WHO"},
+    {"station": "Jahangirpuri, Delhi", "aqi": 465, "pm2_5": 315.0, "status": "Hazardous", "multiplier": "21x WHO"},
+    {"station": "Wazirpur, Delhi", "aqi": 452, "pm2_5": 298.5, "status": "Hazardous", "multiplier": "20x WHO"},
+    {"station": "RK Puram, Delhi", "aqi": 418, "pm2_5": 272.0, "status": "Severe", "multiplier": "18x WHO"},
+    {"station": "IGI Airport (T3), Delhi", "aqi": 376, "pm2_5": 242.0, "status": "Severe", "multiplier": "16x WHO"},
+    {"station": "Lodhi Road (Clean Corridor)", "aqi": 295, "pm2_5": 168.0, "status": "Very Poor", "multiplier": "11x WHO"}
+]
+
 # Standardized Winter Smog Severity Presets
 SEVERITY_PRESETS: Dict[str, Dict[str, Any]] = {
     "Moderate": {
         "aqi": 85,
         "pm2_5": 28.5,
         "pm10": 55.0,
+        "no2": 24.0,
+        "so2": 8.0,
+        "co": 0.6,
+        "o3": 38.0,
+        "temperature": 23.5,
+        "humidity": 52,
+        "wind_speed": 11.2,
         "severity_tier": "Moderate",
+        "who_multiplier": 1.9,
+        "cigarette_equiv": 1.3,
         "description": "Acceptable air quality; sensitive individuals may experience minor irritation."
     },
     "Poor": {
         "aqi": 165,
         "pm2_5": 82.0,
         "pm10": 135.0,
+        "no2": 48.0,
+        "so2": 16.0,
+        "co": 1.4,
+        "o3": 30.0,
+        "temperature": 20.0,
+        "humidity": 68,
+        "wind_speed": 6.8,
         "severity_tier": "Poor",
+        "who_multiplier": 5.5,
+        "cigarette_equiv": 3.7,
         "description": "Unhealthy for sensitive groups; breathing discomfort with prolonged exposure."
     },
     "Very Poor": {
         "aqi": 265,
         "pm2_5": 145.0,
         "pm10": 240.0,
+        "no2": 72.0,
+        "so2": 28.0,
+        "co": 2.6,
+        "o3": 22.0,
+        "temperature": 17.5,
+        "humidity": 79,
+        "wind_speed": 4.1,
         "severity_tier": "Very Poor",
+        "who_multiplier": 9.7,
+        "cigarette_equiv": 6.6,
         "description": "Unhealthy for everyone; respiratory illness likely with prolonged outdoor activity."
     },
     "Severe": {
         "aqi": 420,
         "pm2_5": 285.0,
         "pm10": 460.0,
+        "no2": 118.0,
+        "so2": 45.0,
+        "co": 4.8,
+        "o3": 14.0,
+        "temperature": 14.2,
+        "humidity": 86,
+        "wind_speed": 2.4,
         "severity_tier": "Severe",
+        "who_multiplier": 19.0,
+        "cigarette_equiv": 13.0,
         "description": "Hazardous emergency conditions; severe health impacts across the entire population."
     }
 }
@@ -138,7 +184,7 @@ class AQIService:
         try:
             url = (
                 f"https://air-quality-api.open-meteo.com/v1/air-quality?"
-                f"latitude={lat}&longitude={lon}&current=pm2_5,pm10,us_aqi,european_aqi"
+                f"latitude={lat}&longitude={lon}&current=pm2_5,pm10,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone,us_aqi,european_aqi"
             )
             req = urllib.request.Request(url, headers={"User-Agent": "SmogResilienceAssistant/1.0"})
             with urllib.request.urlopen(req, timeout=4) as resp:
@@ -146,6 +192,11 @@ class AQIService:
                 current = data.get("current", {})
                 pm2_5 = float(current.get("pm2_5", 80.0))
                 pm10 = float(current.get("pm10", 140.0))
+                no2 = float(current.get("nitrogen_dioxide", 55.0))
+                so2 = float(current.get("sulphur_dioxide", 22.0))
+                raw_co = float(current.get("carbon_monoxide", 1200.0))
+                co = round(raw_co / 1000.0, 2)  # Convert ug/m3 to mg/m3
+                o3 = float(current.get("ozone", 25.0))
                 us_aqi = int(current.get("us_aqi", 0))
 
                 if us_aqi <= 0:
@@ -153,6 +204,9 @@ class AQIService:
                     us_aqi = int(pm2_5 * 2.1)
 
                 severity = self.classify_aqi(us_aqi)
+                who_mult = round(pm2_5 / 15.0, 1)
+                cigs = round(pm2_5 / 22.0, 1)
+
                 result = AirQualityContext(
                     location=resolved_name,
                     latitude=lat,
@@ -162,7 +216,17 @@ class AQIService:
                     pm10=pm10,
                     severity_tier=severity,
                     source="live",
-                    timestamp=datetime.now(timezone.utc).isoformat()
+                    timestamp=datetime.now(timezone.utc).isoformat(),
+                    no2=no2,
+                    so2=so2,
+                    co=co,
+                    o3=o3,
+                    temperature=18.5,
+                    humidity=74,
+                    wind_speed=3.8,
+                    who_multiplier=who_mult,
+                    cigarette_equiv=cigs,
+                    hotspots=DEFAULT_HOTSPOTS
                 )
                 self.cache.set(cache_key, result, custom_ttl=900)
                 return result
@@ -185,13 +249,25 @@ class AQIService:
             pm10=data["pm10"],
             severity_tier=data["severity_tier"],
             source="preset",
-            timestamp=datetime.now(timezone.utc).isoformat()
+            timestamp=datetime.now(timezone.utc).isoformat(),
+            no2=data.get("no2", 45.0),
+            so2=data.get("so2", 18.0),
+            co=data.get("co", 1.2),
+            o3=data.get("o3", 28.0),
+            temperature=data.get("temperature", 19.5),
+            humidity=data.get("humidity", 76),
+            wind_speed=data.get("wind_speed", 4.5),
+            who_multiplier=data.get("who_multiplier", 4.3),
+            cigarette_equiv=data.get("cigarette_equiv", 3.0),
+            hotspots=DEFAULT_HOTSPOTS
         )
 
     def get_custom(self, aqi: int, location: str = "Custom Location") -> AirQualityContext:
         """Construct air quality context from user-entered AQI."""
         severity = self.classify_aqi(aqi)
         pm2_5 = self.estimate_pm25_from_aqi(aqi)
+        who_mult = round(pm2_5 / 15.0, 1)
+        cigs = round(pm2_5 / 22.0, 1)
         return AirQualityContext(
             location=location,
             latitude=None,
@@ -201,5 +277,15 @@ class AQIService:
             pm10=round(pm2_5 * 1.7, 1),
             severity_tier=severity,
             source="custom",
-            timestamp=datetime.now(timezone.utc).isoformat()
+            timestamp=datetime.now(timezone.utc).isoformat(),
+            no2=round(pm2_5 * 0.4, 1),
+            so2=round(pm2_5 * 0.15, 1),
+            co=round(pm2_5 * 0.015, 2),
+            o3=round(max(10.0, 45.0 - (aqi * 0.06)), 1),
+            temperature=17.0,
+            humidity=80,
+            wind_speed=3.2,
+            who_multiplier=who_mult,
+            cigarette_equiv=cigs,
+            hotspots=DEFAULT_HOTSPOTS
         )

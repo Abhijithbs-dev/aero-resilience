@@ -15,6 +15,16 @@ class AirQualityContext:
     severity_tier: str = "Poor"  # Moderate, Poor, Very Poor, Severe
     source: str = "preset"       # live, preset, custom
     timestamp: str = ""
+    no2: float = 45.0
+    so2: float = 18.0
+    co: float = 1.2
+    o3: float = 28.0
+    temperature: float = 19.5
+    humidity: int = 76
+    wind_speed: float = 4.5
+    who_multiplier: float = 4.3
+    cigarette_equiv: float = 3.0
+    hotspots: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
