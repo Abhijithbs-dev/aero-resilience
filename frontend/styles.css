@@ -1,59 +1,76 @@
 /* ==========================================================================
-   AeroResilience Spatial Antigravity Design System
-   Weightless Glassmorphism, 3D CSS Depth, Fluid Micro-Animations
-   Compliant with WCAG 2.1 AA Accessibility & prefers-reduced-motion
+   AeroResilience · Apple Human Interface Design System
+   WWDC Designing Fluid Interfaces · SF Pro Typography · iOS Frosted Materials
+   Strict WCAG 2.1 AA Accessibility · Spring Tactile Feedback
    ========================================================================== */
 
 :root {
-  /* Spatial Dark Canvas */
-  --bg-deep: #050811;          /* Void Navy */
-  --bg-surface: rgba(14, 20, 36, 0.75); /* Frosted Glass Layer */
-  --bg-card: rgba(20, 30, 52, 0.65);    /* Elevated Glass */
-  --bg-card-hover: rgba(28, 42, 74, 0.8);
-  --bg-input: rgba(8, 12, 22, 0.85);
+  /* Apple System Dark Canvas */
+  --apple-bg: #0b0c10;
+  --apple-bg-subtle: #141720;
+  --apple-surface: rgba(24, 27, 36, 0.72);
+  --apple-surface-elevated: rgba(32, 36, 48, 0.78);
+  --apple-surface-hover: rgba(42, 48, 64, 0.85);
+  --apple-surface-sunken: rgba(12, 14, 20, 0.65);
+  --apple-input-bg: rgba(16, 19, 28, 0.85);
 
-  /* Specular Edge Lighting & Glass Borders */
-  --border-glass: rgba(255, 255, 255, 0.1);
-  --border-specular: rgba(255, 255, 255, 0.22);
-  --border-card: rgba(30, 45, 78, 0.6);
-  --border-focus: #38bdf8;
+  /* Specular Edge Lighting & Translucent Borders */
+  --apple-border: rgba(255, 255, 255, 0.12);
+  --apple-border-specular: rgba(255, 255, 255, 0.28);
+  --apple-border-subtle: rgba(255, 255, 255, 0.08);
+  --apple-focus-ring: #0071e3;
 
   /* Typography Palette (High Contrast >= 4.5:1) */
-  --text-pure: #ffffff;
-  --text-main: #f8fafc;
-  --text-dim: #cbd5e1;
-  --text-muted: #94a3b8;
-  --text-subtle: #64748b;
+  --text-primary: #ffffff;
+  --text-secondary: #e2e8f0;
+  --text-tertiary: #94a3b8;
+  --text-quaternary: #64748b;
 
-  /* Luminous Brand Accents */
-  --brand-cyan: #06b6d4;
-  --brand-sky: #0284c7;
-  --brand-accent: #38bdf8;
-  --brand-glow: rgba(56, 189, 248, 0.35);
+  /* Apple Accent Colors */
+  --apple-blue: #0071e3;
+  --apple-blue-hover: #0077ed;
+  --apple-blue-glow: rgba(0, 113, 227, 0.35);
+  --apple-indigo: #5e5ce6;
+  --apple-purple: #bf5af2;
+  --apple-pink: #ff375f;
+  --apple-red: #ff453a;
+  --apple-orange: #ff9f0a;
+  --apple-yellow: #ffd60a;
+  --apple-green: #30d158;
+  --apple-teal: #64d2ff;
 
-  /* Atmospheric Severity Luminescence */
-  --aqi-good: #10b981;
-  --aqi-moderate: #f59e0b;
-  --aqi-poor: #f97316;
-  --aqi-very-poor: #ef4444;
-  --aqi-severe: #a855f7;
-  --aqi-hazardous: #881337;
+  /* Severity Spectrum Palette */
+  --aqi-good: #30d158;
+  --aqi-moderate: #ffd60a;
+  --aqi-poor: #ff9f0a;
+  --aqi-very-poor: #ff453a;
+  --aqi-severe: #bf5af2;
+  --aqi-hazardous: #ff375f;
 
-  /* Spatial Geometry & Elevations */
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
-  --shadow-weightless: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.08);
-  --shadow-elevated: 0 15px 35px -8px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 255, 255, 0.04);
-  --shadow-glow-severe: 0 0 35px rgba(168, 85, 247, 0.25);
+  /* Apple Continuous Radius & Shadows */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 30px;
+  --radius-pill: 9999px;
 
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-card: 0 12px 32px -4px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --shadow-elevated: 0 20px 48px -8px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.12);
+  --shadow-glow-severe: 0 0 40px rgba(191, 90, 242, 0.22);
+
+  /* SF Typography System */
+  --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+
+  /* Fluid Motion Spring Timing */
+  --spring-duration: 0.26s;
+  --spring-easing: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ==========================================================================
-   1. Reset & Global Spatial Viewport
+   1. Reset & Global Viewport
    ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -61,112 +78,51 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-  font-family: var(--font-sans);
-  background-color: var(--bg-deep);
-  color: var(--text-main);
-  line-height: 1.6;
+  font-family: var(--font-system);
+  background-color: var(--apple-bg);
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(191, 90, 242, 0.14), transparent),
+    radial-gradient(circle 600px at 15% 30%, rgba(0, 113, 227, 0.08), transparent),
+    radial-gradient(circle 500px at 85% 70%, rgba(255, 55, 95, 0.06), transparent);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  line-height: 1.55;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-  perspective: 1400px;
-  position: relative;
 }
 
-/* ==========================================================================
-   2. Antigravity Spatial Canvas & Floating Light Orbs
-   ========================================================================== */
-.spatial-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: -1;
-  overflow: hidden;
-}
-
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.35;
-  transition: all 1s ease;
-  will-change: transform;
-}
-
-.orb-1 {
-  width: 550px;
-  height: 550px;
-  top: -150px;
-  left: 15%;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.45) 0%, transparent 70%);
-  animation: floatOrb 18s ease-in-out infinite alternate;
-}
-
-.orb-2 {
-  width: 480px;
-  height: 480px;
-  top: 35%;
-  right: -100px;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.35) 0%, transparent 70%);
-  animation: floatOrb 22s ease-in-out infinite alternate-reverse;
-}
-
-.orb-3 {
-  width: 600px;
-  height: 600px;
-  bottom: -200px;
-  left: 30%;
-  background: radial-gradient(circle, rgba(239, 68, 68, 0.25) 0%, transparent 70%);
-  animation: floatOrb 26s ease-in-out infinite alternate;
-}
-
-.grid-layer {
-  position: absolute;
-  inset: 0;
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, transparent 80%);
-}
-
-@keyframes floatOrb {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(40px, -60px) scale(1.08); }
-  100% { transform: translate(-30px, 40px) scale(0.95); }
-}
-
-/* ==========================================================================
-   3. Accessible Skip Link & Focus States
-   ========================================================================== */
+/* Accessible Skip Link */
 .skip-link {
   position: absolute;
-  top: -70px;
+  top: -100px;
   left: 1.5rem;
-  background: var(--brand-accent);
-  color: #050811;
-  font-weight: 800;
-  padding: 0.85rem 1.4rem;
+  background: var(--apple-blue);
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
   border-radius: var(--radius-sm);
-  z-index: 99999;
-  transition: top 0.2s ease;
+  font-weight: 600;
+  font-size: 0.875rem;
+  z-index: 10000;
   text-decoration: none;
+  transition: top var(--spring-duration) var(--spring-easing);
 }
 
 .skip-link:focus {
-  top: 1.5rem;
-  outline: 3px solid #ffffff;
+  top: 1rem;
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
 }
 
-:focus-visible {
-  outline: 3px solid var(--border-focus);
-  outline-offset: 3px;
-}
-
+/* Screen reader utility */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -176,1523 +132,1188 @@ body {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-  border-width: 0;
+  border: 0;
 }
 
 /* ==========================================================================
-   4. Emergency Alert Ticker
+   2. Apple Top Emergency Banner
    ========================================================================== */
-.emergency-ticker {
-  background: linear-gradient(90deg, #450a0a 0%, #1e1b4b 50%, #450a0a 100%);
-  border-bottom: 1px solid rgba(239, 68, 68, 0.35);
-  padding: 0.55rem 1.5rem;
-  font-size: 0.84rem;
-  backdrop-filter: blur(8px);
+.apple-alert-banner {
+  background: linear-gradient(90deg, rgba(255, 55, 95, 0.2), rgba(191, 90, 242, 0.2));
+  border-bottom: 1px solid rgba(255, 55, 95, 0.3);
+  padding: 0.5rem 1.5rem;
+  font-size: 0.8125rem;
 }
 
-.ticker-content {
-  max-width: 1540px;
+.banner-inner {
+  max-width: 1280px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.banner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255, 55, 95, 0.35);
+  color: #ffffff;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.pulse-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  animation: pulse-dot 1.8s infinite;
+}
+
+@keyframes pulse-dot {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+.banner-msg {
+  color: var(--text-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==========================================================================
+   3. Apple Translucent Navigation Bar
+   ========================================================================== */
+.apple-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(11, 12, 16, 0.78);
+  backdrop-filter: blur(25px) saturate(190%);
+  -webkit-backdrop-filter: blur(25px) saturate(190%);
+  border-bottom: 1px solid var(--apple-border);
+}
+
+.nav-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.nav-brand {
   display: flex;
   align-items: center;
   gap: 0.85rem;
 }
 
-.ticker-tag {
-  background-color: #ef4444;
-  color: #ffffff;
-  font-size: 0.72rem;
-  font-weight: 800;
-  padding: 0.2rem 0.55rem;
-  border-radius: 9999px;
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-  box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
-}
-
-.ticker-text {
-  color: #fecaca;
-  font-weight: 500;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* ==========================================================================
-   5. Glassmorphic App Header
-   ========================================================================== */
-.app-header {
-  background-color: rgba(14, 20, 36, 0.7);
-  backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid var(--border-glass);
-  padding: 1rem 1.5rem;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.header-container {
-  max-width: 1540px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.brand-logo-glow {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-md);
-  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+.app-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(0, 113, 227, 0.4), rgba(191, 90, 242, 0.4));
+  border: 1px solid var(--apple-border-specular);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.45);
-  transform: translateZ(10px);
+  font-size: 1.4rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.brand-glyph {
-  font-size: 1.7rem;
-}
-
-.brand-title-wrap {
+.brand-title-row {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.5rem;
 }
 
-.brand-title {
-  font-size: 1.6rem;
-  font-weight: 900;
+.brand-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
   color: #ffffff;
-  letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
-.version-badge {
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  color: var(--brand-accent);
-  background: rgba(56, 189, 248, 0.12);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  padding: 0.15rem 0.5rem;
-  border-radius: 9999px;
-  box-shadow: 0 0 8px rgba(56, 189, 248, 0.2);
+.sf-badge {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.45rem;
+  background: rgba(0, 113, 227, 0.25);
+  color: var(--apple-teal);
+  border: 1px solid rgba(0, 113, 227, 0.4);
+  border-radius: var(--radius-pill);
 }
 
-.brand-subtitle {
-  font-size: 0.82rem;
-  color: var(--text-muted);
+.brand-desc {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  display: block;
+  font-weight: 400;
 }
 
-.header-controls {
+.nav-controls {
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex-wrap: wrap;
 }
 
-/* Quick Location Input */
-.search-box {
+/* Apple Search Field */
+.apple-search-field {
   display: flex;
   align-items: center;
-  background-color: var(--bg-input);
-  border: 1px solid var(--border-specular);
-  border-radius: 9999px;
-  padding: 0.35rem 0.45rem 0.35rem 0.95rem;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--apple-border);
+  border-radius: var(--radius-pill);
+  padding: 0.3rem 0.4rem 0.3rem 0.85rem;
+  transition: all var(--spring-duration) var(--spring-easing);
 }
 
-.search-box:focus-within {
-  border-color: var(--brand-accent);
-  box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
-  transform: translateY(-1px);
+.apple-search-field:focus-within {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--apple-blue);
+  box-shadow: 0 0 0 3px var(--apple-blue-glow);
 }
 
-.search-icon {
-  font-size: 0.95rem;
-  margin-right: 0.45rem;
+.search-glyph {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  margin-right: 0.5rem;
 }
 
-.search-box input {
+.apple-search-field input {
   background: transparent;
   border: none;
-  outline: none;
   color: #ffffff;
-  font-size: 0.88rem;
-  width: 210px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  width: 170px;
+  outline: none;
 }
 
-.search-box input::placeholder {
-  color: var(--text-subtle);
+.apple-search-field input::placeholder {
+  color: var(--text-tertiary);
 }
 
-.engine-badge {
+.apple-sync-btn {
+  background: var(--apple-blue);
+  color: #ffffff;
+  border: none;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--spring-duration) var(--spring-easing);
+}
+
+.apple-sync-btn:hover {
+  background: var(--apple-blue-hover);
+}
+
+.apple-sync-btn:active {
+  transform: scale(0.95);
+}
+
+/* Engine Status Pill */
+.engine-status-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: rgba(14, 20, 36, 0.8);
-  border: 1px solid var(--border-glass);
-  padding: 0.45rem 0.85rem;
-  border-radius: 9999px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--brand-accent);
-  box-shadow: var(--shadow-elevated);
-}
-
-.beacon-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: #22c55e;
-  box-shadow: 0 0 10px #22c55e;
-  animation: pulse-beacon 2s infinite;
-}
-
-@keyframes pulse-beacon {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-  70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-}
-
-/* ==========================================================================
-   6. Disclaimer Banner
-   ========================================================================== */
-.disclaimer-banner {
-  background-color: rgba(24, 20, 58, 0.6);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-  padding: 0.75rem 1.5rem;
-  backdrop-filter: blur(10px);
-}
-
-.disclaimer-container {
-  max-width: 1540px;
-  margin: 0 auto;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-}
-
-.disclaimer-icon {
-  font-size: 1.15rem;
-  margin-top: 0.15rem;
-  flex-shrink: 0;
-}
-
-.disclaimer-text {
-  font-size: 0.82rem;
-  color: #c7d2fe;
-  line-height: 1.5;
-}
-
-/* ==========================================================================
-   7. Spatial Main Layout & 3D Tilt Cards
-   ========================================================================== */
-.main-layout {
-  flex: 1;
-  max-width: 1540px;
-  width: 100%;
-  margin: 1.75rem auto 3.5rem;
-  padding: 0 1.5rem;
-}
-
-.hero-command-center {
-  display: grid;
-  grid-template-columns: 1.35fr 1fr;
-  gap: 1.75rem;
-  margin-bottom: 2.25rem;
-}
-
-@media (max-width: 1120px) {
-  .hero-command-center {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Base Glassmorphic Elevated Card */
-.hero-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-glass);
-  border-top: 1px solid var(--border-specular);
-  border-radius: var(--radius-xl);
-  padding: 2.25rem;
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-weightless);
-  backdrop-filter: blur(24px) saturate(190%);
-  transform-style: preserve-3d;
-  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
-}
-
-.hero-card:hover {
-  box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.15);
-}
-
-/* Weightless Floating Animation */
-.float-anim {
-  animation: levitate 5s ease-in-out infinite;
-}
-
-.float-anim-slow {
-  animation: levitate 8s ease-in-out infinite;
-}
-
-.float-badge {
-  animation: levitateBadge 4s ease-in-out infinite;
-}
-
-@keyframes levitate {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-}
-
-@keyframes levitateBadge {
-  0%, 100% { transform: translateY(0px) scale(1); }
-  50% { transform: translateY(-4px) scale(1.02); }
-}
-
-.card-ambient-glow {
-  position: absolute;
-  top: -90px;
-  left: -90px;
-  width: 360px;
-  height: 360px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.28) 0%, transparent 70%);
-  pointer-events: none;
-  filter: blur(50px);
-  z-index: 0;
-}
-
-.card-content-wrap {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.live-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: rgba(239, 68, 68, 0.18);
-  border: 1px solid rgba(239, 68, 68, 0.4);
-  color: #fca5a5;
-  font-size: 0.74rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  padding: 0.35rem 0.75rem;
-  border-radius: 9999px;
-  box-shadow: 0 0 12px rgba(239, 68, 68, 0.3);
-}
-
-.live-pulse-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: #ef4444;
-  box-shadow: 0 0 10px #ef4444;
-}
-
-.station-label {
-  font-size: 0.84rem;
-  color: var(--text-dim);
+  background: rgba(48, 209, 88, 0.12);
+  border: 1px solid rgba(48, 209, 88, 0.28);
+  color: var(--apple-green);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
   font-weight: 600;
 }
 
+.status-indicator-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--apple-green);
+  box-shadow: 0 0 8px var(--apple-green);
+}
+
 /* ==========================================================================
-   8. 3D SVG Arc Speedometer Gauge
+   4. Non-Medical Disclaimer Callout
    ========================================================================== */
-.aqi-hero-score-row {
+.disclaimer-callout {
+  max-width: 1280px;
+  margin: 1rem auto 0;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+.disclaimer-inner {
   display: flex;
-  align-items: center;
-  gap: 2rem;
-  margin-bottom: 1.75rem;
-  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(255, 214, 10, 0.08);
+  border: 1px solid rgba(255, 214, 10, 0.22);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
 }
 
-.gauge-wrapper {
-  position: relative;
-  width: 220px;
-  height: 130px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.disclaimer-sf-icon {
+  font-size: 1.1rem;
+  color: var(--apple-yellow);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
 }
 
-.gauge-svg {
-  overflow: visible;
-}
-
-.gauge-track {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.1);
-  stroke-width: 14;
-  stroke-linecap: round;
-}
-
-.gauge-fill {
-  fill: none;
-  stroke: url(#gauge-grad);
-  stroke-width: 15;
-  stroke-linecap: round;
-  stroke-dasharray: 270;
-  stroke-dashoffset: 45; /* Animates dynamically */
-  filter: url(#gauge-glow);
-  transition: stroke-dashoffset 1s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.gauge-metric-center {
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.aqi-number {
-  font-size: 3.5rem;
-  font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-  color: #ffffff;
-  text-shadow: 0 0 25px rgba(168, 85, 247, 0.5);
-}
-
-.aqi-scale-unit {
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
-}
-
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1.15rem;
-  border-radius: 9999px;
-  font-size: 1.05rem;
-  font-weight: 800;
-  border: 1px solid;
-  margin-bottom: 0.5rem;
-}
-
-.status-badge.severe {
-  background: rgba(168, 85, 247, 0.22);
-  border-color: var(--aqi-severe);
-  color: #e9d5ff;
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.35);
-}
-
-.status-badge.hazardous {
-  background: rgba(136, 19, 55, 0.35);
-  border-color: #f43f5e;
-  color: #fda4af;
-  box-shadow: 0 0 20px rgba(244, 63, 94, 0.4);
-}
-
-.status-badge.poor {
-  background: rgba(249, 115, 22, 0.22);
-  border-color: var(--aqi-poor);
-  color: #fed7aa;
-  box-shadow: 0 0 18px rgba(249, 115, 22, 0.35);
-}
-
-.status-badge.moderate {
-  background: rgba(245, 158, 11, 0.22);
-  border-color: var(--aqi-moderate);
-  color: #fef08a;
-  box-shadow: 0 0 18px rgba(245, 158, 11, 0.35);
-}
-
-.status-subline {
-  font-size: 0.9rem;
-  color: var(--text-dim);
-  max-width: 420px;
+.disclaimer-copy {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
   line-height: 1.5;
 }
 
-/* Impact Multipliers */
-.impact-stats-row {
-  display: flex;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
+/* ==========================================================================
+   5. Apple Card Architecture (Glassmorphism & Specular Highlights)
+   ========================================================================== */
+.apple-card {
+  position: relative;
+  background: var(--apple-surface);
+  backdrop-filter: blur(25px) saturate(190%);
+  -webkit-backdrop-filter: blur(25px) saturate(190%);
+  border: 1px solid var(--apple-border);
+  border-top: 1px solid var(--apple-border-specular);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: all var(--spring-duration) var(--spring-easing);
+  overflow: hidden;
 }
 
-.stat-pill {
+.apple-card:hover {
+  background: var(--apple-surface-hover);
+  border-color: rgba(255, 255, 255, 0.2);
+  border-top-color: rgba(255, 255, 255, 0.38);
+}
+
+.card-ambient-light {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(191, 90, 242, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.card-inner {
+  position: relative;
+  z-index: 2;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ==========================================================================
+   6. Hero Air Quality Command Center (Apple Weather Inspired)
+   ========================================================================== */
+.main-container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.hero-overview {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 1.5rem;
+}
+
+.card-top-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.station-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.station-location-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+}
+
+.station-subline {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* Status Pill */
+.status-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  font-size: 0.82rem;
-  padding: 0.5rem 0.95rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid;
-  backdrop-filter: blur(10px);
-  transition: transform 0.2s ease;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8125rem;
+  font-weight: 600;
 }
 
-.stat-pill:hover {
-  transform: translateY(-2px);
-}
-
-.stat-pill.highlight-red {
-  background-color: rgba(239, 68, 68, 0.15);
-  border-color: rgba(239, 68, 68, 0.4);
-  color: #fca5a5;
-}
-
-.stat-pill.highlight-amber {
-  background-color: rgba(245, 158, 11, 0.15);
-  border-color: rgba(245, 158, 11, 0.4);
-  color: #fde68a;
-}
-
-.stat-pill.highlight-purple {
-  background-color: rgba(168, 85, 247, 0.15);
-  border-color: rgba(168, 85, 247, 0.4);
+.status-pill.severe {
+  background: rgba(191, 90, 242, 0.2);
+  border: 1px solid rgba(191, 90, 242, 0.4);
   color: #e9d5ff;
 }
 
-/* 6-Tier AQI Continuum Spectrum */
-.aqi-spectrum-container {
-  background-color: rgba(8, 12, 22, 0.75);
-  padding: 1.25rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-glass);
+.status-pill.hazardous {
+  background: rgba(255, 55, 95, 0.25);
+  border: 1px solid rgba(255, 55, 95, 0.5);
+  color: #ffe4e6;
 }
 
-.spectrum-bar {
+.status-pill.very-poor {
+  background: rgba(255, 69, 58, 0.2);
+  border: 1px solid rgba(255, 69, 58, 0.4);
+  color: #ffcdd2;
+}
+
+.status-pill.poor {
+  background: rgba(255, 159, 10, 0.2);
+  border: 1px solid rgba(255, 159, 10, 0.4);
+  color: #ffedd5;
+}
+
+.status-pill.moderate {
+  background: rgba(255, 214, 10, 0.2);
+  border: 1px solid rgba(255, 214, 10, 0.4);
+  color: #fef9c3;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Primary AQI Display */
+.aqi-primary-display {
   display: flex;
-  height: 14px;
-  border-radius: 9999px;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 0.5rem 0;
+}
+
+.aqi-value-lockup {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.aqi-number {
+  font-size: 5.25rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: #ffffff;
+}
+
+.aqi-caption {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  letter-spacing: 0.05em;
+}
+
+.aqi-narrative {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.aqi-narrative-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.aqi-narrative-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Health Multipliers Row */
+.health-multipliers-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+}
+
+.multiplier-tile {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: all var(--spring-duration) var(--spring-easing);
+}
+
+.multiplier-tile:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.tile-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.tile-val-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.tile-val {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+}
+
+.multiplier-tile.danger .tile-val { color: var(--apple-pink); }
+.multiplier-tile.warning .tile-val { color: var(--apple-orange); }
+.multiplier-tile.purple .tile-val { color: var(--apple-purple); }
+
+.tile-sub {
+  font-size: 0.6875rem;
+  color: var(--text-tertiary);
+}
+
+/* Apple Spectrum Track */
+.apple-spectrum-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.spectrum-track {
   position: relative;
-  margin-bottom: 0.75rem;
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  overflow: visible;
 }
 
 .spectrum-segment {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.65rem;
-  font-weight: 800;
-  color: rgba(0, 0, 0, 0.85);
+  height: 100%;
 }
 
-.spectrum-segment.good { background-color: var(--aqi-good); border-radius: 9999px 0 0 9999px; }
-.spectrum-segment.moderate { background-color: var(--aqi-moderate); }
-.spectrum-segment.poor { background-color: var(--aqi-poor); }
-.spectrum-segment.very-poor { background-color: #ef4444; }
-.spectrum-segment.severe { background-color: var(--aqi-severe); }
-.spectrum-segment.hazardous { background-color: #881337; border-radius: 0 9999px 9999px 0; }
+.spectrum-segment:first-child { border-top-left-radius: var(--radius-pill); border-bottom-left-radius: var(--radius-pill); }
+.spectrum-segment:last-child { border-top-right-radius: var(--radius-pill); border-bottom-right-radius: var(--radius-pill); }
+
+.spectrum-segment.good { background: var(--aqi-good); }
+.spectrum-segment.moderate { background: var(--aqi-moderate); }
+.spectrum-segment.poor { background: var(--aqi-poor); }
+.spectrum-segment.very-poor { background: var(--aqi-very-poor); }
+.spectrum-segment.severe { background: var(--aqi-severe); }
+.spectrum-segment.hazardous { background: var(--aqi-hazardous); }
 
 .spectrum-pin {
   position: absolute;
-  top: -30px;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: left 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  z-index: 10;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: left 0.4s var(--spring-easing);
 }
 
-.pin-badge {
-  background-color: #ffffff;
-  color: #080c14;
-  font-size: 0.72rem;
-  font-weight: 900;
-  padding: 0.15rem 0.5rem;
-  border-radius: 9999px;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+.pin-capsule {
+  background: #ffffff;
+  color: #000000;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--apple-bg);
 }
 
-.pin-triangle {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 6px solid #ffffff;
-  margin-top: -1px;
-}
-
-.spectrum-legend {
+.spectrum-ticks {
   display: flex;
   justify-content: space-between;
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  font-weight: 600;
+  font-size: 0.6875rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+  padding: 0 0.25rem;
 }
 
-/* ==========================================================================
-   9. Weather & Microclimate Right Hero Card
-   ========================================================================== */
-.weather-advisory-card {
+/* Weather & Activity Card */
+.weather-header-row {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.weather-top-row {
-  display: flex;
-  justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-  gap: 1rem;
+  justify-content: space-between;
 }
 
-.weather-brief {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.weather-icon-large {
-  font-size: 2.75rem;
+.card-section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  display: block;
 }
 
 .weather-temp-row {
   display: flex;
   align-items: baseline;
-  gap: 0.75rem;
+  gap: 0.65rem;
+  margin-top: 0.25rem;
 }
 
-.weather-temp {
-  font-size: 2.2rem;
-  font-weight: 900;
-  color: #ffffff;
-}
-
-.weather-cond {
-  font-size: 0.95rem;
+.temp-readout {
+  font-size: 2.75rem;
   font-weight: 700;
-  color: var(--brand-accent);
+  letter-spacing: -0.035em;
+  color: #ffffff;
+  line-height: 1;
 }
 
-.weather-updated {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  display: block;
+.temp-condition {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
 }
 
-.wind-capsule {
-  background-color: rgba(14, 20, 36, 0.85);
-  border: 1px solid var(--border-glass);
-  padding: 0.5rem 0.95rem;
-  border-radius: var(--radius-sm);
-  text-align: right;
-  backdrop-filter: blur(12px);
+.wind-capsule-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--apple-border-subtle);
 }
 
 .wind-label {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  display: block;
-}
-
-.wind-speed {
-  font-size: 0.92rem;
-  font-weight: 800;
-  color: #ffffff;
-}
-
-.weather-micro-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.75rem;
-  background-color: rgba(8, 12, 22, 0.75);
-  padding: 0.95rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-glass);
-  margin-bottom: 1.5rem;
-}
-
-.micro-item {
-  display: flex;
-  flex-direction: column;
-}
-
-.micro-label {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-}
-
-.micro-val {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.micro-val.text-red {
-  color: #ef4444;
-}
-
-/* 4 Health Activity Advisories */
-.advisories-title {
-  font-size: 0.85rem;
-  font-weight: 800;
+  font-size: 0.625rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
-  margin-bottom: 0.75rem;
+  color: var(--text-tertiary);
+  font-weight: 600;
 }
 
-.advisory-chips-grid {
+.wind-value {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.weather-stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
 }
 
-.advisory-chip {
+.weather-stat-box {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.stat-box-title {
+  font-size: 0.6875rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.stat-box-num {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.stat-box-num.text-danger {
+  color: var(--apple-pink);
+}
+
+/* Activity Advisories */
+.advisories-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.advisories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+.advisory-tile {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.8rem 0.95rem;
+  gap: 0.65rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--apple-border-subtle);
   border-radius: var(--radius-md);
-  border: 1px solid;
-  backdrop-filter: blur(12px);
-  transition: transform 0.2s ease;
+  padding: 0.65rem 0.85rem;
+  transition: all var(--spring-duration) var(--spring-easing);
 }
 
-.advisory-chip:hover {
-  transform: translateY(-2px);
+.advisory-tile:hover {
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.advisory-chip.danger {
-  background-color: rgba(239, 68, 68, 0.12);
-  border-color: rgba(239, 68, 68, 0.35);
-}
-
-.advisory-chip.warning {
-  background-color: rgba(245, 158, 11, 0.12);
-  border-color: rgba(245, 158, 11, 0.35);
-}
-
-.advisory-chip.primary {
-  background-color: rgba(56, 189, 248, 0.12);
-  border-color: rgba(56, 189, 248, 0.35);
-}
-
-.advisory-chip.info {
-  background-color: rgba(168, 85, 247, 0.12);
-  border-color: rgba(168, 85, 247, 0.35);
-}
-
-.advisory-icon {
-  font-size: 1.45rem;
+.advisory-sf-icon {
+  font-size: 1.25rem;
   flex-shrink: 0;
 }
 
-.advisory-action {
-  font-size: 0.76rem;
-  color: var(--text-muted);
-  display: block;
+.advisory-tile.danger .advisory-sf-icon { color: var(--apple-pink); }
+.advisory-tile.warning .advisory-sf-icon { color: var(--apple-orange); }
+.advisory-tile.primary .advisory-sf-icon { color: var(--apple-blue); }
+.advisory-tile.info .advisory-sf-icon { color: var(--apple-teal); }
+
+.advisory-text-group {
+  display: flex;
+  flex-direction: column;
 }
 
-.advisory-status {
-  font-size: 0.88rem;
-  font-weight: 800;
+.advisory-name {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+}
+
+.advisory-verdict {
+  font-size: 0.8125rem;
+  font-weight: 700;
   color: #ffffff;
 }
 
 /* ==========================================================================
-   10. 6-Pollutants Grid & 3D Tilts
+   7. Apple Section Title & Segmented Controls
    ========================================================================== */
-.section-block {
-  margin-bottom: 2.75rem;
-}
-
-.section-header-row {
+.section-container {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 1.35rem;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.section-title {
-  font-size: 1.4rem;
-  font-weight: 900;
-  color: #ffffff;
-  letter-spacing: -0.01em;
-}
-
-.section-desc {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  margin-top: 0.25rem;
-}
-
-.standard-tag {
-  font-size: 0.78rem;
-  color: var(--brand-accent);
-  background-color: rgba(56, 189, 248, 0.12);
-  padding: 0.3rem 0.75rem;
-  border-radius: 9999px;
-  border: 1px solid rgba(56, 189, 248, 0.25);
-  backdrop-filter: blur(8px);
-}
-
-.pollutants-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  flex-direction: column;
   gap: 1.25rem;
 }
 
-@media (max-width: 980px) {
-  .pollutants-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .pollutants-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.pollutant-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-glass);
-  border-top: 1px solid var(--border-specular);
-  border-left: 5px solid;
-  border-radius: var(--radius-lg);
-  padding: 1.4rem;
-  box-shadow: var(--shadow-weightless);
-  backdrop-filter: blur(20px);
-  transform-style: preserve-3d;
-  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s ease;
-}
-
-.pollutant-card:hover {
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 255, 255, 0.05);
-}
-
-.pollutant-card.border-severe { border-left-color: var(--aqi-severe); }
-.pollutant-card.border-poor { border-left-color: var(--aqi-poor); }
-.pollutant-card.border-moderate { border-left-color: var(--aqi-moderate); }
-.pollutant-card.border-good { border-left-color: var(--aqi-good); }
-
-.pollutant-header {
+.section-title-bar {
   display: flex;
+  align-items: flex-end;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 0.75rem;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.pollutant-tag {
-  font-size: 0.72rem;
+.apple-section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+}
+
+.apple-section-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-tertiary);
+  margin-top: 0.15rem;
+}
+
+.apple-pill-tag {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
-  font-weight: 700;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--apple-border-subtle);
 }
 
-.pollutant-name {
-  font-size: 1.25rem;
-  font-weight: 900;
+/* Apple Segmented Control */
+.apple-segmented-control {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  gap: 2px;
+}
+
+.segmented-pill {
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.45rem 1.15rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--spring-duration) var(--spring-easing);
+  user-select: none;
+}
+
+.segmented-pill:hover {
   color: #ffffff;
 }
 
-.pollutant-badge {
-  font-size: 0.72rem;
-  font-weight: 800;
-  padding: 0.2rem 0.55rem;
-  border-radius: 9999px;
+.segmented-pill:active {
+  transform: scale(0.96);
 }
 
-.badge-severe { background-color: rgba(168, 85, 247, 0.25); color: #e9d5ff; }
-.badge-poor { background-color: rgba(249, 115, 22, 0.25); color: #fed7aa; }
-.badge-moderate { background-color: rgba(245, 158, 11, 0.25); color: #fef08a; }
-.badge-good { background-color: rgba(16, 185, 129, 0.25); color: #a7f3d0; }
-
-.pollutant-value-row {
-  display: flex;
-  align-items: baseline;
-  gap: 0.45rem;
-  margin-bottom: 0.5rem;
-}
-
-.pollutant-val {
-  font-size: 2.2rem;
-  font-weight: 900;
+.segmented-pill.active {
+  background: rgba(255, 255, 255, 0.22);
   color: #ffffff;
-  letter-spacing: -0.02em;
-}
-
-.pollutant-unit {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  font-weight: 700;
-}
-
-.pollutant-threshold {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  padding: 0.5rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: 0.75rem;
-}
-
-.threshold-excess {
-  color: #f87171;
-  font-weight: 800;
-}
-
-.pollutant-mechanism {
-  font-size: 0.82rem;
-  color: var(--text-dim);
-  line-height: 1.5;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 /* ==========================================================================
-   11. Regional Hotspots Grid
+   8. Key Pollutants Telemetry Grid (Apple Health Style)
    ========================================================================== */
-.hotspots-grid {
+.pollutants-apple-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
   gap: 1.15rem;
 }
 
-@media (max-width: 980px) {
-  .hotspots-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.pollutant-card {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  border-left: 3px solid transparent;
 }
 
-@media (max-width: 600px) {
-  .hotspots-grid {
-    grid-template-columns: 1fr;
-  }
+.pollutant-card.border-severe { border-left-color: var(--apple-purple); }
+.pollutant-card.border-poor { border-left-color: var(--apple-orange); }
+.pollutant-card.border-moderate { border-left-color: var(--apple-yellow); }
+.pollutant-card.border-good { border-left-color: var(--apple-green); }
+
+.pollutant-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pollutant-code {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.apple-status-tag {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill);
+  text-transform: uppercase;
+}
+
+.apple-status-tag.severe { background: rgba(191, 90, 242, 0.2); color: #e9d5ff; border: 1px solid rgba(191, 90, 242, 0.3); }
+.apple-status-tag.poor { background: rgba(255, 159, 10, 0.2); color: #ffedd5; border: 1px solid rgba(255, 159, 10, 0.3); }
+.apple-status-tag.moderate { background: rgba(255, 214, 10, 0.2); color: #fef9c3; border: 1px solid rgba(255, 214, 10, 0.3); }
+.apple-status-tag.good { background: rgba(48, 209, 88, 0.2); color: #dcfce7; border: 1px solid rgba(48, 209, 88, 0.3); }
+
+.pollutant-metric-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.pollutant-number {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.pollutant-unit {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  font-weight: 600;
+}
+
+.pollutant-benchmark {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.6875rem;
+  color: var(--text-tertiary);
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--apple-border-subtle);
+  border-bottom: 1px solid var(--apple-border-subtle);
+}
+
+.excess-label {
+  font-weight: 700;
+  color: var(--apple-pink);
+}
+
+.excess-label.text-success {
+  color: var(--apple-green);
+}
+
+.pollutant-description {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   9. Regional Monitoring Stations (Apple List Items)
+   ========================================================================== */
+.hotspots-apple-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
 }
 
 .hotspot-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-glass);
-  border-top: 1px solid var(--border-specular);
+  background: var(--apple-surface);
+  backdrop-filter: blur(25px) saturate(190%);
+  -webkit-backdrop-filter: blur(25px) saturate(190%);
+  border: 1px solid var(--apple-border);
+  border-top: 1px solid var(--apple-border-specular);
   border-radius: var(--radius-md);
-  padding: 1.1rem 1.35rem;
+  padding: 1.15rem 1.25rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  transition: all 0.25s ease;
+  justify-content: space-between;
+  gap: 1rem;
   cursor: pointer;
-  box-shadow: var(--shadow-elevated);
-  backdrop-filter: blur(16px);
+  transition: all var(--spring-duration) var(--spring-easing);
+  user-select: none;
 }
 
 .hotspot-card:hover {
-  background-color: var(--bg-card-hover);
-  border-color: var(--brand-accent);
-  transform: translateY(-3px) scale(1.01);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.2);
+  background: var(--apple-surface-hover);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.hotspot-card:active {
+  transform: scale(0.98);
 }
 
 .hotspot-station-name {
   font-size: 0.95rem;
-  font-weight: 800;
+  font-weight: 600;
   color: #ffffff;
-  margin-bottom: 0.25rem;
+  letter-spacing: -0.015em;
 }
 
 .hotspot-meta {
-  font-size: 0.8rem;
-  color: var(--text-muted);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  margin-top: 0.2rem;
 }
 
 .hotspot-score-pill {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  background-color: rgba(136, 19, 55, 0.35);
-  border: 1px solid rgba(244, 63, 94, 0.5);
-  padding: 0.4rem 0.85rem;
-  border-radius: var(--radius-sm);
-  color: #fda4af;
-  font-weight: 900;
-  font-size: 1.05rem;
-  box-shadow: 0 0 12px rgba(244, 63, 94, 0.3);
+  gap: 0.35rem;
+  background: rgba(255, 55, 95, 0.2);
+  border: 1px solid rgba(255, 55, 95, 0.4);
+  color: #ffe4e6;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
 }
 
 .hotspot-score-pill.very-poor {
-  background-color: rgba(168, 85, 247, 0.25);
-  border-color: var(--aqi-severe);
+  background: rgba(191, 90, 242, 0.2);
+  border-color: rgba(191, 90, 242, 0.4);
   color: #e9d5ff;
-  box-shadow: 0 0 12px rgba(168, 85, 247, 0.3);
-}
-
-.live-pulse-badge {
-  font-size: 0.78rem;
-  color: #22c55e;
-  font-weight: 800;
 }
 
 /* ==========================================================================
-   12. GenAI Resilience Planner
+   10. GenAI Household Resilience Planner
    ========================================================================== */
-.planner-section {
-  background: linear-gradient(180deg, rgba(14, 20, 36, 0.8) 0%, rgba(8, 12, 22, 0.95) 100%);
-  border: 1px solid var(--border-glass);
-  border-top: 1px solid var(--border-specular);
-  border-radius: var(--radius-xl);
-  padding: 2.25rem;
-  backdrop-filter: blur(24px);
-  box-shadow: var(--shadow-weightless);
-}
-
-.preset-segmented-control {
-  display: flex;
-  gap: 0.4rem;
-  background-color: var(--bg-deep);
-  padding: 0.35rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-glass);
-}
-
-.preset-pill {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  font-size: 0.82rem;
-  font-weight: 700;
-  padding: 0.5rem 0.95rem;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.preset-pill:hover {
-  color: #ffffff;
-}
-
-.preset-pill.active {
-  background-color: rgba(56, 189, 248, 0.18);
-  color: var(--brand-accent);
-  border: 1px solid rgba(56, 189, 248, 0.4);
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
-}
-
 .planner-layout {
   display: grid;
-  grid-template-columns: 460px 1fr;
-  gap: 2rem;
-  margin-top: 1.75rem;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 1.5rem;
+  align-items: start;
 }
 
-@media (max-width: 1080px) {
-  .planner-layout {
-    grid-template-columns: 1fr;
-  }
+.form-surface {
+  padding: 1.75rem;
 }
 
-.planner-form-card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-lg);
-  padding: 1.85rem;
-  backdrop-filter: blur(20px);
-}
-
-.form-card-title {
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 1.35rem;
-}
-
-.form-group {
-  margin-bottom: 1.15rem;
-}
-
-.form-row-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.85rem;
-}
-
-.form-label {
-  display: block;
-  font-size: 0.82rem;
+.form-section-title {
+  font-size: 1.15rem;
   font-weight: 700;
-  color: var(--text-dim);
-  margin-bottom: 0.4rem;
-}
-
-.form-input, .form-select {
-  width: 100%;
-  padding: 0.7rem 0.9rem;
-  background-color: var(--bg-input);
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-sm);
+  letter-spacing: -0.02em;
   color: #ffffff;
-  font-size: 0.88rem;
-  outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 1.25rem;
 }
 
-.form-input:focus, .form-select:focus {
-  border-color: var(--brand-accent);
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
-}
-
-.form-fieldset {
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-md);
-  padding: 1.1rem;
-  margin-bottom: 1.35rem;
-}
-
-.form-legend {
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: var(--text-dim);
-  padding: 0 0.5rem;
-}
-
-.checkbox-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.6rem;
-}
-
-.check-box-label {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  font-size: 0.85rem;
-  color: var(--text-dim);
-  cursor: pointer;
-}
-
-.check-box-label input[type="checkbox"] {
-  width: 1.15rem;
-  height: 1.15rem;
-  accent-color: var(--brand-accent);
-  cursor: pointer;
-}
-
-/* Primary Glow Button */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-weight: 800;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  border: 1px solid transparent;
-  transition: all 0.2s ease;
-  text-decoration: none;
-}
-
-.btn-glow-sm {
-  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
-  color: #ffffff;
-  padding: 0.45rem 0.9rem;
-  font-size: 0.82rem;
-  border-radius: 9999px;
-  box-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
-}
-
-.btn-glow-sm:hover {
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.75);
-  transform: translateY(-1px);
-}
-
-.btn-primary-glow {
-  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
-  color: #ffffff;
-  padding: 0.95rem 1.6rem;
-  font-size: 1rem;
-  border-radius: var(--radius-sm);
-  box-shadow: 0 0 25px rgba(2, 132, 199, 0.5);
-  transform: translateZ(5px);
-}
-
-.btn-primary-glow:hover {
-  box-shadow: 0 0 35px rgba(6, 182, 212, 0.7);
-  transform: translateY(-2px) translateZ(8px);
-}
-
-.btn-secondary-outline {
-  background: transparent;
-  border: 1px solid var(--border-glass);
-  color: var(--text-dim);
-  padding: 0.7rem 1.35rem;
-  font-size: 0.88rem;
-}
-
-.btn-secondary-outline:hover {
-  background-color: var(--bg-card);
-  color: #ffffff;
-  border-color: var(--brand-accent);
-}
-
-.btn-block {
-  width: 100%;
-}
-
-/* ==========================================================================
-   13. Blueprint Tabs & Generated Cards
-   ========================================================================== */
-.planner-results-card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-lg);
-  padding: 1.85rem;
-  backdrop-filter: blur(20px);
-}
-
-.results-header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.blueprint-tabs {
-  display: flex;
-  gap: 0.35rem;
-  background-color: var(--bg-deep);
-  padding: 0.35rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-glass);
-}
-
-.blueprint-tab {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  padding: 0.55rem 0.95rem;
-  font-size: 0.84rem;
-  font-weight: 800;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.blueprint-tab:hover {
-  color: #ffffff;
-}
-
-.blueprint-tab.active {
-  background-color: var(--bg-card);
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  border: 1px solid var(--border-glass);
-}
-
-.tab-panel.hidden {
-  display: none;
-}
-
-/* Risk Summary Card */
-.risk-summary-card {
-  background-color: rgba(168, 85, 247, 0.15);
-  border: 1px solid var(--aqi-severe);
-  border-radius: var(--radius-md);
-  padding: 1.35rem;
-  margin-bottom: 1.6rem;
-  box-shadow: var(--shadow-glow-severe);
-}
-
-.risk-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 0.85rem;
-}
-
-.risk-badge {
-  font-size: 0.9rem;
-  font-weight: 900;
-  color: #ffffff;
-  background-color: var(--aqi-severe);
-  padding: 0.28rem 0.75rem;
-  border-radius: var(--radius-sm);
-  box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
-}
-
-.generator-tag {
-  font-size: 0.74rem;
-  font-family: var(--font-mono);
-  color: var(--brand-accent);
-  background-color: rgba(56, 189, 248, 0.15);
-  padding: 0.22rem 0.6rem;
-  border-radius: var(--radius-sm);
-}
-
-.risk-warning-text {
-  font-size: 0.94rem;
-  color: #f8fafc;
-  line-height: 1.55;
-  margin-bottom: 1rem;
-}
-
-.priority-actions-box {
-  background-color: rgba(6, 9, 16, 0.8);
-  padding: 1.1rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.priority-title {
-  font-size: 0.82rem;
-  font-weight: 900;
-  text-transform: uppercase;
-  color: #ffffff;
-  margin-bottom: 0.5rem;
-}
-
-.priority-list {
-  padding-left: 1.25rem;
-  font-size: 0.85rem;
-  color: var(--text-dim);
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-/* Staggered Recommendation Cards */
-.cards-grid {
+.apple-form {
   display: flex;
   flex-direction: column;
   gap: 1.15rem;
 }
 
-.rec-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-glass);
-  border-top: 1px solid var(--border-specular);
-  border-radius: var(--radius-md);
-  padding: 1.45rem;
-  box-shadow: var(--shadow-elevated);
-  backdrop-filter: blur(16px);
-  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
-  animation: cardEntrance 0.5s ease-out backwards;
-}
-
-.rec-card:nth-child(1) { animation-delay: 0.05s; }
-.rec-card:nth-child(2) { animation-delay: 0.12s; }
-.rec-card:nth-child(3) { animation-delay: 0.19s; }
-.rec-card:nth-child(4) { animation-delay: 0.26s; }
-
-@keyframes cardEntrance {
-  from {
-    opacity: 0;
-    transform: translateY(16px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0px) scale(1);
-  }
-}
-
-.rec-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(56, 189, 248, 0.4);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.15);
-}
-
-.rec-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+.form-row-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  margin-bottom: 0.75rem;
 }
 
-.rec-card-title {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: #ffffff;
-}
-
-.rec-chip {
-  font-size: 0.74rem;
-  font-weight: 800;
-  padding: 0.25rem 0.65rem;
-  border-radius: 9999px;
-  white-space: nowrap;
-}
-
-.rec-chip.free {
-  background-color: rgba(16, 185, 129, 0.2);
-  border: 1px solid rgba(16, 185, 129, 0.45);
-  color: #6ee7b7;
-}
-
-.rec-chip.low-cost {
-  background-color: rgba(56, 189, 248, 0.2);
-  border: 1px solid rgba(56, 189, 248, 0.45);
-  color: var(--brand-accent);
-}
-
-.rec-chip.equipment {
-  background-color: rgba(168, 85, 247, 0.2);
-  border: 1px solid rgba(168, 85, 247, 0.45);
-  color: #d8b4fe;
-}
-
-.rec-card-body {
-  font-size: 0.88rem;
-  color: var(--text-dim);
-  line-height: 1.6;
-  margin-bottom: 1.1rem;
-}
-
-/* Luminous Impact Box */
-.impact-badge-box {
-  background-color: rgba(6, 9, 16, 0.85);
-  border-left: 4px solid var(--brand-accent);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  padding: 0.95rem 1.25rem;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
-}
-
-.impact-badge-title {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.78rem;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--brand-accent);
-  margin-bottom: 0.35rem;
-}
-
-.impact-badge-desc {
-  font-size: 0.85rem;
-  color: #f1f5f9;
-  line-height: 1.5;
-}
-
-/* Checklist */
-.checklist-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-md);
-  padding: 1.65rem;
-}
-
-.interactive-checklist {
-  list-style: none;
+.apple-form-field {
   display: flex;
   flex-direction: column;
-  gap: 0.95rem;
-  margin-bottom: 1.5rem;
+  gap: 0.4rem;
 }
 
-.check-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.85rem;
-  font-size: 0.92rem;
-  color: var(--text-dim);
-  cursor: pointer;
-  line-height: 1.5;
+.field-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
 }
 
-.check-item input[type="checkbox"] {
-  width: 1.25rem;
-  height: 1.25rem;
-  margin-top: 0.15rem;
-  accent-color: var(--brand-accent);
-  flex-shrink: 0;
-  cursor: pointer;
+/* Apple Select Wrapper */
+.apple-select-wrapper {
+  position: relative;
 }
 
-.checklist-actions {
-  display: flex;
-  justify-content: flex-end;
-}
-
-/* ==========================================================================
-   14. Footer
-   ========================================================================== */
-.app-footer {
-  background-color: var(--bg-surface);
-  border-top: 1px solid var(--border-glass);
-  padding: 2.25rem 1.5rem;
-  margin-top: auto;
-  backdrop-filter: blur(16px);
-}
-
-.footer-container {
-  max-width: 1540px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-}
-
-.footer-brand-title {
-  font-size: 1rem;
-  font-weight: 900;
+.apple-select {
+  width: 100%;
+  background: var(--apple-input-bg);
+  border: 1px solid var(--apple-border);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 2rem 0.65rem 0.85rem;
   color: #ffffff;
+  font-family: inherit;
+  font-size: 0.875rem;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  transition: all var(--spring-duration) var(--spring-easing);
 }
 
-.footer-desc {
-  font-size: 0.82rem;
-  color: var(--text-muted);
+.apple-select-wrapper::after {
+  content: "▾";
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  pointer-events: none;
+  font-size: 0.85rem;
 }
 
-.footer-compliance {
-  font-size: 0.8rem;
-  color: var(--text-subtle);
+.apple-select:focus {
+  border-color: var(--apple-blue);
+  box-shadow: 0 0 0 3px var(--apple-blue-glow);
 }
 
-/* Spinner */
-.spinner {
+/* Apple Fieldset & Checkboxes */
+.apple-fieldset {
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.fieldset-legend {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding: 0 0.5rem;
+}
+
+.checkboxes-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 0.25rem;
+}
+
+.apple-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.apple-checkbox-label input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.checkbox-custom {
   width: 18px;
   height: 18px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: #ffffff;
-  animation: spin 0.8s linear infinite;
-  display: inline-block;
+  border-radius: 5px;
+  border: 1.5px solid var(--apple-border);
+  background: rgba(255, 255, 255, 0.05);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--spring-duration) var(--spring-easing);
+  flex-shrink: 0;
 }
 
-.spinner.hidden {
-  display: none;
+.apple-checkbox-label input[type="checkbox"]:checked + .checkbox-custom {
+  background: var(--apple-blue);
+  border-color: var(--apple-blue);
+}
+
+.apple-checkbox-label input[type="checkbox"]:checked + .checkbox-custom::after {
+  content: "✓";
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.apple-checkbox-label input[type="checkbox"]:focus-visible + .checkbox-custom {
+  outline: 2px solid var(--apple-blue);
+  outline-offset: 2px;
+}
+
+.checkbox-text {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+/* Apple Text Input */
+.apple-text-input {
+  width: 100%;
+  background: var(--apple-input-bg);
+  border: 1px solid var(--apple-border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.875rem;
+  outline: none;
+  transition: all var(--spring-duration) var(--spring-easing);
+}
+
+.apple-text-input:focus {
+  border-color: var(--apple-blue);
+  box-shadow: 0 0 0 3px var(--apple-blue-glow);
+}
+
+.apple-text-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Apple Primary Button */
+.apple-primary-button {
+  background: var(--apple-blue);
+  color: #ffffff;
+  border: none;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.85rem 1.5rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--spring-duration) var(--spring-easing);
+  box-shadow: 0 4px 14px var(--apple-blue-glow);
+  margin-top: 0.5rem;
+}
+
+.apple-primary-button:hover {
+  background: var(--apple-blue-hover);
+  box-shadow: 0 6px 20px rgba(0, 113, 227, 0.5);
+}
+
+.apple-primary-button:active {
+  transform: scale(0.975);
+}
+
+.apple-primary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.apple-secondary-button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--apple-border);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--spring-duration) var(--spring-easing);
+}
+
+.apple-secondary-button:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.apple-secondary-button:active {
+  transform: scale(0.975);
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.hidden {
+  display: none !important;
 }
 
 @keyframes spin {
@@ -1700,34 +1321,421 @@ body {
 }
 
 /* ==========================================================================
-   15. Accessibility: Reduced Motion (prefers-reduced-motion)
+   11. Action Blueprint & Results Tabs
    ========================================================================== */
+.blueprint-surface {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.blueprint-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.apple-blueprint-tabs {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  gap: 2px;
+}
+
+.blueprint-tab {
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.4rem 0.95rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--spring-duration) var(--spring-easing);
+}
+
+.blueprint-tab:hover {
+  color: #ffffff;
+}
+
+.blueprint-tab:active {
+  transform: scale(0.96);
+}
+
+.blueprint-tab.active {
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Risk Callout Card */
+.risk-callout {
+  padding: 1.25rem;
+  border-left: 4px solid var(--apple-purple);
+  margin-bottom: 1.25rem;
+}
+
+.risk-callout.severe {
+  background: rgba(191, 90, 242, 0.08);
+  border-color: rgba(191, 90, 242, 0.3);
+  border-left: 4px solid var(--apple-purple);
+}
+
+.risk-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.risk-badge {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--apple-purple);
+}
+
+.generator-badge {
+  font-size: 0.6875rem;
+  color: var(--text-tertiary);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-pill);
+}
+
+.risk-warning-body {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 0.85rem;
+}
+
+.priority-actions-box {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+}
+
+.priority-box-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 0.35rem;
+}
+
+.priority-items-list {
+  padding-left: 1.2rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* Recommendation Cards Stack */
+.cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.rec-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: all var(--spring-duration) var(--spring-easing);
+}
+
+.rec-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+.rec-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.rec-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: #ffffff;
+}
+
+.rec-chip {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+
+.rec-chip.free { background: rgba(48, 209, 88, 0.18); color: #dcfce7; border: 1px solid rgba(48, 209, 88, 0.3); }
+.rec-chip.low-cost { background: rgba(0, 113, 227, 0.18); color: #bfdbfe; border: 1px solid rgba(0, 113, 227, 0.3); }
+.rec-chip.equipment { background: rgba(191, 90, 242, 0.18); color: #e9d5ff; border: 1px solid rgba(191, 90, 242, 0.3); }
+
+.rec-card-body {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.impact-badge-box {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.85rem;
+  border-left: 3px solid var(--apple-blue);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.impact-badge-title {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--apple-teal);
+}
+
+.impact-badge-desc {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+/* Interactive Checklist (Family Readiness) */
+.checklist-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.interactive-checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--spring-duration) var(--spring-easing);
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+}
+
+.check-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.check-item input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.check-box-custom {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1.5px solid var(--apple-border);
+  background: rgba(255, 255, 255, 0.05);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  transition: all var(--spring-duration) var(--spring-easing);
+}
+
+.check-item input[type="checkbox"]:checked + .check-box-custom {
+  background: var(--apple-green);
+  border-color: var(--apple-green);
+}
+
+.check-item input[type="checkbox"]:checked + .check-box-custom::after {
+  content: "✓";
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.checklist-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ==========================================================================
+   12. Apple Footer
+   ========================================================================== */
+.apple-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--apple-border);
+  background: rgba(11, 12, 16, 0.85);
+  padding: 1.75rem 1.5rem;
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.footer-sub {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  margin-top: 0.15rem;
+}
+
+.footer-meta {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+/* ==========================================================================
+   13. Accessibility Focus Styles
+   ========================================================================== */
+:focus-visible {
+  outline: 2px solid var(--apple-focus-ring);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--apple-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   14. Media Queries: Responsive, Reduced Motion, Reduced Transparency
+   ========================================================================== */
+@media (max-width: 960px) {
+  .hero-overview {
+    grid-template-columns: 1fr;
+  }
+  .planner-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .nav-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .apple-search-field input {
+    width: 100%;
+  }
+  .form-row-pair {
+    grid-template-columns: 1fr;
+  }
+  .health-multipliers-row {
+    grid-template-columns: 1fr;
+  }
+  .weather-stats-grid,
+  .advisories-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* WCAG Reduced Motion Preference */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
-  .orb {
-    display: none !important;
+  .pulse-indicator {
+    animation: none;
   }
-  .float-anim, .float-anim-slow, .float-badge {
-    animation: none !important;
+  .spectrum-pin {
+    transition: none;
   }
-  .rec-card {
-    animation: none !important;
-  }
-  .hero-card, .pollutant-card, .hotspot-card {
+  .apple-card:hover,
+  .hotspot-card:hover,
+  .rec-card:hover {
     transform: none !important;
   }
 }
 
-/* Print Styles */
+/* Reduced Transparency Preference */
+@media (prefers-reduced-transparency: reduce) {
+  .apple-nav,
+  .apple-card,
+  .hotspot-card,
+  .apple-alert-banner,
+  .apple-footer {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #141720 !important;
+  }
+}
+
+/* Print Stylesheet for Family Readiness Checklist */
 @media print {
-  body { background: #ffffff; color: #000000; }
-  .spatial-bg, .app-header, .emergency-ticker, .disclaimer-banner, .preset-segmented-control, .planner-form-card, .blueprint-tabs, .checklist-actions, .app-footer {
+  .apple-nav,
+  .apple-alert-banner,
+  .apple-search-field,
+  .apple-segmented-control,
+  .apple-blueprint-tabs,
+  .checklist-footer,
+  .apple-primary-button,
+  .apple-footer,
+  .form-surface {
     display: none !important;
   }
-  .planner-layout { grid-template-columns: 1fr; }
-  .tab-panel.hidden { display: block !important; page-break-before: always; }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .apple-card {
+    border: 1px solid #cccccc !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+  }
 }

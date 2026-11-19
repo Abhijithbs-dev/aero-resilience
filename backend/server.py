@@ -1,9 +1,9 @@
 """
 Fast, multi-threaded HTTP server and REST API for Winter Smog & Urban Air Quality Assistant.
 Built using standard library ThreadingHTTPServer for zero-dependency, ultra-lightweight execution.
+Hardened with STRIDE threat modeling, OWASP Top 10 defenses, and Content Security Policy.
 """
 import json
-import mimetypes
 import os
 import sys
 import urllib.parse
@@ -16,7 +16,7 @@ from backend.services.ai_service import AIService
 from backend.utils.sanitization import sanitize_household_payload, sanitize_string
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
+FRONTEND_DIR = os.path.realpath(os.path.join(BASE_DIR, "frontend"))
 
 aqi_service = AQIService()
 ai_service = AIService()
@@ -27,10 +27,11 @@ class SmogAssistantRequestHandler(BaseHTTPRequestHandler):
     def _set_headers(self, status_code: int = 200, content_type: str = "application/json"):
         self.send_response(status_code)
         self.send_header("Content-Type", content_type)
-        # Security headers
+        # Security hardening headers
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("X-Frame-Options", "DENY")
         self.send_header("Referrer-Policy", "no-referrer")
+        self.send_header("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://geocoding-api.open-meteo.com https://air-quality-api.open-meteo.com;")
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
@@ -84,7 +85,7 @@ class SmogAssistantRequestHandler(BaseHTTPRequestHandler):
             content_length = int(self.headers.get("Content-Length", 0))
             if content_length > 50000:  # 50 KB payload cap
                 self._set_headers(413)
-                self.wfile.write(json.dumps({"error": "Payload too large"}).encode("utf-8"))
+                self.wfile.write(json.dumps({"error": "Payload too large. Maximum size is 50 KB."}).encode("utf-8"))
                 return
 
             body = self.rfile.read(content_length).decode("utf-8")
@@ -134,23 +135,26 @@ class SmogAssistantRequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(json.dumps({"error": "Endpoint not found"}).encode("utf-8"))
 
     def _serve_static(self, path: str):
-        if path in ["/", "/index.html"]:
-            file_path = os.path.join(FRONTEND_DIR, "index.html")
-            content_type = "text/html; charset=utf-8"
-        elif path == "/styles.css":
-            file_path = os.path.join(FRONTEND_DIR, "styles.css")
-            content_type = "text/css; charset=utf-8"
-        elif path == "/app.js":
-            file_path = os.path.join(FRONTEND_DIR, "app.js")
-            content_type = "application/javascript; charset=utf-8"
-        else:
-            self._set_headers(404)
+        # Whitelisted static assets with strict path traversal protection
+        routes = {
+            "/": ("index.html", "text/html; charset=utf-8"),
+            "/index.html": ("index.html", "text/html; charset=utf-8"),
+            "/styles.css": ("styles.css", "text/css; charset=utf-8"),
+            "/app.js": ("app.js", "application/javascript; charset=utf-8"),
+        }
+
+        if path not in routes:
+            self._set_headers(404, "text/plain")
             self.wfile.write(b"404 Not Found")
             return
 
-        if not os.path.exists(file_path):
-            self._set_headers(404)
-            self.wfile.write(b"404 Not Found")
+        filename, content_type = routes[path]
+        file_path = os.path.realpath(os.path.join(FRONTEND_DIR, filename))
+
+        # Enforce canonical path is inside FRONTEND_DIR
+        if not file_path.startswith(FRONTEND_DIR) or not os.path.isfile(file_path):
+            self._set_headers(403, "text/plain")
+            self.wfile.write(b"403 Forbidden")
             return
 
         with open(file_path, "rb") as f:

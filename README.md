@@ -70,7 +70,9 @@ Rather than generic tips ("stay indoors"), every single recommendation is paired
 ### System Architecture & Tech Stack
 To satisfy the strict **< 10 MB total repository limit**, AeroResilience is engineered with **zero bloated dependencies** and zero client-side `node_modules` committed to version control:
 - **Backend:** Python 3.10+ utilizing the standard library `ThreadingHTTPServer` and native `urllib.request`. Runs immediately on any standard Python installation without complex compilation or heavy virtualenv footprints.
-- **Frontend:** Semantic HTML5, CSS3 with high-contrast design tokens, and modular Vanilla JavaScript. Responsive across mobile, tablet, and desktop viewports.
+- **Frontend:** Apple Human Interface Design System (WWDC Designing Fluid Interfaces, SF Pro typography, frosted glass `backdrop-filter: blur(25px)`, continuous squircle corners, instant pointer-down spring tactile physics, and Apple Health / Weather telemetry cards).
+- **Security & Hardening (/007):** STRIDE threat modeled, OWASP Top 10 hardened with strict Content Security Policy (CSP), nosniff headers, frame denier, 50 KB request cap, and directory traversal barriers.
+- **Code Optimization (@CodeRabbit):** Memory-bounded TTL cache with FIFO capacity limits and proactive eviction; zero external bloat; 100% portable Python 3.10+ standard library.
 - **Live Air Quality Layer:** Open-Meteo Air Quality and Geocoding APIs (free, keyless, rate-limit friendly) with automatic caching and 4 instant winter smog presets (Moderate, Poor, Very Poor, Severe).
 - **GenAI Hybrid Layer:** Compatible with Google Gemini API (`GEMINI_API_KEY`) and OpenAI API (`OPENAI_API_KEY`), backed by a deterministic rule engine that guarantees 100% uptime and offline demo resilience.
 
@@ -120,6 +122,7 @@ AeroResilience includes custom workspace [Agent Skills](https://antigravity.goog
 | :--- | :--- | :--- |
 | `/repo-guard` | `.agents/skills/repo-guard/` | Verifies **< 10 MB limit**, single `main` branch, and zero tracked secrets |
 | `/security-audit`| `.agents/skills/security-audit/` | Audits input sanitization, prompt injection safeguards, and API hygiene |
+| `/007` | `tests/test_007_security_audit.py` | Active Red Team penetration tests (DoS, fuzzing, path traversal, XSS injection) |
 | `/a11y-audit` | `.agents/skills/a11y-audit/` | Audits WCAG 2.1 AA compliance, ARIA live regions, and contrast standards |
 | `/readme-sync` | `.agents/skills/readme-sync/` | Verifies that all 4 required sections are thoroughly documented in README |
 
