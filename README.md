@@ -84,8 +84,8 @@ To satisfy the strict **< 10 MB total repository limit**, AeroResilience is engi
 
 #### 1. Clone & Inspect
 ```bash
-git clone https://github.com/abhijithbs119/winter-smog-assistant.git
-cd winter-smog-assistant
+git clone https://github.com/Abhijithbs-dev/aero-resilience.git
+cd aero-resilience
 git branch  # Verifies single branch: main
 ```
 
