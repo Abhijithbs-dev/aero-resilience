@@ -1,0 +1,35 @@
+# CodeRabbit Configuration
+# Language & Tone
+language: "en-US"
+tone_instructions: "Be concise, actionable, and focused on security, repository footprint (< 10 MB limit), WCAG 2.1 AA accessibility, and single-branch (main) constraints."
+
+# Early access features
+early_access: false
+
+reviews:
+  profile: "chill"
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: false
+  auto_review:
+    enabled: true
+    drafts: false
+  tools:
+    shellcheck:
+      enabled: true
+    markdownlint:
+      enabled: true
+    ruff:
+      enabled: true
+    biome:
+      enabled: false
+
+chat:
+  auto_reply: true
+
+knowledge_base:
+  opt_out: false
+  learnings:
+    scope: "local"
