@@ -1,0 +1,26 @@
+{
+  "name": "genai-winter-smog-assistant",
+  "version": "1.0.0",
+  "description": "GenAI-powered Urban Air Quality & Winter Smog Resilience Assistant for Families and Communities",
+  "main": "app.py",
+  "scripts": {
+    "start": "python3 app.py",
+    "test": "python3 -m unittest discover tests",
+    "audit:repo": "bash .agents/skills/repo-guard/scripts/check_repo.sh",
+    "audit:security": "python3 .agents/skills/security-audit/scripts/run_audit.py",
+    "audit:a11y": "python3 .agents/skills/a11y-audit/scripts/run_a11y_check.py",
+    "audit:readme": "python3 .agents/skills/readme-sync/scripts/verify_readme.py"
+  },
+  "keywords": [
+    "air-quality",
+    "winter-smog",
+    "genai",
+    "pm25",
+    "iaq",
+    "urban-resilience",
+    "sustainability",
+    "antigravity"
+  ],
+  "author": "Abhijith B S",
+  "license": "MIT"
+}
