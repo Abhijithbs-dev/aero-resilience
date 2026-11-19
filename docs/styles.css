@@ -1,0 +1,1870 @@
+/* ==========================================================================
+   AeroResilience · High-Fidelity Atmospheric Intelligence Design System
+   Plus Jakarta Sans & JetBrains Mono Typography · Deep Obsidian Palette
+   Sticky Command Deck · Balanced 3x2 Grid · Zero Broken Glyphs (Pure SVG)
+   WCAG 2.1 AA Compliant · Fluid Spring Micro-Interactions
+   ========================================================================== */
+
+:root {
+  /* Ultra-Premium Obsidian & Cosmic Atmosphere Canvas */
+  --canvas-deep: #06080f;
+  --canvas-surface: rgba(13, 18, 30, 0.74);
+  --canvas-elevated: rgba(18, 25, 42, 0.82);
+  --canvas-hover: rgba(24, 34, 58, 0.88);
+  --canvas-sunken: rgba(9, 13, 22, 0.75);
+  --canvas-input: rgba(11, 15, 26, 0.9);
+
+  /* Specular Edge Lighting & Luminous Borders */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-glass: rgba(255, 255, 255, 0.12);
+  --border-specular: rgba(56, 189, 248, 0.32);
+  --border-focus: #38bdf8;
+
+  /* Typography Palette (High Contrast >= 4.5:1) */
+  --text-primary: #ffffff;
+  --text-secondary: #e2e8f0;
+  --text-tertiary: #94a3b8;
+  --text-quaternary: #64748b;
+
+  /* Electric Atmospheric Accents */
+  --accent-cyan: #06b6d4;
+  --accent-sky: #38bdf8;
+  --accent-blue: #0284c7;
+  --accent-indigo: #6366f1;
+  --accent-violet: #a855f7;
+  --accent-magenta: #ec4899;
+  --accent-emerald: #10b981;
+  --accent-mint: #34d399;
+  --accent-amber: #f59e0b;
+  --accent-coral: #f97316;
+  --accent-rose: #f43f5e;
+
+  /* Severity Spectrum Luminescence */
+  --aqi-good: #10b981;
+  --aqi-moderate: #f59e0b;
+  --aqi-poor: #f97316;
+  --aqi-very-poor: #ef4444;
+  --aqi-severe: #a855f7;
+  --aqi-hazardous: #f43f5e;
+
+  /* Geometry & Radii */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --radius-pill: 9999px;
+
+  /* Depth Shadows & Specular Glows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 16px 40px -10px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --shadow-elevated: 0 24px 50px -12px rgba(0, 0, 0, 0.75), 0 0 25px rgba(56, 189, 248, 0.08);
+  --shadow-glow-severe: 0 0 35px rgba(168, 85, 247, 0.28);
+  --shadow-glow-cyan: 0 0 30px rgba(6, 182, 212, 0.22);
+
+  /* Typography Stacks */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+
+  /* Fluid Motion Spring Timing */
+  --spring-duration: 0.24s;
+  --spring-easing: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   1. Reset & Global Viewport
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--canvas-deep);
+  background-image: 
+    radial-gradient(ellipse 90% 55% at 50% -15%, rgba(168, 85, 247, 0.16), transparent),
+    radial-gradient(circle 700px at 10% 25%, rgba(6, 182, 212, 0.09), transparent),
+    radial-gradient(circle 600px at 90% 65%, rgba(244, 63, 94, 0.08), transparent),
+    radial-gradient(circle 500px at 50% 90%, rgba(16, 185, 129, 0.06), transparent);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  line-height: 1.55;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Accessible Skip Link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1.5rem;
+  background: var(--accent-sky);
+  color: #06080f;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.875rem;
+  z-index: 10000;
+  text-decoration: none;
+  transition: top var(--spring-duration) var(--spring-easing);
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   2. Atmospheric Top Notification Alert Banner
+   ========================================================================== */
+.apple-alert-banner {
+  background: linear-gradient(90deg, rgba(244, 63, 94, 0.18), rgba(168, 85, 247, 0.18), rgba(6, 182, 212, 0.18));
+  border-bottom: 1px solid rgba(244, 63, 94, 0.28);
+  padding: 0.55rem 1.5rem;
+  font-size: 0.8125rem;
+}
+
+.banner-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.banner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(244, 63, 94, 0.32);
+  color: #ffffff;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  border: 1px solid rgba(244, 63, 94, 0.5);
+}
+
+.pulse-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px #ffffff;
+  animation: pulse-dot 1.8s infinite;
+}
+
+@keyframes pulse-dot {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  50% { transform: scale(1.35); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+.banner-msg {
+  color: var(--text-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   3. Atmospheric Navigation Bar
+   ========================================================================== */
+.apple-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(6, 8, 15, 0.82);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.nav-content {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.app-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.35), rgba(168, 85, 247, 0.35));
+  border: 1px solid var(--border-specular);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-sky);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), var(--shadow-glow-cyan);
+}
+
+.brand-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.brand-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 40%, var(--accent-sky) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sf-badge {
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  padding: 0.15rem 0.5rem;
+  background: rgba(6, 182, 212, 0.22);
+  color: var(--accent-sky);
+  border: 1px solid rgba(6, 182, 212, 0.45);
+  border-radius: var(--radius-pill);
+}
+
+.brand-desc {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  display: block;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Atmospheric Search Field */
+.apple-search-field {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 0.45rem 0.35rem 0.95rem;
+  transition: all var(--spring-duration) var(--spring-easing);
+}
+
+.apple-search-field:focus-within {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--accent-sky);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+}
+
+.search-glyph {
+  display: flex;
+  align-items: center;
+  color: var(--text-tertiary);
+  margin-right: 0.55rem;
+}
+
+.apple-search-field input {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  width: 175px;
+  outline: none;
+}
+
+.apple-search-field input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.apple-sync-btn {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-sky));
+  color: #06080f;
+  border: none;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all var(--spring-duration) var(--spring-easing);
+  box-shadow: 0 2px 10px rgba(56, 189, 248, 0.35);
+}
+
+.apple-sync-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.apple-sync-btn:active {
+  transform: scale(0.95);
+}
+
+.apple-sync-btn .sync-icon {
+  flex-shrink: 0;
+}
+
+/* Engine Status Pill */
+.engine-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(16, 185, 129, 0.14);
+  border: 1px solid rgba(16, 185, 129, 0.32);
+  color: var(--accent-mint);
+  padding: 0.4rem 0.95rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.status-indicator-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-mint);
+  box-shadow: 0 0 10px var(--accent-mint);
+}
+
+/* ==========================================================================
+   4. Non-Medical Disclaimer Callout
+   ========================================================================== */
+.disclaimer-callout {
+  max-width: 1320px;
+  margin: 1.25rem auto 0;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+.disclaimer-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.15rem;
+}
+
+.disclaimer-sf-icon {
+  color: var(--accent-amber);
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  display: flex;
+  align-items: center;
+}
+
+.disclaimer-copy {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   5. Card Architecture (Luminous Frosted Materials)
+   ========================================================================== */
+.apple-card {
+  position: relative;
+  background: var(--canvas-surface);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border-specular);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: all var(--spring-duration) var(--spring-easing);
+  overflow: hidden;
+}
+
+.apple-card:hover {
+  background: var(--canvas-hover);
+  border-color: rgba(255, 255, 255, 0.18);
+  border-top-color: var(--accent-sky);
+}
+
+.card-ambient-light {
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.22) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(50px);
+}
+
+.card-inner {
+  position: relative;
+  z-index: 2;
+  padding: 1.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+/* ==========================================================================
+   6. Hero Air Quality Command Center
+   ========================================================================== */
+.main-container {
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem 4.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.hero-overview {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 1.75rem;
+}
+
+.card-top-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.station-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.station-location-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.station-subline {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+}
+
+/* Status Pill */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.95rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.status-pill.severe {
+  background: rgba(168, 85, 247, 0.22);
+  border: 1px solid rgba(168, 85, 247, 0.45);
+  color: #f3e8ff;
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.3);
+}
+
+.status-pill.hazardous {
+  background: rgba(244, 63, 94, 0.25);
+  border: 1px solid rgba(244, 63, 94, 0.55);
+  color: #ffe4e6;
+  box-shadow: 0 0 20px rgba(244, 63, 94, 0.35);
+}
+
+.status-pill.very-poor {
+  background: rgba(239, 68, 68, 0.22);
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  color: #fee2e2;
+}
+
+.status-pill.poor {
+  background: rgba(249, 115, 22, 0.22);
+  border: 1px solid rgba(249, 115, 22, 0.45);
+  color: #ffedd5;
+}
+
+.status-pill.moderate {
+  background: rgba(245, 158, 11, 0.22);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  color: #fef3c7;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* Primary AQI Display */
+.aqi-primary-display {
+  display: flex;
+  align-items: baseline;
+  gap: 1.75rem;
+  padding: 0.5rem 0;
+}
+
+.aqi-value-lockup {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+
+.aqi-number {
+  font-size: 5.75rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  color: #ffffff;
+  font-family: var(--font-sans);
+}
+
+.aqi-caption {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-sky);
+  letter-spacing: 0.05em;
+  font-family: var(--font-mono);
+}
+
+.aqi-narrative {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.aqi-narrative-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+}
+
+.aqi-narrative-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+}
+
+/* Health Multipliers Row */
+.health-multipliers-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.95rem;
+}
+
+.multiplier-tile {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.95rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: all var(--spring-duration) var(--spring-easing);
+}
+
+.multiplier-tile:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.tile-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.tile-val-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.tile-val {
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  font-family: var(--font-mono);
+}
+
+.multiplier-tile.danger .tile-val { color: var(--accent-rose); }
+.multiplier-tile.warning .tile-val { color: var(--accent-coral); }
+.multiplier-tile.purple .tile-val { color: var(--accent-violet); }
+
+.tile-sub {
+  font-size: 0.6875rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+/* Spectrum Track */
+.apple-spectrum-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: 0.5rem;
+}
+
+.spectrum-track {
+  position: relative;
+  height: 11px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  overflow: visible;
+}
+
+.spectrum-segment {
+  flex: 1;
+  height: 100%;
+}
+
+.spectrum-segment:first-child { border-top-left-radius: var(--radius-pill); border-bottom-left-radius: var(--radius-pill); }
+.spectrum-segment:last-child { border-top-right-radius: var(--radius-pill); border-bottom-right-radius: var(--radius-pill); }
+
+.spectrum-segment.good { background: var(--aqi-good); }
+.spectrum-segment.moderate { background: var(--aqi-moderate); }
+.spectrum-segment.poor { background: var(--aqi-poor); }
+.spectrum-segment.very-poor { background: var(--aqi-very-poor); }
+.spectrum-segment.severe { background: var(--aqi-severe); }
+.spectrum-segment.hazardous { background: var(--aqi-hazardous); }
+
+.spectrum-pin {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: left 0.4s var(--spring-easing);
+}
+
+.pin-capsule {
+  background: #ffffff;
+  color: #06080f;
+  font-size: 0.725rem;
+  font-weight: 800;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  border: 2px solid var(--canvas-deep);
+  font-family: var(--font-mono);
+}
+
+.spectrum-ticks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6875rem;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  padding: 0 0.25rem;
+}
+
+/* Weather & Activity Card */
+.weather-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.card-section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  display: block;
+}
+
+.weather-temp-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  margin-top: 0.35rem;
+}
+
+.temp-readout {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  line-height: 1;
+  font-family: var(--font-mono);
+}
+
+.temp-condition {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.wind-capsule-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.wind-label {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  font-weight: 700;
+}
+
+.wind-value {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.weather-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+}
+
+.weather-stat-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stat-icon-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-tertiary);
+}
+
+.stat-box-title {
+  font-size: 0.6875rem;
+  color: var(--text-tertiary);
+  font-weight: 600;
+}
+
+.stat-box-num {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  font-family: var(--font-mono);
+}
+
+.stat-box-num.text-danger {
+  color: var(--accent-rose);
+}
+
+/* Activity Advisories */
+.advisories-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.advisories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.advisory-tile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.95rem;
+  min-height: 4.25rem;
+  transition: all var(--spring-duration) var(--spring-easing);
+}
+
+.advisory-tile:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.advisory-svg-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.advisory-tile.danger .advisory-svg-box { color: var(--accent-rose); }
+.advisory-tile.warning .advisory-svg-box { color: var(--accent-coral); }
+.advisory-tile.primary .advisory-svg-box { color: var(--accent-sky); }
+.advisory-tile.info .advisory-svg-box { color: var(--accent-cyan); }
+
+.advisory-text-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.advisory-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+}
+
+.advisory-verdict {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   7. Section Headers & Segmented Controls
+   ========================================================================== */
+.section-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.section-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.apple-section-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.apple-section-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-tertiary);
+  margin-top: 0.2rem;
+  letter-spacing: -0.01em;
+}
+
+.apple-pill-tag {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+}
+
+/* Segmented Control */
+.apple-segmented-control {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  gap: 2px;
+}
+
+.segmented-pill {
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--spring-duration) var(--spring-easing);
+  user-select: none;
+}
+
+.segmented-pill:hover {
+  color: #ffffff;
+}
+
+.segmented-pill:active {
+  transform: scale(0.96);
+}
+
+.segmented-pill.active {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.12));
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
+   8. Key Pollutants Telemetry (Balanced 3x2 Grid)
+   ========================================================================== */
+.pollutants-apple-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.35rem;
+}
+
+.pollutant-card {
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-left: 3px solid transparent;
+}
+
+.pollutant-card.border-severe { border-left-color: var(--accent-violet); }
+.pollutant-card.border-poor { border-left-color: var(--accent-coral); }
+.pollutant-card.border-moderate { border-left-color: var(--accent-amber); }
+.pollutant-card.border-good { border-left-color: var(--accent-emerald); }
+
+.pollutant-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pollutant-code {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  font-family: var(--font-mono);
+}
+
+.apple-status-tag {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+  text-transform: uppercase;
+}
+
+.apple-status-tag.severe { background: rgba(168, 85, 247, 0.22); color: #f3e8ff; border: 1px solid rgba(168, 85, 247, 0.4); }
+.apple-status-tag.poor { background: rgba(249, 115, 22, 0.22); color: #ffedd5; border: 1px solid rgba(249, 115, 22, 0.4); }
+.apple-status-tag.moderate { background: rgba(245, 158, 11, 0.22); color: #fef3c7; border: 1px solid rgba(245, 158, 11, 0.4); }
+.apple-status-tag.good { background: rgba(16, 185, 129, 0.22); color: #d1fae5; border: 1px solid rgba(16, 185, 129, 0.4); }
+
+.pollutant-metric-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.pollutant-number {
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  line-height: 1;
+  font-family: var(--font-mono);
+}
+
+.pollutant-unit {
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+  font-weight: 600;
+}
+
+.pollutant-benchmark {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.725rem;
+  color: var(--text-tertiary);
+  padding: 0.45rem 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+}
+
+.excess-label {
+  font-weight: 700;
+  color: var(--accent-rose);
+}
+
+.excess-label.text-success {
+  color: var(--accent-mint);
+}
+
+.pollutant-description {
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   9. Regional Monitoring Stations (Balanced 3-Column Grid)
+   ========================================================================== */
+.hotspots-apple-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.15rem;
+}
+
+.hotspot-card {
+  background: var(--canvas-surface);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border-specular);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  transition: all var(--spring-duration) var(--spring-easing);
+  user-select: none;
+}
+
+.hotspot-card:hover {
+  background: var(--canvas-hover);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.22);
+  border-top-color: var(--accent-sky);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.hotspot-card:active {
+  transform: scale(0.98);
+}
+
+.hotspot-station-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.015em;
+}
+
+.hotspot-meta {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  margin-top: 0.25rem;
+  font-family: var(--font-mono);
+}
+
+.hotspot-score-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(244, 63, 94, 0.22);
+  border: 1px solid rgba(244, 63, 94, 0.45);
+  color: #ffe4e6;
+  font-size: 0.875rem;
+  font-weight: 800;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  box-shadow: 0 0 12px rgba(244, 63, 94, 0.25);
+}
+
+.hotspot-score-pill.very-poor {
+  background: rgba(168, 85, 247, 0.22);
+  border-color: rgba(168, 85, 247, 0.45);
+  color: #f3e8ff;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.25);
+}
+
+/* ==========================================================================
+   10. GenAI Household Resilience Planner (Sticky Command Deck)
+   ========================================================================== */
+.planner-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+/* Sticky Command Deck */
+.sticky-command-deck {
+  position: sticky;
+  top: 5.5rem;
+  align-self: start;
+  max-height: calc(100vh - 7rem);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.deck-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.deck-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.deck-icon {
+  color: var(--accent-sky);
+  display: flex;
+  align-items: center;
+}
+
+.deck-badge {
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.55rem;
+  background: rgba(56, 189, 248, 0.18);
+  color: var(--accent-sky);
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+.form-surface {
+  padding: 1.85rem;
+}
+
+.form-section-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+}
+
+.apple-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-row-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.apple-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.field-label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+/* Apple Select Wrapper */
+.apple-select-wrapper {
+  position: relative;
+}
+
+.apple-select {
+  width: 100%;
+  background: var(--canvas-input);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 0.7rem 2.2rem 0.7rem 0.95rem;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  transition: all var(--spring-duration) var(--spring-easing);
+}
+
+.apple-select-wrapper::after {
+  content: "▾";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  pointer-events: none;
+  font-size: 0.9rem;
+}
+
+.apple-select:focus {
+  border-color: var(--accent-sky);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+}
+
+/* Apple Fieldset & Checkboxes */
+.apple-fieldset {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.fieldset-legend {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding: 0 0.5rem;
+}
+
+.checkboxes-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: 0.35rem;
+}
+
+.apple-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.apple-checkbox-label input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.checkbox-custom {
+  width: 19px;
+  height: 19px;
+  border-radius: 6px;
+  border: 1.8px solid var(--border-glass);
+  background: rgba(255, 255, 255, 0.06);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--spring-duration) var(--spring-easing);
+  flex-shrink: 0;
+}
+
+.apple-checkbox-label input[type="checkbox"]:checked + .checkbox-custom {
+  background: var(--accent-sky);
+  border-color: var(--accent-sky);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+
+.apple-checkbox-label input[type="checkbox"]:checked + .checkbox-custom::after {
+  content: "✓";
+  color: #06080f;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.apple-checkbox-label input[type="checkbox"]:focus-visible + .checkbox-custom {
+  outline: 2px solid var(--accent-sky);
+  outline-offset: 2px;
+}
+
+.checkbox-text {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Text Input */
+.apple-text-input {
+  width: 100%;
+  background: var(--canvas-input);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 0.8rem 1rem;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.875rem;
+  outline: none;
+  transition: all var(--spring-duration) var(--spring-easing);
+}
+
+.apple-text-input:focus {
+  border-color: var(--accent-sky);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+}
+
+.apple-text-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Primary Button */
+.apple-primary-button {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-sky));
+  color: #06080f;
+  border: none;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 800;
+  padding: 0.9rem 1.6rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--spring-duration) var(--spring-easing);
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.35);
+  margin-top: 0.5rem;
+}
+
+.apple-primary-button:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 8px 25px rgba(56, 189, 248, 0.5);
+  transform: translateY(-1px);
+}
+
+.apple-primary-button:active {
+  transform: scale(0.975);
+}
+
+.apple-primary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.apple-secondary-button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-glass);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.7rem 1.35rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--spring-duration) var(--spring-easing);
+}
+
+.apple-secondary-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.apple-secondary-button:active {
+  transform: scale(0.975);
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(6, 8, 15, 0.3);
+  border-top-color: #06080f;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   11. Action Blueprint & Results Tabs
+   ========================================================================== */
+.blueprint-surface {
+  padding: 1.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.blueprint-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.apple-blueprint-tabs {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  gap: 2px;
+}
+
+.blueprint-tab {
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  font-family: inherit;
+  font-size: 0.775rem;
+  font-weight: 700;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--spring-duration) var(--spring-easing);
+}
+
+.blueprint-tab:hover {
+  color: #ffffff;
+}
+
+.blueprint-tab:active {
+  transform: scale(0.96);
+}
+
+.blueprint-tab.active {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.12));
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Risk Callout Card */
+.risk-callout {
+  padding: 1.35rem;
+  border-left: 4px solid var(--accent-violet);
+  margin-bottom: 1.35rem;
+}
+
+.risk-callout.severe {
+  background: rgba(168, 85, 247, 0.1);
+  border-color: rgba(168, 85, 247, 0.35);
+  border-left: 4px solid var(--accent-violet);
+}
+
+.risk-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.risk-badge {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent-violet);
+  letter-spacing: -0.01em;
+}
+
+.generator-badge {
+  font-size: 0.6875rem;
+  color: var(--text-tertiary);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+}
+
+.risk-warning-body {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 0.95rem;
+}
+
+.priority-actions-box {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1.15rem;
+}
+
+.priority-box-title {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 0.45rem;
+}
+
+.priority-items-list {
+  padding-left: 1.25rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Recommendation Cards Stack */
+.cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.rec-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: all var(--spring-duration) var(--spring-easing);
+}
+
+.rec-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+.rec-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.rec-card-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.rec-chip {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.rec-chip.free { background: rgba(16, 185, 129, 0.2); color: #d1fae5; border: 1px solid rgba(16, 185, 129, 0.4); }
+.rec-chip.low-cost { background: rgba(56, 189, 248, 0.2); color: #e0f2fe; border: 1px solid rgba(56, 189, 248, 0.4); }
+.rec-chip.equipment { background: rgba(168, 85, 247, 0.2); color: #f3e8ff; border: 1px solid rgba(168, 85, 247, 0.4); }
+
+.rec-card-body {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.impact-badge-box {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.95rem;
+  border-left: 3px solid var(--accent-sky);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.impact-badge-title {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-sky);
+}
+
+.impact-badge-desc {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Interactive Checklist */
+.checklist-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.interactive-checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.95rem 1.15rem;
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--spring-duration) var(--spring-easing);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.check-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.check-item input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.check-box-custom {
+  width: 19px;
+  height: 19px;
+  border-radius: 6px;
+  border: 1.8px solid var(--border-glass);
+  background: rgba(255, 255, 255, 0.06);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  transition: all var(--spring-duration) var(--spring-easing);
+}
+
+.check-item input[type="checkbox"]:checked + .check-box-custom {
+  background: var(--accent-emerald);
+  border-color: var(--accent-emerald);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+}
+
+.check-item input[type="checkbox"]:checked + .check-box-custom::after {
+  content: "✓";
+  color: #06080f;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.checklist-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ==========================================================================
+   12. Minimalist Footer
+   ========================================================================== */
+.apple-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border-glass);
+  background: rgba(6, 8, 15, 0.88);
+  padding: 1.85rem 1.5rem;
+}
+
+.footer-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-title {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.footer-sub {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  margin-top: 0.2rem;
+}
+
+.footer-meta {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   13. Accessibility Focus Styles
+   ========================================================================== */
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   14. Responsive Layout & Media Queries
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .hero-overview {
+    grid-template-columns: 1fr;
+  }
+  .pollutants-apple-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hotspots-apple-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .planner-layout {
+    grid-template-columns: 1fr;
+  }
+  .sticky-command-deck {
+    position: static;
+    max-height: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .nav-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+  }
+  .nav-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .apple-search-field input {
+    width: 100%;
+  }
+  .pollutants-apple-grid {
+    grid-template-columns: 1fr;
+  }
+  .hotspots-apple-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-row-pair {
+    grid-template-columns: 1fr;
+  }
+  .health-multipliers-row {
+    grid-template-columns: 1fr;
+  }
+  .weather-stats-grid,
+  .advisories-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .pulse-indicator {
+    animation: none;
+  }
+  .spectrum-pin {
+    transition: none;
+  }
+  .apple-card:hover,
+  .hotspot-card:hover,
+  .rec-card:hover {
+    transform: none !important;
+  }
+}
+
+/* Reduced Transparency Preference */
+@media (prefers-reduced-transparency: reduce) {
+  .apple-nav,
+  .apple-card,
+  .hotspot-card,
+  .apple-alert-banner,
+  .apple-footer {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #0f1422 !important;
+  }
+}
+
+/* Print Stylesheet for Family Readiness Checklist */
+@media print {
+  .apple-nav,
+  .apple-alert-banner,
+  .apple-search-field,
+  .apple-segmented-control,
+  .apple-blueprint-tabs,
+  .checklist-footer,
+  .apple-primary-button,
+  .apple-footer,
+  .form-surface {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .apple-card {
+    border: 1px solid #cccccc !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+  }
+}

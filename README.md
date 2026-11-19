@@ -2,6 +2,7 @@
 
 > **Challenge Vertical:** Urban Families & Community Environmental Resilience (Winter Smog & Air Quality Guidance)  
 > **Platform & Framework:** Google Antigravity Agent Platform, Python 3.10+, Standard Library Threading Server, Vanilla HTML5/CSS3 (WCAG 2.1 AA)  
+> **Live GitHub Pages Demo:** [https://abhijithbs-dev.github.io/aero-resilience/](https://abhijithbs-dev.github.io/aero-resilience/)  
 > **Status:** Production-Ready · Zero External Runtime Dependencies · Ultra-Lightweight (< 1 MB footprint) · Single-Branch (`main`) Architecture
 
 [![Single Branch: main](https://img.shields.io/badge/git%20branch-main-brightgreen)](https://github.com)

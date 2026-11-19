@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AeroResilience: Ultra-premium Urban Air Quality & Winter Smog Intelligence Platform. Dynamic atmospheric telemetry, fluid interfaces, and GenAI household resilience planning.">
+  <title>AeroResilience · Urban Air Quality & Winter Smog Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="theme-severe">
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Top Emergency Alert Notification Banner -->
+  <aside class="apple-alert-banner" role="region" aria-label="Severe Smog Alert Banner">
+    <div class="banner-inner">
+      <div class="banner-badge">
+        <span class="pulse-indicator" aria-hidden="true"></span>
+        <span>HEALTH ADVISORY</span>
+      </div>
+      <p class="banner-msg" id="ticker-text">
+        Hazardous Winter Inversion active across Indo-Gangetic Basin · PM2.5 exceeds 19× WHO 24h standard · Morning outdoor curfew recommended
+      </p>
+    </div>
+  </aside>
+
+  <!-- Premium Atmospheric Navigation Bar -->
+  <header class="apple-nav" role="banner">
+    <div class="nav-content">
+      <div class="nav-brand">
+        <div class="app-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12c0-2.5 1-4.8 2.6-6.5" />
+            <path d="M12 2c3.5 2 6 6 6 10a6 6 0 1 1-12 0c0-4 2.5-8 6-10z" fill="rgba(56, 189, 248, 0.25)" />
+            <path d="M12 12v6" />
+            <path d="M12 15h3" />
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title-row">
+            <h1 class="brand-name">AeroResilience</h1>
+            <span class="sf-badge">PRO</span>
+          </div>
+          <span class="brand-desc">Winter Smog & Atmospheric Intelligence</span>
+        </div>
+      </div>
+
+      <div class="nav-controls">
+        <div class="search-field-wrapper">
+          <label for="location-input" class="sr-only">Search City or Monitoring Corridor</label>
+          <div class="apple-search-field">
+            <span class="search-glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </span>
+            <input 
+              type="text" 
+              id="location-input" 
+              value="Delhi-NCR" 
+              placeholder="Search City or Station…" 
+              autocomplete="off"
+              maxlength="70"
+            >
+            <button type="button" id="fetch-live-aqi-btn" class="apple-sync-btn" aria-label="Sync live air telemetry from Open-Meteo">
+              <svg class="sync-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <polyline points="1 20 1 14 7 14"></polyline>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+              <span>Sync</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="engine-status-pill" id="engine-status-badge" role="status" aria-label="AI Engine Status">
+          <span class="status-indicator-dot" aria-hidden="true"></span>
+          <span id="engine-status-text">AI Hybrid Engine Ready</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Non-Medical Disclaimer Banner with Crisp SVG Icon -->
+  <aside class="disclaimer-callout" role="region" aria-label="Non-Medical Public Health Notice">
+    <div class="disclaimer-inner">
+      <div class="disclaimer-sf-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+      </div>
+      <p class="disclaimer-copy">
+        <strong>Environmental Guidance Notice:</strong> Recommendations are aerosol physics and environmental resilience guidelines for urban winter smog. They do not substitute professional medical diagnosis or clinical treatment. If experiencing acute respiratory symptoms or asthma distress, seek immediate medical emergency care.
+      </p>
+    </div>
+  </aside>
+
+  <!-- Main Content Layout -->
+  <main id="main-content" class="main-container" role="main">
+    
+    <!-- Hero Air Quality Command Center -->
+    <section class="hero-overview" aria-label="Air Quality Overview & Meteorological Intelligence">
+      
+      <!-- Primary AQI Card -->
+      <div class="apple-card aqi-hero-surface" id="hero-aqi-card">
+        <div class="card-ambient-light" aria-hidden="true"></div>
+        <div class="card-inner">
+          
+          <div class="card-top-bar">
+            <div class="station-meta">
+              <span class="station-location-title" id="station-label">Delhi-NCR Basin</span>
+              <span class="station-subline" id="live-telemetry-text">LIVE TELEMETRY · CPCB (GOVT OF INDIA) & IMD SAFAR</span>
+            </div>
+            <div class="status-pill severe" id="hero-status-badge">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span id="hero-status-title">Severe · Hazardous</span>
+            </div>
+          </div>
+
+          <div class="aqi-primary-display">
+            <div class="aqi-value-lockup">
+              <span class="aqi-number" id="hero-aqi-number">452</span>
+              <span class="aqi-caption" id="aqi-standard-label">AQI (CPCB)</span>
+            </div>
+            <div class="aqi-narrative">
+              <h2 class="aqi-narrative-title" id="hero-narrative-title">Emergency Winter Inversion</h2>
+              <p class="aqi-narrative-desc" id="hero-status-desc">
+                Cold dense air trapped below 150m boundary layer. Extreme particulate soot accumulation near breathing height.
+              </p>
+            </div>
+          </div>
+
+          <!-- Multiplier Stats -->
+          <div class="health-multipliers-row">
+            <div class="multiplier-tile danger" id="who-multiplier-pill">
+              <span class="tile-label">WHO Standard</span>
+              <div class="tile-val-row">
+                <span class="tile-val" id="who-multiplier-text">19.0×</span>
+                <span class="tile-sub">above 24h safe limit</span>
+              </div>
+            </div>
+            <div class="multiplier-tile warning" id="cigarette-equiv-pill">
+              <span class="tile-label">Passive Inhalation</span>
+              <div class="tile-val-row">
+                <span class="tile-val" id="cigarette-equiv-text">~13.0</span>
+                <span class="tile-sub">cigarettes/day equiv</span>
+              </div>
+            </div>
+            <div class="multiplier-tile purple" id="inversion-status-pill">
+              <span class="tile-label">Surface Inversion</span>
+              <div class="tile-val-row">
+                <span class="tile-val">Deep Trap</span>
+                <span class="tile-sub">05:30 – 09:30 Peak</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Spectrum Continuum Track (Calibrated to Official CPCB NAQI) -->
+          <div class="apple-spectrum-wrapper" role="region" aria-label="AQI Severity Spectrum Continuum">
+            <div class="spectrum-track">
+              <div class="spectrum-segment good" title="0–50 Good"></div>
+              <div class="spectrum-segment moderate" title="51–100 Satisfactory"></div>
+              <div class="spectrum-segment poor" title="101–200 Moderate"></div>
+              <div class="spectrum-segment very-poor" title="201–300 Poor"></div>
+              <div class="spectrum-segment severe" title="301–400 Very Poor"></div>
+              <div class="spectrum-segment hazardous" title="401–500+ Severe"></div>
+              
+              <!-- Smooth Indicator Pin -->
+              <div class="spectrum-pin" id="spectrum-pin" style="left: 90%;">
+                <div class="pin-capsule">
+                  <span id="pin-badge-val">452</span>
+                </div>
+              </div>
+            </div>
+            <div class="spectrum-ticks">
+              <span>Good</span>
+              <span>Satisfactory</span>
+              <span>Moderate</span>
+              <span>Poor</span>
+              <span>Very Poor</span>
+              <span>Severe</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Meteorological & Activity Advisory Card -->
+      <div class="apple-card weather-advisory-surface">
+        <div class="card-inner">
+          <div class="weather-header-row">
+            <div>
+              <span class="card-section-label">Atmospheric Microclimate</span>
+              <div class="weather-temp-row">
+                <span class="temp-readout" id="weather-temp">14.2°</span>
+                <span class="temp-condition" id="weather-condition">Dense Winter Smog</span>
+              </div>
+            </div>
+            <div class="wind-capsule-badge">
+              <span class="wind-label">Surface Wind</span>
+              <span class="wind-value" id="weather-wind">2.4 km/h · Calm</span>
+            </div>
+          </div>
+
+          <div class="weather-stats-grid">
+            <div class="weather-stat-box">
+              <div class="stat-icon-label">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                </svg>
+                <span class="stat-box-title">Humidity</span>
+              </div>
+              <span class="stat-box-num" id="weather-humidity">86%</span>
+            </div>
+            <div class="weather-stat-box">
+              <div class="stat-icon-label">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span class="stat-box-title">Inversion Peak</span>
+              </div>
+              <span class="stat-box-num">05:30–09:30</span>
+            </div>
+            <div class="weather-stat-box">
+              <div class="stat-icon-label">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <line x1="12" y1="1" x2="12" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="23"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                  <line x1="1" y1="12" x2="3" y2="12"></line>
+                  <line x1="21" y1="12" x2="23" y2="12"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <span class="stat-box-title">Solar Lift Window</span>
+              </div>
+              <span class="stat-box-num">12:30–15:30</span>
+            </div>
+            <div class="weather-stat-box">
+              <div class="stat-icon-label">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span class="stat-box-title">Basin Severity</span>
+              </div>
+              <span class="stat-box-num text-danger">Rank #1 Hotspot</span>
+            </div>
+          </div>
+
+          <!-- 4 Immediate Activity Advisories with Crisp Inline SVGs -->
+          <div class="advisories-container">
+            <span class="card-section-label">Recommended Activity Adjustments</span>
+            <div class="advisories-grid">
+              
+              <!-- Exercise -->
+              <div class="advisory-tile danger">
+                <div class="advisory-svg-box" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="5" r="2"></circle>
+                    <path d="M8 22l3-7-2-4 4-2 3 4 3-1"></path>
+                    <path d="M4 14l4-2"></path>
+                    <line x1="18" y1="6" x2="6" y2="18" stroke="#ff453a" stroke-width="2"></line>
+                  </svg>
+                </div>
+                <div class="advisory-text-group">
+                  <span class="advisory-name">Outdoor Exercise</span>
+                  <span class="advisory-verdict">Strictly Avoid</span>
+                </div>
+              </div>
+
+              <!-- Mask -->
+              <div class="advisory-tile warning">
+                <div class="advisory-svg-box" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 10c0-2 2-3 4-3h10c2 0 4 1 4 3v4c0 4-4 7-9 7s-9-3-9-7v-4z"></path>
+                    <line x1="3" y1="12" x2="7" y2="12"></line>
+                    <line x1="17" y1="12" x2="21" y2="12"></line>
+                    <path d="M9 14h6"></path>
+                  </svg>
+                </div>
+                <div class="advisory-text-group">
+                  <span class="advisory-name">Outdoor Mask</span>
+                  <span class="advisory-verdict">Certified N95/FFP2</span>
+                </div>
+              </div>
+
+              <!-- Air Filtration -->
+              <div class="advisory-tile primary">
+                <div class="advisory-svg-box" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path>
+                  </svg>
+                </div>
+                <div class="advisory-text-group">
+                  <span class="advisory-name">Air Filtration</span>
+                  <span class="advisory-verdict">Continuous Run</span>
+                </div>
+              </div>
+
+              <!-- Ventilation -->
+              <div class="advisory-tile info">
+                <div class="advisory-svg-box" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="12" y1="3" x2="12" y2="21"></line>
+                    <line x1="7" y1="7" x2="17" y2="17" stroke="#ff453a" stroke-width="1.8"></line>
+                  </svg>
+                </div>
+                <div class="advisory-text-group">
+                  <span class="advisory-name">Home Ventilation</span>
+                  <span class="advisory-verdict">Seal Windows</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Key Atmospheric Pollutants (Balanced 3x2 Grid) -->
+    <section class="section-container" aria-labelledby="pollutants-heading">
+      <div class="section-title-bar">
+        <div>
+          <h2 id="pollutants-heading" class="apple-section-title">Key Pollutants Telemetry</h2>
+          <p class="apple-section-subtitle">Real-time concentrations calibrated against WHO 24h & CPCB thresholds</p>
+        </div>
+        <span class="apple-pill-tag">WHO Air Quality Guidelines</span>
+      </div>
+
+      <div class="pollutants-apple-grid">
+        
+        <!-- PM2.5 -->
+        <article class="apple-card pollutant-card border-severe">
+          <div class="pollutant-card-top">
+            <span class="pollutant-code">PM2.5</span>
+            <span class="apple-status-tag severe" id="pm25-badge">Hazardous</span>
+          </div>
+          <div class="pollutant-metric-row">
+            <span class="pollutant-number" id="pm25-val">285.0</span>
+            <span class="pollutant-unit">µg/m³</span>
+          </div>
+          <div class="pollutant-benchmark">
+            <span>WHO Limit: 15 µg/m³</span>
+            <span class="excess-label" id="pm25-excess">19.0× limit</span>
+          </div>
+          <p class="pollutant-description">Fine microscopic particulates penetrating alveolar gas barriers and circulatory systems.</p>
+        </article>
+
+        <!-- PM10 -->
+        <article class="apple-card pollutant-card border-severe">
+          <div class="pollutant-card-top">
+            <span class="pollutant-code">PM10</span>
+            <span class="apple-status-tag severe" id="pm10-badge">Severe</span>
+          </div>
+          <div class="pollutant-metric-row">
+            <span class="pollutant-number" id="pm10-val">460.0</span>
+            <span class="pollutant-unit">µg/m³</span>
+          </div>
+          <div class="pollutant-benchmark">
+            <span>WHO Limit: 45 µg/m³</span>
+            <span class="excess-label" id="pm10-excess">10.2× limit</span>
+          </div>
+          <p class="pollutant-description">Inhalable coarse particles settling in upper respiratory tracts, triggering bronchial irritation.</p>
+        </article>
+
+        <!-- NO2 -->
+        <article class="apple-card pollutant-card border-poor">
+          <div class="pollutant-card-top">
+            <span class="pollutant-code">NO₂</span>
+            <span class="apple-status-tag poor" id="no2-badge">Elevated</span>
+          </div>
+          <div class="pollutant-metric-row">
+            <span class="pollutant-number" id="no2-val">118.0</span>
+            <span class="pollutant-unit">µg/m³</span>
+          </div>
+          <div class="pollutant-benchmark">
+            <span>WHO Limit: 25 µg/m³</span>
+            <span class="excess-label" id="no2-excess">4.7× limit</span>
+          </div>
+          <p class="pollutant-description">Vehicular exhaust gas causing airway inflammation and heightened sensitivity to allergens.</p>
+        </article>
+
+        <!-- SO2 -->
+        <article class="apple-card pollutant-card border-moderate">
+          <div class="pollutant-card-top">
+            <span class="pollutant-code">SO₂</span>
+            <span class="apple-status-tag moderate" id="so2-badge">Moderate</span>
+          </div>
+          <div class="pollutant-metric-row">
+            <span class="pollutant-number" id="so2-val">45.0</span>
+            <span class="pollutant-unit">µg/m³</span>
+          </div>
+          <div class="pollutant-benchmark">
+            <span>WHO Limit: 40 µg/m³</span>
+            <span class="excess-label" id="so2-excess">1.1× limit</span>
+          </div>
+          <p class="pollutant-description">Combustion byproduct from coal and industrial boilers converting to secondary aerosols in fog.</p>
+        </article>
+
+        <!-- CO -->
+        <article class="apple-card pollutant-card border-moderate">
+          <div class="pollutant-card-top">
+            <span class="pollutant-code">CO</span>
+            <span class="apple-status-tag moderate" id="co-badge">Moderate</span>
+          </div>
+          <div class="pollutant-metric-row">
+            <span class="pollutant-number" id="co-val">4.8</span>
+            <span class="pollutant-unit">mg/m³</span>
+          </div>
+          <div class="pollutant-benchmark">
+            <span>WHO Limit: 4.0 mg/m³</span>
+            <span class="excess-label" id="co-excess">1.2× limit</span>
+          </div>
+          <p class="pollutant-description">Colorless gas from incomplete combustion reducing oxygen delivery to body organs and brain.</p>
+        </article>
+
+        <!-- O3 -->
+        <article class="apple-card pollutant-card border-good">
+          <div class="pollutant-card-top">
+            <span class="pollutant-code">O₃</span>
+            <span class="apple-status-tag good" id="o3-badge">Low / Good</span>
+          </div>
+          <div class="pollutant-metric-row">
+            <span class="pollutant-number" id="o3-val">14.0</span>
+            <span class="pollutant-unit">µg/m³</span>
+          </div>
+          <div class="pollutant-benchmark">
+            <span>WHO Limit: 100 µg/m³</span>
+            <span class="excess-label text-success">Safe Level</span>
+          </div>
+          <p class="pollutant-description">Photochemical ozone is naturally suppressed during cold, dense winter inversion episodes.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Regional Smog Hotspots & Stations (Balanced 3-Column Grid) -->
+    <section class="section-container" aria-labelledby="hotspots-heading">
+      <div class="section-title-bar">
+        <div>
+          <h2 id="hotspots-heading" class="apple-section-title">Regional Monitoring Stations</h2>
+          <p class="apple-section-subtitle">Real-time telemetry across metropolitan monitoring corridors</p>
+        </div>
+        <span class="apple-pill-tag">Click to Load Station Context</span>
+      </div>
+
+      <div class="hotspots-apple-grid" id="hotspots-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- GenAI Household Resilience Planner (Sticky Command Deck & Action Blueprint) -->
+    <section class="section-container planner-section" aria-labelledby="planner-heading">
+      <div class="section-title-bar">
+        <div>
+          <h2 id="planner-heading" class="apple-section-title">GenAI Household Resilience Planner</h2>
+          <p class="apple-section-subtitle">Context-driven decision engine tailoring daily routines, IAQ hacks, and community alternatives</p>
+        </div>
+
+        <!-- Segmented Control for AQI Presets -->
+        <div class="apple-segmented-control" role="radiogroup" aria-label="Winter Smog Severity Presets">
+          <button type="button" class="segmented-pill" data-severity="Moderate" aria-pressed="false">Moderate</button>
+          <button type="button" class="segmented-pill" data-severity="Poor" aria-pressed="false">Poor</button>
+          <button type="button" class="segmented-pill" data-severity="Very Poor" aria-pressed="false">Very Poor</button>
+          <button type="button" class="segmented-pill active" data-severity="Severe" aria-pressed="true">Severe</button>
+        </div>
+      </div>
+
+      <div class="planner-layout">
+        
+        <!-- Sticky Context Form Deck -->
+        <div class="apple-card form-surface sticky-command-deck">
+          <div class="deck-header">
+            <div class="deck-title-row">
+              <span class="deck-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+              </span>
+              <h3 class="form-section-title">Household Profile Deck</h3>
+            </div>
+            <span class="deck-badge">Live Context</span>
+          </div>
+
+          <form id="assistant-form" class="apple-form" novalidate>
+            
+            <div class="form-row-pair">
+              <div class="apple-form-field">
+                <label for="commute-select" class="field-label">Commute Mode</label>
+                <div class="apple-select-wrapper">
+                  <select id="commute-select" name="commute_mode" class="apple-select">
+                    <option value="public_bus_metro" selected>Public Transit (Metro / Bus)</option>
+                    <option value="two_wheeler">Two-Wheeler (Motorcycle / Scooter)</option>
+                    <option value="car_alone">Solo Private Car (Petrol / Diesel)</option>
+                    <option value="carpool_walk">Carpool / Active Transit</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="apple-form-field">
+                <label for="housing-select" class="field-label">Housing Structure</label>
+                <div class="apple-select-wrapper">
+                  <select id="housing-select" name="housing_type" class="apple-select">
+                    <option value="apartment" selected>Apartment / High-rise Flat</option>
+                    <option value="independent_house">Independent House</option>
+                    <option value="multistory_flat">Dense Multistory Housing</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row-pair">
+              <div class="apple-form-field">
+                <label for="cooking-select" class="field-label">Cooking & Heating</label>
+                <div class="apple-select-wrapper">
+                  <select id="cooking-select" name="cooking_heating" class="apple-select">
+                    <option value="lpg_gas" selected>Piped Gas / LPG Cylinder</option>
+                    <option value="induction_electric">Induction / Clean Electric</option>
+                    <option value="biomass_kerosene">Kerosene / Unvented Heater</option>
+                    <option value="wood_coal">Solid Wood / Coal / Biomass</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="apple-form-field">
+                <label for="budget-select" class="field-label">IAQ Solution Budget</label>
+                <div class="apple-select-wrapper">
+                  <select id="budget-select" name="budget_tier" class="apple-select">
+                    <option value="low_cost" selected>Low-Cost / DIY (&lt; $20)</option>
+                    <option value="free">Zero-Cost Hacks ($0)</option>
+                    <option value="equipment_ready">Equipment-Ready (HEPA)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vulnerable Household Members -->
+            <fieldset class="apple-fieldset">
+              <legend class="fieldset-legend">Vulnerable Family Members</legend>
+              <div class="checkboxes-stack">
+                <label class="apple-checkbox-label">
+                  <input type="checkbox" name="vulnerable" value="children" checked>
+                  <span class="checkbox-custom" aria-hidden="true"></span>
+                  <span class="checkbox-text">Infants & Young Children (Ages 0–10)</span>
+                </label>
+                <label class="apple-checkbox-label">
+                  <input type="checkbox" name="vulnerable" value="seniors">
+                  <span class="checkbox-custom" aria-hidden="true"></span>
+                  <span class="checkbox-text">Elderly Residents (Ages 65+)</span>
+                </label>
+                <label class="apple-checkbox-label">
+                  <input type="checkbox" name="vulnerable" value="asthma" checked>
+                  <span class="checkbox-custom" aria-hidden="true"></span>
+                  <span class="checkbox-text">Asthma & Respiratory Sensitivities</span>
+                </label>
+                <label class="apple-checkbox-label">
+                  <input type="checkbox" name="vulnerable" value="pregnant">
+                  <span class="checkbox-custom" aria-hidden="true"></span>
+                  <span class="checkbox-text">Pregnant Household Member</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="apple-form-field">
+              <label for="question-input" class="field-label">Specific Household Question (Optional)</label>
+              <input 
+                type="text" 
+                id="question-input" 
+                class="apple-text-input" 
+                placeholder="e.g. How to protect my toddler during school morning commute?"
+                maxlength="200"
+              >
+            </div>
+
+            <button type="submit" id="generate-btn" class="apple-primary-button">
+              <span id="btn-spinner" class="spinner hidden" aria-hidden="true"></span>
+              <span id="btn-text">Generate Resilience Plan</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Generated Action Blueprint -->
+        <div class="apple-card blueprint-surface">
+          <div class="blueprint-header-bar">
+            <h3 class="form-section-title">Resilience Blueprint</h3>
+            
+            <!-- Blueprint Tabs -->
+            <div class="apple-blueprint-tabs" role="tablist" aria-label="Blueprint Recommendation Categories">
+              <button role="tab" id="tab-routines" aria-selected="true" aria-controls="view-routines" class="blueprint-tab active">
+                Routines
+              </button>
+              <button role="tab" id="tab-iaq" aria-selected="false" aria-controls="view-iaq" class="blueprint-tab">
+                IAQ Hacks
+              </button>
+              <button role="tab" id="tab-swaps" aria-selected="false" aria-controls="view-swaps" class="blueprint-tab">
+                Swaps
+              </button>
+              <button role="tab" id="tab-checklist" aria-selected="false" aria-controls="view-checklist" class="blueprint-tab">
+                Checklist
+              </button>
+            </div>
+          </div>
+
+          <!-- ARIA Live Announcement Container -->
+          <div id="results-container" class="results-container" aria-live="polite" role="status">
+            
+            <!-- Risk Severity Summary Card -->
+            <div id="risk-summary-card" class="apple-card risk-callout severe">
+              <div class="risk-card-top">
+                <span class="risk-badge" id="risk-badge-text">Severe Smog Priority</span>
+                <span class="generator-badge" id="generator-tag-text">Deterministic Rule Matrix</span>
+              </div>
+              <p id="risk-warning-text" class="risk-warning-body">
+                Emergency winter smog episode. Thermal boundary layer is trapping toxic particulate soot near human breathing height.
+              </p>
+              <div class="priority-actions-box">
+                <h4 class="priority-box-title">Immediate Priorities</h4>
+                <ul id="priority-actions-list" class="priority-items-list">
+                  <li>Strict outdoor curfew: Cancel morning and evening walks, jogging, or outdoor school training.</li>
+                  <li>Establish a sealed indoor Clean Air Sanctuary room immediately.</li>
+                  <li>Wear certified N95 respirators with airtight facial seal for any mandatory travel.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Tab 1: Daily Routines -->
+            <div id="view-routines" role="tabpanel" aria-labelledby="tab-routines" class="tab-panel active">
+              <div id="routines-list" class="cards-stack">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Tab 2: IAQ Hacks -->
+            <div id="view-iaq" role="tabpanel" aria-labelledby="tab-iaq" class="tab-panel hidden">
+              <div id="iaq-list" class="cards-stack">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Tab 3: Sustainable Swaps -->
+            <div id="view-swaps" role="tabpanel" aria-labelledby="tab-swaps" class="tab-panel hidden">
+              <div id="swaps-list" class="cards-stack">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Tab 4: Family Checklist -->
+            <div id="view-checklist" role="tabpanel" aria-labelledby="tab-checklist" class="tab-panel hidden">
+              <div class="checklist-card">
+                <ul class="interactive-checklist" id="interactive-checklist">
+                  <li>
+                    <label class="check-item">
+                      <input type="checkbox" checked>
+                      <span class="check-box-custom" aria-hidden="true"></span>
+                      <span><strong>Morning Inversion Lockdown:</strong> Keep exterior windows and doors shut between 05:30 and 09:30.</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="check-item">
+                      <input type="checkbox" checked>
+                      <span class="check-box-custom" aria-hidden="true"></span>
+                      <span><strong>Damp Cleaning Protocol:</strong> Wet mop bedroom and living floors; strictly avoid dry sweeping.</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="check-item">
+                      <input type="checkbox">
+                      <span class="check-box-custom" aria-hidden="true"></span>
+                      <span><strong>Draft Proofing:</strong> Place rolled damp towels or foam draft sweeps along door thresholds.</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="check-item">
+                      <input type="checkbox">
+                      <span class="check-box-custom" aria-hidden="true"></span>
+                      <span><strong>N95 Fit Inspection:</strong> Check certified N95 respirators for tight seal over nose bridge and chin.</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="check-item">
+                      <input type="checkbox">
+                      <span class="check-box-custom" aria-hidden="true"></span>
+                      <span><strong>Combustion Cessation:</strong> Prohibit incense sticks, mosquito coils, and unvented heaters indoors.</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="check-item">
+                      <input type="checkbox">
+                      <span class="check-box-custom" aria-hidden="true"></span>
+                      <span><strong>Continuous Filtration:</strong> Run DIY Corsi-Rosenthal cleaner or HEPA purifier steadily on medium speed.</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="check-item">
+                      <input type="checkbox">
+                      <span class="check-box-custom" aria-hidden="true"></span>
+                      <span><strong>Community Composting:</strong> Enforce neighborhood ban on open burning of fallen dry winter leaves.</span>
+                    </label>
+                  </li>
+                </ul>
+                <div class="checklist-footer">
+                  <button type="button" id="print-checklist-btn" class="apple-secondary-button">
+                    Print Family Readiness Checklist
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Minimalist Footer -->
+  <footer class="apple-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-title">AeroResilience Atmospheric Intelligence</span>
+        <p class="footer-sub">Designed with precision environmental science & high-fidelity fluid typography</p>
+      </div>
+      <div class="footer-right">
+        <span class="footer-meta">WCAG 2.1 AA Compliant · Zero-Bloat Architecture · Single-Branch Repository</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
