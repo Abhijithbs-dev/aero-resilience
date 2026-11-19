@@ -86,6 +86,27 @@ class TestAPIServer(unittest.TestCase):
             self.assertIn("<title>", content)
             self.assertIn("AeroResilience", content)
 
+    def test_distinct_microclimates_for_different_locations(self):
+        """Verify that different locations return distinct real-time atmospheric microclimates."""
+        url_mumbai = f"{BASE_URL}/api/aqi?city=Mumbai"
+        url_london = f"{BASE_URL}/api/aqi?city=London"
+
+        with urllib.request.urlopen(url_mumbai, timeout=8) as r1:
+            data_mumbai = json.loads(r1.read().decode())
+        with urllib.request.urlopen(url_london, timeout=8) as r2:
+            data_london = json.loads(r2.read().decode())
+
+        self.assertIn("temperature", data_mumbai)
+        self.assertIn("temperature", data_london)
+        self.assertIn("humidity", data_mumbai)
+        self.assertIn("humidity", data_london)
+        self.assertIn("wind_speed", data_mumbai)
+        self.assertIn("wind_speed", data_london)
+
+        # Microclimates must be distinct between tropical Mumbai and temperate London
+        self.assertNotEqual(data_mumbai["temperature"], data_london["temperature"])
+        self.assertNotEqual(data_mumbai["latitude"], data_london["latitude"])
+
     def test_malformed_json_handling(self):
         url = f"{BASE_URL}/api/recommendations"
         bad_bytes = b"this is not json {{"
