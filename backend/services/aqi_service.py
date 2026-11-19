@@ -4,7 +4,7 @@ Air Quality Data Layer with Open-Meteo API ingestion, geocoding, and resilient f
 import json
 import urllib.parse
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Any, Tuple, Optional
 from backend.models.schemas import AirQualityContext
 from backend.utils.cache import SimpleTTLCache
@@ -162,7 +162,7 @@ class AQIService:
                     pm10=pm10,
                     severity_tier=severity,
                     source="live",
-                    timestamp=datetime.utcnow().isoformat() + "Z"
+                    timestamp=datetime.now(timezone.utc).isoformat()
                 )
                 self.cache.set(cache_key, result, custom_ttl=900)
                 return result
@@ -185,7 +185,7 @@ class AQIService:
             pm10=data["pm10"],
             severity_tier=data["severity_tier"],
             source="preset",
-            timestamp=datetime.utcnow().isoformat() + "Z"
+            timestamp=datetime.now(timezone.utc).isoformat()
         )
 
     def get_custom(self, aqi: int, location: str = "Custom Location") -> AirQualityContext:
@@ -201,5 +201,5 @@ class AQIService:
             pm10=round(pm2_5 * 1.7, 1),
             severity_tier=severity,
             source="custom",
-            timestamp=datetime.utcnow().isoformat() + "Z"
+            timestamp=datetime.now(timezone.utc).isoformat()
         )
