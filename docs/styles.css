@@ -394,6 +394,69 @@ body {
   box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
 }
 
+/* Quick Locations Bar */
+.quick-locations-wrapper {
+  max-width: 1320px;
+  margin: 0.85rem auto 0;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+.quick-locations-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.25rem 0.2rem 0.5rem;
+  scrollbar-width: thin;
+}
+
+.quick-locations-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  margin-right: 0.25rem;
+}
+
+.quick-loc-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.32rem 0.8rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.quick-loc-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: rgba(56, 189, 248, 0.45);
+  transform: translateY(-1px);
+}
+
+.quick-loc-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.4);
+}
+
+.quick-loc-btn.active {
+  background: rgba(56, 189, 248, 0.18);
+  border-color: var(--accent-sky);
+  color: var(--accent-sky);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+}
+
 /* ==========================================================================
    4. Non-Medical Disclaimer Callout
    ========================================================================== */

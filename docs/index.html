@@ -64,8 +64,32 @@
               value="Delhi-NCR" 
               placeholder="Search City or Station…" 
               autocomplete="off"
+              list="popular-locations"
               maxlength="70"
             >
+            <datalist id="popular-locations">
+              <option value="Delhi-NCR, India"></option>
+              <option value="Anand Vihar, Delhi"></option>
+              <option value="Jahangirpuri, Delhi"></option>
+              <option value="Wazirpur, Delhi"></option>
+              <option value="RK Puram, Delhi"></option>
+              <option value="IGI Airport (T3), Delhi"></option>
+              <option value="Lodhi Road, Delhi"></option>
+              <option value="Mumbai, India"></option>
+              <option value="Kolkata, India"></option>
+              <option value="Bengaluru, India"></option>
+              <option value="Chennai, India"></option>
+              <option value="Hyderabad, India"></option>
+              <option value="Ahmedabad, India"></option>
+              <option value="Lucknow, India"></option>
+              <option value="Patna, India"></option>
+              <option value="Jaipur, India"></option>
+              <option value="London, UK"></option>
+              <option value="New York, USA"></option>
+              <option value="Paris, France"></option>
+              <option value="Tokyo, Japan"></option>
+              <option value="Lahore, Pakistan"></option>
+            </datalist>
             <button type="button" id="fetch-live-aqi-btn" class="apple-sync-btn" aria-label="Sync live air telemetry from Open-Meteo">
               <svg class="sync-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="23 4 23 10 17 10"></polyline>
@@ -93,6 +117,24 @@
       </div>
     </div>
   </header>
+
+  <!-- Quick-Select Atmospheric Station Corridors -->
+  <div class="quick-locations-wrapper">
+    <nav class="quick-locations-bar" aria-label="Quick Select Popular Monitoring Stations">
+      <span class="quick-locations-title">Quick Select:</span>
+      <button type="button" class="quick-loc-btn active" data-city="Delhi-NCR">🇮🇳 Delhi-NCR</button>
+      <button type="button" class="quick-loc-btn" data-city="Wazirpur, Delhi">🇮🇳 Wazirpur (Delhi)</button>
+      <button type="button" class="quick-loc-btn" data-city="Anand Vihar, Delhi">🇮🇳 Anand Vihar</button>
+      <button type="button" class="quick-loc-btn" data-city="Mumbai">🇮🇳 Mumbai</button>
+      <button type="button" class="quick-loc-btn" data-city="Kolkata">🇮🇳 Kolkata</button>
+      <button type="button" class="quick-loc-btn" data-city="Bengaluru">🇮🇳 Bengaluru</button>
+      <button type="button" class="quick-loc-btn" data-city="Chennai">🇮🇳 Chennai</button>
+      <button type="button" class="quick-loc-btn" data-city="London">🇬🇧 London</button>
+      <button type="button" class="quick-loc-btn" data-city="New York">🇺🇸 New York</button>
+      <button type="button" class="quick-loc-btn" data-city="Paris">🇫🇷 Paris</button>
+      <button type="button" class="quick-loc-btn" data-city="Tokyo">🇯🇵 Tokyo</button>
+    </nav>
+  </div>
 
   <!-- Non-Medical Disclaimer Banner with Crisp SVG Icon -->
   <aside class="disclaimer-callout" role="region" aria-label="Non-Medical Public Health Notice">

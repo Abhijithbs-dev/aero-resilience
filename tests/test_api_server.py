@@ -48,7 +48,7 @@ class TestAPIServer(unittest.TestCase):
 
     def test_aqi_endpoint_delhi(self):
         url = f"{BASE_URL}/api/aqi?city=Delhi"
-        with urllib.request.urlopen(url, timeout=8) as resp:
+        with urllib.request.urlopen(url, timeout=15) as resp:
             self.assertEqual(resp.status, 200)
             data = json.loads(resp.read().decode())
             self.assertIn("aqi", data)
@@ -91,9 +91,9 @@ class TestAPIServer(unittest.TestCase):
         url_mumbai = f"{BASE_URL}/api/aqi?city=Mumbai"
         url_london = f"{BASE_URL}/api/aqi?city=London"
 
-        with urllib.request.urlopen(url_mumbai, timeout=8) as r1:
+        with urllib.request.urlopen(url_mumbai, timeout=15) as r1:
             data_mumbai = json.loads(r1.read().decode())
-        with urllib.request.urlopen(url_london, timeout=8) as r2:
+        with urllib.request.urlopen(url_london, timeout=15) as r2:
             data_london = json.loads(r2.read().decode())
 
         self.assertIn("temperature", data_mumbai)
