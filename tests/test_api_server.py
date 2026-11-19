@@ -118,5 +118,13 @@ class TestAPIServer(unittest.TestCase):
             self.assertEqual(e.code, 400)
             e.close()
 
+    def test_slides_endpoint(self):
+        url = f"{BASE_URL}/slides.html"
+        with urllib.request.urlopen(url, timeout=5) as resp:
+            self.assertEqual(resp.status, 200)
+            html = resp.read().decode("utf-8")
+            self.assertIn("AeroResilience", html)
+            self.assertIn("slide-card", html)
+
 if __name__ == "__main__":
     unittest.main()

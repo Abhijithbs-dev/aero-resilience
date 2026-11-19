@@ -139,6 +139,8 @@ class SmogAssistantRequestHandler(BaseHTTPRequestHandler):
         routes = {
             "/": ("index.html", "text/html; charset=utf-8"),
             "/index.html": ("index.html", "text/html; charset=utf-8"),
+            "/slides": ("slides.html", "text/html; charset=utf-8"),
+            "/slides.html": ("slides.html", "text/html; charset=utf-8"),
             "/styles.css": ("styles.css", "text/css; charset=utf-8"),
             "/app.js": ("app.js", "application/javascript; charset=utf-8"),
         }
