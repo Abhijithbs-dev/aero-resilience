@@ -1,6 +1,6 @@
 /**
- * AeroResilience High-Performance Dashboard Logic
- * Grounded in Live Telemetry, 6-Pollutant Tracking & GenAI Resilience Blueprint.
+ * AeroResilience Spatial Antigravity Client Logic
+ * 3D Interactive Gauges, Weightless Cursor Physics, and GenAI Resilience Planner.
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -44,6 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const pinBadgeVal = document.getElementById("pin-badge-val");
   const stationLabel = document.getElementById("station-label");
   const liveTelemetryText = document.getElementById("live-telemetry-text");
+  const gaugeFillPath = document.getElementById("gauge-fill-path");
+  const orb1 = document.getElementById("orb-1");
 
   // Weather Elements
   const weatherTemp = document.getElementById("weather-temp");
@@ -96,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const iaqList = document.getElementById("iaq-list");
   const swapsList = document.getElementById("swaps-list");
 
-  // Default Hotspots data
+  // Regional Hotspots Benchmark
   const DEFAULT_HOTSPOTS = [
     { station: "Anand Vihar, Delhi", aqi: 488, pm25: 340.2, status: "Hazardous", mult: "22x WHO" },
     { station: "Jahangirpuri, Delhi", aqi: 465, pm25: 315.0, status: "Hazardous", mult: "21x WHO" },
@@ -116,17 +118,27 @@ document.addEventListener("DOMContentLoaded", () => {
     return Math.min(96, 83.0 + (Math.min(200, aqi - 300) / 200) * 15.0);
   }
 
-  // 2. Render Hotspot Benchmarks
+  // 2. Animate SVG Gauge Arc
+  function updateGaugeArc(aqi) {
+    if (!gaugeFillPath) return;
+    const maxAqi = 500;
+    const totalArc = 267; // Circumference of semicircle radius 85
+    const ratio = Math.min(maxAqi, Math.max(0, aqi)) / maxAqi;
+    const offset = totalArc * (1 - ratio);
+    gaugeFillPath.style.strokeDashoffset = `${offset}`;
+  }
+
+  // 3. Render Regional Hotspots
   function renderHotspots(hotspots) {
     const list = hotspots && hotspots.length > 0 ? hotspots : DEFAULT_HOTSPOTS;
     hotspotsContainer.innerHTML = "";
 
     list.forEach(item => {
       const card = document.createElement("div");
-      card.className = "hotspot-card";
+      card.className = "hotspot-card tilt-card";
       card.setAttribute("role", "button");
       card.setAttribute("tabindex", "0");
-      card.setAttribute("aria-label", `Load monitoring station ${item.station || item.name}, AQI ${item.aqi}`);
+      card.setAttribute("aria-label", `Select station ${item.station || item.name}, AQI ${item.aqi}`);
 
       const left = document.createElement("div");
       const name = document.createElement("h4");
@@ -148,7 +160,6 @@ document.addEventListener("DOMContentLoaded", () => {
       card.appendChild(left);
       card.appendChild(pill);
 
-      // On click or Enter, load this station context
       const triggerSelect = () => {
         locationInput.value = item.station || item.name;
         updateDashboardFromData({
@@ -181,9 +192,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       hotspotsContainer.appendChild(card);
     });
+
+    init3DTilt();
   }
 
-  // 3. Update Dashboard Telemetry & Visual Styles
+  // 4. Update Dashboard Telemetry & Visual State
   function updateDashboardFromData(data) {
     state.location = data.location || state.location;
     state.aqi = data.aqi || state.aqi;
@@ -204,17 +217,31 @@ document.addEventListener("DOMContentLoaded", () => {
     // Body Theme class
     document.body.className = `theme-${state.severity.toLowerCase().replace(" ", "-")}`;
 
-    // Hero AQI Number & Pin
+    // Update Ambient Glow Orb color
+    if (orb1) {
+      if (state.aqi >= 400) {
+        orb1.style.background = "radial-gradient(circle, rgba(225, 29, 72, 0.45) 0%, transparent 70%)";
+      } else if (state.aqi >= 300) {
+        orb1.style.background = "radial-gradient(circle, rgba(168, 85, 247, 0.45) 0%, transparent 70%)";
+      } else if (state.aqi >= 200) {
+        orb1.style.background = "radial-gradient(circle, rgba(249, 115, 22, 0.4) 0%, transparent 70%)";
+      } else {
+        orb1.style.background = "radial-gradient(circle, rgba(16, 185, 129, 0.35) 0%, transparent 70%)";
+      }
+    }
+
+    // Hero AQI & Speedometer Arc
     heroAqiNumber.textContent = state.aqi;
     pinBadgeVal.textContent = state.aqi;
     spectrumPin.style.left = `${calculatePinLeft(state.aqi)}%`;
+    updateGaugeArc(state.aqi);
 
-    // Status Badge & Texts
+    // Meta Labels
     stationLabel.textContent = `Active Telemetry: ${state.location}`;
     liveTelemetryText.textContent = `TELEMETRY: ${state.source.toUpperCase()} · CPCB & US-EPA`;
 
     const sev = state.severity.toLowerCase();
-    heroStatusBadge.className = `status-badge ${sev === "severe" ? (state.aqi >= 400 ? "hazardous" : "severe") : sev}`;
+    heroStatusBadge.className = `status-badge ${sev === "severe" ? (state.aqi >= 400 ? "hazardous" : "severe") : sev} float-badge`;
     
     if (state.aqi >= 400) {
       statusIcon.textContent = "🛑";
@@ -223,7 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (state.aqi >= 300) {
       statusIcon.textContent = "🚨";
       heroStatusTitle.textContent = "Severe (Hazardous)";
-      heroStatusDesc.textContent = "Surface particulate lid trapped near ground level. Severe health impact for everyone.";
+      heroStatusDesc.textContent = "Surface particulate lid trapped near ground level. Severe health impact across population.";
     } else if (state.aqi >= 200) {
       statusIcon.textContent = "⚠️";
       heroStatusTitle.textContent = "Very Poor (Unhealthy)";
@@ -280,7 +307,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 4. Check Server Health
+  // 5. Interactive 3D Tilt Effect on Cursor Movement (Antigravity Vibe)
+  function init3DTilt() {
+    // Respect reduced motion
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    const cards = document.querySelectorAll(".tilt-card");
+    cards.forEach(card => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -6; // Max 6 deg
+        const rotateY = ((x - centerX) / centerX) * 6;  // Max 6 deg
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)";
+      });
+    });
+  }
+
+  // 6. Check Server Health
   async function checkHealth() {
     try {
       const resp = await fetch("/api/health");
@@ -299,7 +354,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 5. Preset Pill Selection
+  // 7. Preset Pill Selection
   presetPills.forEach(pill => {
     pill.addEventListener("click", async () => {
       presetPills.forEach(p => {
@@ -325,14 +380,13 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       } catch {
-        // Fallback local preset
         state.severity = sev;
         assistantForm.dispatchEvent(new Event("submit"));
       }
     });
   });
 
-  // 6. Live Sync from Open-Meteo
+  // 8. Live Sync from Open-Meteo
   fetchLiveAqiBtn.addEventListener("click", async () => {
     const city = locationInput.value.trim() || "Delhi";
     fetchLiveAqiBtn.disabled = true;
@@ -356,7 +410,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 7. Blueprint Tab Navigation
+  // 9. Blueprint Tab Navigation
   blueprintTabs.forEach(tab => {
     tab.addEventListener("click", () => {
       const targetId = tab.getAttribute("aria-controls");
@@ -381,7 +435,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 8. Form Submission & Recommendations
+  // 10. Form Submission & Recommendations
   assistantForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (state.loading) return;
@@ -435,7 +489,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 9. Render Generated Blueprint
+  // 11. Render Generated Blueprint
   function renderResults(data) {
     state.recommendations = data;
 
@@ -586,7 +640,7 @@ document.addEventListener("DOMContentLoaded", () => {
       swapsList.appendChild(card);
     });
 
-    // Update Live Region for Screen Readers
+    // Announce update to screen readers
     const resultsContainer = document.getElementById("results-container");
     resultsContainer.setAttribute("aria-label", "Resilience blueprint updated successfully");
   }
@@ -601,13 +655,15 @@ document.addEventListener("DOMContentLoaded", () => {
       .replace(/'/g, "&#039;");
   }
 
-  // 10. Print / Save Checklist
+  // 12. Print / Save Checklist
   printChecklistBtn.addEventListener("click", () => {
     window.print();
   });
 
   // Initialize
   checkHealth();
+  updateGaugeArc(state.aqi);
   renderHotspots(DEFAULT_HOTSPOTS);
+  init3DTilt();
   assistantForm.dispatchEvent(new Event("submit"));
 });

@@ -3,15 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AeroResilience: High-Performance Winter Smog & Urban Air Quality Intelligence Dashboard. Real-time telemetry, 6-pollutant analysis, microclimate tracking, and GenAI-powered household resilience routines.">
-  <title>AeroResilience · Live Winter Smog & Air Quality Dashboard</title>
+  <meta name="description" content="AeroResilience: Spatial Antigravity Winter Smog & Atmospheric Intelligence Dashboard. Weightless glassmorphism, 3D interactive telemetry, and GenAI household resilience planning.">
+  <title>AeroResilience · Spatial Atmospheric Intelligence Dashboard</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body class="theme-severe">
   <!-- Accessible Skip Link -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Top Emergency Ticker -->
+  <!-- Ambient Antigravity Spatial Canvas (Background floating light orbs & particles) -->
+  <div class="spatial-bg" aria-hidden="true">
+    <div class="orb orb-1" id="orb-1"></div>
+    <div class="orb orb-2" id="orb-2"></div>
+    <div class="orb orb-3" id="orb-3"></div>
+    <div class="grid-layer"></div>
+  </div>
+
+  <!-- Top Emergency Alert Ticker -->
   <aside class="emergency-ticker" role="region" aria-label="Live Winter Smog Alert Banner">
     <div class="ticker-content">
       <span class="ticker-tag" aria-hidden="true">🚨 LIVE ALERT</span>
@@ -31,9 +39,9 @@
         <div>
           <div class="brand-title-wrap">
             <h1 class="brand-title">AeroResilience</h1>
-            <span class="version-badge">PRO · LIVE</span>
+            <span class="version-badge">SPATIAL · PRO</span>
           </div>
-          <p class="brand-subtitle">GenAI Winter Smog & Urban Atmospheric Intelligence</p>
+          <p class="brand-subtitle">GenAI Winter Smog & Atmospheric Intelligence</p>
         </div>
       </div>
 
@@ -76,15 +84,15 @@
   <!-- Main Content Layout -->
   <main id="main-content" class="main-layout" role="main">
     
-    <!-- Hero Dual-Pane Section (Inspired by AQI.in) -->
+    <!-- Hero Dual-Pane Spatial Command Center -->
     <section class="hero-command-center" aria-label="Air Quality Overview & Meteorological Command Center">
       
-      <!-- Left Hero Card: Live AQI & Spectrum -->
-      <div class="hero-card aqi-hero-card" id="hero-aqi-card">
+      <!-- Left Hero Card: Live AQI & Spatial 3D Speedometer Gauge -->
+      <div class="hero-card aqi-hero-card tilt-card" id="hero-aqi-card">
         <div class="card-ambient-glow" aria-hidden="true"></div>
         <div class="card-content-wrap">
           <div class="hero-card-top">
-            <div class="live-pill">
+            <div class="live-pill float-anim">
               <span class="live-pulse-dot" aria-hidden="true"></span>
               <span id="live-telemetry-text">LIVE TELEMETRY · CPCB & US AQI</span>
             </div>
@@ -92,12 +100,38 @@
           </div>
 
           <div class="aqi-hero-score-row">
-            <div class="aqi-huge-metric">
-              <span class="aqi-number" id="hero-aqi-number">420</span>
-              <span class="aqi-scale-unit">AQI</span>
+            
+            <!-- SVG Semi-Circular Arc Speedometer Gauge -->
+            <div class="gauge-wrapper" aria-hidden="true">
+              <svg class="gauge-svg" viewBox="0 0 220 130" width="220" height="130">
+                <defs>
+                  <!-- Glowing Arc Gradient -->
+                  <linearGradient id="gauge-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#10b981" />
+                    <stop offset="25%" stop-color="#f59e0b" />
+                    <stop offset="50%" stop-color="#f97316" />
+                    <stop offset="75%" stop-color="#ef4444" />
+                    <stop offset="100%" stop-color="#a855f7" />
+                  </linearGradient>
+                  <filter id="gauge-glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="4" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                </defs>
+                <!-- Background Arc Track -->
+                <path d="M 25 115 A 85 85 0 0 1 195 115" class="gauge-track" />
+                <!-- Dynamic Colored Arc Progress -->
+                <path d="M 25 115 A 85 85 0 0 1 195 115" class="gauge-fill" id="gauge-fill-path" />
+              </svg>
+              <!-- Center Metric Overlay -->
+              <div class="gauge-metric-center">
+                <span class="aqi-number" id="hero-aqi-number">420</span>
+                <span class="aqi-scale-unit">AQI</span>
+              </div>
             </div>
+
             <div class="aqi-status-meta">
-              <div class="status-badge severe" id="hero-status-badge">
+              <div class="status-badge severe float-badge" id="hero-status-badge">
                 <span id="status-icon" aria-hidden="true">🛑</span>
                 <span id="hero-status-title">Severe (Hazardous)</span>
               </div>
@@ -119,7 +153,7 @@
             </div>
             <div class="stat-pill highlight-purple" id="inversion-status-pill">
               <span class="stat-icon" aria-hidden="true">🌡️</span>
-              <span><strong>Strong Surface Inversion</strong> (05:30–09:30)</span>
+              <span><strong>Deep Thermal Inversion</strong> (05:30–09:30)</span>
             </div>
           </div>
 
@@ -150,11 +184,11 @@
         </div>
       </div>
 
-      <!-- Right Hero Card: Weather & Immediate Activity Advisories -->
-      <div class="hero-card weather-advisory-card">
+      <!-- Right Hero Card: Weather & Microclimate -->
+      <div class="hero-card weather-advisory-card tilt-card">
         <div class="weather-top-row">
           <div class="weather-brief">
-            <span class="weather-icon-large" aria-hidden="true">🌫️</span>
+            <span class="weather-icon-large float-anim-slow" aria-hidden="true">🌫️</span>
             <div>
               <div class="weather-temp-row">
                 <span class="weather-temp" id="weather-temp">14.2°C</span>
@@ -188,7 +222,7 @@
           </div>
         </div>
 
-        <!-- 4 Immediate Activity Advisories (Like AQI.in) -->
+        <!-- 4 Immediate Activity Advisories -->
         <div class="advisories-section">
           <h3 class="advisories-title">Immediate Health Activity Advisories</h3>
           <div class="advisory-chips-grid">
@@ -227,7 +261,7 @@
 
     </section>
 
-    <!-- 6-Major Air Pollutants Breakdown Grid (Like AQI.in) -->
+    <!-- 6-Major Air Pollutants Breakdown Grid -->
     <section class="section-block" aria-labelledby="pollutants-heading">
       <div class="section-header-row">
         <div>
@@ -240,7 +274,7 @@
       <div class="pollutants-grid">
         
         <!-- PM2.5 Card -->
-        <article class="pollutant-card border-severe">
+        <article class="pollutant-card border-severe tilt-card">
           <div class="pollutant-header">
             <div>
               <span class="pollutant-tag">Fine Particles</span>
@@ -260,7 +294,7 @@
         </article>
 
         <!-- PM10 Card -->
-        <article class="pollutant-card border-severe">
+        <article class="pollutant-card border-severe tilt-card">
           <div class="pollutant-header">
             <div>
               <span class="pollutant-tag">Coarse Dust</span>
@@ -280,7 +314,7 @@
         </article>
 
         <!-- NO2 Card -->
-        <article class="pollutant-card border-poor">
+        <article class="pollutant-card border-poor tilt-card">
           <div class="pollutant-header">
             <div>
               <span class="pollutant-tag">Vehicular Gas</span>
@@ -300,7 +334,7 @@
         </article>
 
         <!-- SO2 Card -->
-        <article class="pollutant-card border-moderate">
+        <article class="pollutant-card border-moderate tilt-card">
           <div class="pollutant-header">
             <div>
               <span class="pollutant-tag">Industrial Gas</span>
@@ -320,7 +354,7 @@
         </article>
 
         <!-- CO Card -->
-        <article class="pollutant-card border-moderate">
+        <article class="pollutant-card border-moderate tilt-card">
           <div class="pollutant-header">
             <div>
               <span class="pollutant-tag">Incomplete Burn</span>
@@ -340,7 +374,7 @@
         </article>
 
         <!-- O3 Card -->
-        <article class="pollutant-card border-good">
+        <article class="pollutant-card border-good tilt-card">
           <div class="pollutant-header">
             <div>
               <span class="pollutant-tag">Surface Ozone</span>
@@ -362,7 +396,7 @@
       </div>
     </section>
 
-    <!-- Regional Smog Hotspots & Monitoring Station Rankings (Inspired by AQI.in) -->
+    <!-- Regional Smog Hotspots & Monitoring Station Rankings -->
     <section class="section-block" aria-labelledby="hotspots-heading">
       <div class="section-header-row">
         <div>
@@ -397,7 +431,7 @@
       <div class="planner-layout">
         
         <!-- Context Intake Form -->
-        <div class="planner-form-card">
+        <div class="planner-form-card tilt-card">
           <h3 class="form-card-title">1. Household Profile & Constraints</h3>
           <form id="assistant-form" class="custom-form" novalidate>
             
@@ -485,7 +519,7 @@
         </div>
 
         <!-- Generated Action Blueprint -->
-        <div class="planner-results-card">
+        <div class="planner-results-card tilt-card">
           <div class="results-header-row">
             <h3 class="form-card-title">2. Tailored Action Blueprint</h3>
             
@@ -615,7 +649,7 @@
   <footer class="app-footer" role="contentinfo">
     <div class="footer-container">
       <div class="footer-brand-col">
-        <span class="footer-brand-title">AeroResilience Atmospheric Intelligence</span>
+        <span class="footer-brand-title">AeroResilience Spatial Atmospheric Intelligence</span>
         <p class="footer-desc">
           Science-grounded winter smog resilience for urban families and community leaders.
         </p>

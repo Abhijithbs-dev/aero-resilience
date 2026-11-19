@@ -1,55 +1,60 @@
 /* ==========================================================================
-   AeroResilience Stylesheet
-   High-End Atmospheric Intelligence Dashboard Inspired by AQI.in
-   Strict WCAG 2.1 AA Contrast (>= 4.5:1) & Modern Glassmorphic Design
+   AeroResilience Spatial Antigravity Design System
+   Weightless Glassmorphism, 3D CSS Depth, Fluid Micro-Animations
+   Compliant with WCAG 2.1 AA Accessibility & prefers-reduced-motion
    ========================================================================== */
 
 :root {
-  /* Dark Canvas Foundation */
-  --bg-deep: #080c14;          /* Deepest Space Navy */
-  --bg-surface: #0e1424;       /* Primary Card Surface */
-  --bg-card: #141c30;          /* Elevated Card Surface */
-  --bg-card-hover: #1b253e;    /* Card Hover */
-  --bg-input: #0a0f1d;         /* Input Background */
+  /* Spatial Dark Canvas */
+  --bg-deep: #050811;          /* Void Navy */
+  --bg-surface: rgba(14, 20, 36, 0.75); /* Frosted Glass Layer */
+  --bg-card: rgba(20, 30, 52, 0.65);    /* Elevated Glass */
+  --bg-card-hover: rgba(28, 42, 74, 0.8);
+  --bg-input: rgba(8, 12, 22, 0.85);
 
-  /* Borders & Dividers */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-card: #1f2a44;
-  --border-focus: #38bdf8;     /* Sky 400 focus ring */
+  /* Specular Edge Lighting & Glass Borders */
+  --border-glass: rgba(255, 255, 255, 0.1);
+  --border-specular: rgba(255, 255, 255, 0.22);
+  --border-card: rgba(30, 45, 78, 0.6);
+  --border-focus: #38bdf8;
 
-  /* Typography Colors */
+  /* Typography Palette (High Contrast >= 4.5:1) */
   --text-pure: #ffffff;
-  --text-main: #f1f5f9;        /* Slate 100 */
-  --text-dim: #cbd5e1;         /* Slate 300 */
-  --text-muted: #94a3b8;       /* Slate 400 */
-  --text-subtle: #64748b;      /* Slate 500 */
+  --text-main: #f8fafc;
+  --text-dim: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-subtle: #64748b;
 
-  /* Brand Accents */
-  --brand-cyan: #06b6d4;       /* Cyan 500 */
-  --brand-sky: #0284c7;        /* Sky 600 */
-  --brand-accent: #38bdf8;     /* Sky 400 */
+  /* Luminous Brand Accents */
+  --brand-cyan: #06b6d4;
+  --brand-sky: #0284c7;
+  --brand-accent: #38bdf8;
+  --brand-glow: rgba(56, 189, 248, 0.35);
 
-  /* AQI Severity Bands (US AQI / CPCB Standard) */
-  --aqi-good: #10b981;         /* Emerald 500 */
-  --aqi-moderate: #f59e0b;     /* Amber 500 */
-  --aqi-poor: #f97316;         /* Orange 500 */
-  --aqi-very-poor: #ef4444;    /* Crimson 500 */
-  --aqi-severe: #a855f7;       /* Purple 500 */
-  --aqi-hazardous: #881337;    /* Maroon / Dark Rose 900 */
+  /* Atmospheric Severity Luminescence */
+  --aqi-good: #10b981;
+  --aqi-moderate: #f59e0b;
+  --aqi-poor: #f97316;
+  --aqi-very-poor: #ef4444;
+  --aqi-severe: #a855f7;
+  --aqi-hazardous: #881337;
 
-  /* Radius & Shadows */
+  /* Spatial Geometry & Elevations */
   --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-xl: 24px;
-  --shadow-glow: 0 0 25px rgba(56, 189, 248, 0.15);
-  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --shadow-weightless: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.08);
+  --shadow-elevated: 0 15px 35px -8px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 255, 255, 0.04);
+  --shadow-glow-severe: 0 0 35px rgba(168, 85, 247, 0.25);
 
   --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-/* Reset & Box Model */
+/* ==========================================================================
+   1. Reset & Global Spatial Viewport
+   ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -65,16 +70,85 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-  background-image: radial-gradient(circle at 50% 0%, rgba(20, 28, 48, 0.8) 0%, var(--bg-deep) 70%);
+  perspective: 1400px;
+  position: relative;
 }
 
-/* Accessible Skip Link */
+/* ==========================================================================
+   2. Antigravity Spatial Canvas & Floating Light Orbs
+   ========================================================================== */
+.spatial-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  transition: all 1s ease;
+  will-change: transform;
+}
+
+.orb-1 {
+  width: 550px;
+  height: 550px;
+  top: -150px;
+  left: 15%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.45) 0%, transparent 70%);
+  animation: floatOrb 18s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+  width: 480px;
+  height: 480px;
+  top: 35%;
+  right: -100px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.35) 0%, transparent 70%);
+  animation: floatOrb 22s ease-in-out infinite alternate-reverse;
+}
+
+.orb-3 {
+  width: 600px;
+  height: 600px;
+  bottom: -200px;
+  left: 30%;
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.25) 0%, transparent 70%);
+  animation: floatOrb 26s ease-in-out infinite alternate;
+}
+
+.grid-layer {
+  position: absolute;
+  inset: 0;
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, transparent 80%);
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, -60px) scale(1.08); }
+  100% { transform: translate(-30px, 40px) scale(0.95); }
+}
+
+/* ==========================================================================
+   3. Accessible Skip Link & Focus States
+   ========================================================================== */
 .skip-link {
   position: absolute;
-  top: -60px;
+  top: -70px;
   left: 1.5rem;
   background: var(--brand-accent);
-  color: #080c14;
+  color: #050811;
   font-weight: 800;
   padding: 0.85rem 1.4rem;
   border-radius: var(--radius-sm);
@@ -88,13 +162,11 @@ body {
   outline: 3px solid #ffffff;
 }
 
-/* Visible Focus Indicator (WCAG 2.4.7) */
 :focus-visible {
   outline: 3px solid var(--border-focus);
   outline-offset: 3px;
 }
 
-/* Screen reader only utility */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -108,17 +180,18 @@ body {
 }
 
 /* ==========================================================================
-   1. Emergency Live Ticker
+   4. Emergency Alert Ticker
    ========================================================================== */
 .emergency-ticker {
   background: linear-gradient(90deg, #450a0a 0%, #1e1b4b 50%, #450a0a 100%);
-  border-bottom: 1px solid rgba(239, 68, 68, 0.3);
+  border-bottom: 1px solid rgba(239, 68, 68, 0.35);
   padding: 0.55rem 1.5rem;
   font-size: 0.84rem;
+  backdrop-filter: blur(8px);
 }
 
 .ticker-content {
-  max-width: 1520px;
+  max-width: 1540px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -134,32 +207,33 @@ body {
   border-radius: 9999px;
   letter-spacing: 0.05em;
   white-space: nowrap;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
 }
 
 .ticker-text {
   color: #fecaca;
   font-weight: 500;
-  letter-spacing: 0.01em;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 /* ==========================================================================
-   2. Main Header
+   5. Glassmorphic App Header
    ========================================================================== */
 .app-header {
-  background-color: rgba(14, 20, 36, 0.85);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-subtle);
+  background-color: rgba(14, 20, 36, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border-glass);
   padding: 1rem 1.5rem;
   position: sticky;
   top: 0;
   z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .header-container {
-  max-width: 1520px;
+  max-width: 1540px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -182,7 +256,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 18px rgba(6, 182, 212, 0.4);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.45);
+  transform: translateZ(10px);
 }
 
 .brand-glyph {
@@ -196,10 +271,13 @@ body {
 }
 
 .brand-title {
-  font-size: 1.55rem;
-  font-weight: 800;
+  font-size: 1.6rem;
+  font-weight: 900;
   color: #ffffff;
   letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .version-badge {
@@ -209,8 +287,9 @@ body {
   color: var(--brand-accent);
   background: rgba(56, 189, 248, 0.12);
   border: 1px solid rgba(56, 189, 248, 0.3);
-  padding: 0.15rem 0.45rem;
+  padding: 0.15rem 0.5rem;
   border-radius: 9999px;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.2);
 }
 
 .brand-subtitle {
@@ -225,25 +304,27 @@ body {
   flex-wrap: wrap;
 }
 
-/* Quick Location Search Bar */
+/* Quick Location Input */
 .search-box {
   display: flex;
   align-items: center;
   background-color: var(--bg-input);
-  border: 1px solid var(--border-card);
+  border: 1px solid var(--border-specular);
   border-radius: 9999px;
-  padding: 0.3rem 0.4rem 0.3rem 0.85rem;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  padding: 0.35rem 0.45rem 0.35rem 0.95rem;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(12px);
 }
 
 .search-box:focus-within {
   border-color: var(--brand-accent);
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
+  transform: translateY(-1px);
 }
 
 .search-icon {
   font-size: 0.95rem;
-  margin-right: 0.4rem;
+  margin-right: 0.45rem;
 }
 
 .search-box input {
@@ -263,13 +344,14 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: rgba(15, 23, 42, 0.7);
-  border: 1px solid var(--border-card);
+  background-color: rgba(14, 20, 36, 0.8);
+  border: 1px solid var(--border-glass);
   padding: 0.45rem 0.85rem;
   border-radius: 9999px;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--brand-accent);
+  box-shadow: var(--shadow-elevated);
 }
 
 .beacon-dot {
@@ -288,16 +370,17 @@ body {
 }
 
 /* ==========================================================================
-   3. Non-Medical Disclaimer Banner
+   6. Disclaimer Banner
    ========================================================================== */
 .disclaimer-banner {
-  background-color: rgba(30, 27, 75, 0.7);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.25);
+  background-color: rgba(24, 20, 58, 0.6);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
   padding: 0.75rem 1.5rem;
+  backdrop-filter: blur(10px);
 }
 
 .disclaimer-container {
-  max-width: 1520px;
+  max-width: 1540px;
   margin: 0 auto;
   display: flex;
   align-items: flex-start;
@@ -317,21 +400,21 @@ body {
 }
 
 /* ==========================================================================
-   4. Main Layout & Hero Command Center
+   7. Spatial Main Layout & 3D Tilt Cards
    ========================================================================== */
 .main-layout {
   flex: 1;
-  max-width: 1520px;
+  max-width: 1540px;
   width: 100%;
-  margin: 1.5rem auto 3rem;
+  margin: 1.75rem auto 3.5rem;
   padding: 0 1.5rem;
 }
 
 .hero-command-center {
   display: grid;
   grid-template-columns: 1.35fr 1fr;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  gap: 1.75rem;
+  margin-bottom: 2.25rem;
 }
 
 @media (max-width: 1120px) {
@@ -340,32 +423,58 @@ body {
   }
 }
 
+/* Base Glassmorphic Elevated Card */
 .hero-card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-card);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-top: 1px solid var(--border-specular);
   border-radius: var(--radius-xl);
-  padding: 2rem;
+  padding: 2.25rem;
   position: relative;
   overflow: hidden;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-weightless);
+  backdrop-filter: blur(24px) saturate(190%);
+  transform-style: preserve-3d;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
 }
 
-.aqi-hero-card {
-  background: linear-gradient(135deg, rgba(20, 28, 48, 0.95) 0%, rgba(14, 20, 36, 0.95) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.hero-card:hover {
+  box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.15);
 }
 
-/* Ambient dynamic back-glow based on severity */
+/* Weightless Floating Animation */
+.float-anim {
+  animation: levitate 5s ease-in-out infinite;
+}
+
+.float-anim-slow {
+  animation: levitate 8s ease-in-out infinite;
+}
+
+.float-badge {
+  animation: levitateBadge 4s ease-in-out infinite;
+}
+
+@keyframes levitate {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes levitateBadge {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-4px) scale(1.02); }
+}
+
 .card-ambient-glow {
   position: absolute;
-  top: -80px;
-  left: -80px;
-  width: 320px;
-  height: 320px;
+  top: -90px;
+  left: -90px;
+  width: 360px;
+  height: 360px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.22) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.28) 0%, transparent 70%);
   pointer-events: none;
-  filter: blur(40px);
+  filter: blur(50px);
   z-index: 0;
 }
 
@@ -387,14 +496,15 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: rgba(239, 68, 68, 0.15);
-  border: 1px solid rgba(239, 68, 68, 0.35);
+  background-color: rgba(239, 68, 68, 0.18);
+  border: 1px solid rgba(239, 68, 68, 0.4);
   color: #fca5a5;
   font-size: 0.74rem;
   font-weight: 800;
   letter-spacing: 0.05em;
-  padding: 0.3rem 0.65rem;
+  padding: 0.35rem 0.75rem;
   border-radius: 9999px;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.3);
 }
 
 .live-pulse-dot {
@@ -402,83 +512,129 @@ body {
   height: 7px;
   border-radius: 50%;
   background-color: #ef4444;
-  box-shadow: 0 0 8px #ef4444;
+  box-shadow: 0 0 10px #ef4444;
 }
 
 .station-label {
-  font-size: 0.82rem;
-  color: var(--text-muted);
+  font-size: 0.84rem;
+  color: var(--text-dim);
+  font-weight: 600;
 }
 
+/* ==========================================================================
+   8. 3D SVG Arc Speedometer Gauge
+   ========================================================================== */
 .aqi-hero-score-row {
   display: flex;
-  align-items: baseline;
-  gap: 1.75rem;
-  margin-bottom: 1.5rem;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1.75rem;
   flex-wrap: wrap;
 }
 
-.aqi-huge-metric {
+.gauge-wrapper {
+  position: relative;
+  width: 220px;
+  height: 130px;
   display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-svg {
+  overflow: visible;
+}
+
+.gauge-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 14;
+  stroke-linecap: round;
+}
+
+.gauge-fill {
+  fill: none;
+  stroke: url(#gauge-grad);
+  stroke-width: 15;
+  stroke-linecap: round;
+  stroke-dasharray: 270;
+  stroke-dashoffset: 45; /* Animates dynamically */
+  filter: url(#gauge-glow);
+  transition: stroke-dashoffset 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gauge-metric-center {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .aqi-number {
-  font-size: 5rem;
+  font-size: 3.5rem;
   font-weight: 900;
   line-height: 0.95;
   letter-spacing: -0.04em;
   color: #ffffff;
-  text-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+  text-shadow: 0 0 25px rgba(168, 85, 247, 0.5);
 }
 
 .aqi-scale-unit {
-  font-size: 1.25rem;
+  font-size: 0.85rem;
   font-weight: 800;
   color: var(--text-muted);
+  letter-spacing: 0.05em;
 }
 
 .status-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.45rem 1rem;
+  padding: 0.5rem 1.15rem;
   border-radius: 9999px;
   font-size: 1.05rem;
   font-weight: 800;
   border: 1px solid;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .status-badge.severe {
-  background-color: rgba(168, 85, 247, 0.2);
+  background: rgba(168, 85, 247, 0.22);
   border-color: var(--aqi-severe);
-  color: #d8b4fe;
+  color: #e9d5ff;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.35);
 }
 
 .status-badge.hazardous {
-  background-color: rgba(136, 19, 55, 0.3);
+  background: rgba(136, 19, 55, 0.35);
   border-color: #f43f5e;
   color: #fda4af;
+  box-shadow: 0 0 20px rgba(244, 63, 94, 0.4);
 }
 
 .status-badge.poor {
-  background-color: rgba(249, 115, 22, 0.2);
+  background: rgba(249, 115, 22, 0.22);
   border-color: var(--aqi-poor);
-  color: #fdba74;
+  color: #fed7aa;
+  box-shadow: 0 0 18px rgba(249, 115, 22, 0.35);
 }
 
 .status-badge.moderate {
-  background-color: rgba(245, 158, 11, 0.2);
+  background: rgba(245, 158, 11, 0.22);
   border-color: var(--aqi-moderate);
-  color: #fde68a;
+  color: #fef08a;
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.35);
 }
 
 .status-subline {
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   color: var(--text-dim);
   max-width: 420px;
+  line-height: 1.5;
 }
 
 /* Impact Multipliers */
@@ -494,42 +650,47 @@ body {
   align-items: center;
   gap: 0.45rem;
   font-size: 0.82rem;
-  padding: 0.45rem 0.85rem;
+  padding: 0.5rem 0.95rem;
   border-radius: var(--radius-sm);
   border: 1px solid;
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s ease;
+}
+
+.stat-pill:hover {
+  transform: translateY(-2px);
 }
 
 .stat-pill.highlight-red {
-  background-color: rgba(239, 68, 68, 0.12);
-  border-color: rgba(239, 68, 68, 0.35);
+  background-color: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
   color: #fca5a5;
 }
 
 .stat-pill.highlight-amber {
-  background-color: rgba(245, 158, 11, 0.12);
-  border-color: rgba(245, 158, 11, 0.35);
+  background-color: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.4);
   color: #fde68a;
 }
 
 .stat-pill.highlight-purple {
-  background-color: rgba(168, 85, 247, 0.12);
-  border-color: rgba(168, 85, 247, 0.35);
+  background-color: rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.4);
   color: #e9d5ff;
 }
 
-/* 6-Tier AQI Spectrum Track */
+/* 6-Tier AQI Continuum Spectrum */
 .aqi-spectrum-container {
-  background-color: rgba(10, 15, 29, 0.7);
-  padding: 1.25rem 1.25rem 1rem;
+  background-color: rgba(8, 12, 22, 0.75);
+  padding: 1.25rem;
   border-radius: var(--radius-md);
-  border: 1px solid var(--border-card);
+  border: 1px solid var(--border-glass);
 }
 
 .spectrum-bar {
   display: flex;
   height: 14px;
   border-radius: 9999px;
-  overflow: visible;
   position: relative;
   margin-bottom: 0.75rem;
 }
@@ -558,7 +719,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: left 0.4s ease;
+  transition: left 0.5s cubic-bezier(0.25, 1, 0.5, 1);
   z-index: 10;
 }
 
@@ -567,9 +728,9 @@ body {
   color: #080c14;
   font-size: 0.72rem;
   font-weight: 900;
-  padding: 0.15rem 0.45rem;
+  padding: 0.15rem 0.5rem;
   border-radius: 9999px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
 }
 
 .pin-triangle {
@@ -589,7 +750,9 @@ body {
   font-weight: 600;
 }
 
-/* Right Hero Card: Weather & Microclimate */
+/* ==========================================================================
+   9. Weather & Microclimate Right Hero Card
+   ========================================================================== */
 .weather-advisory-card {
   display: flex;
   flex-direction: column;
@@ -623,7 +786,7 @@ body {
 
 .weather-temp {
   font-size: 2.2rem;
-  font-weight: 800;
+  font-weight: 900;
   color: #ffffff;
 }
 
@@ -640,11 +803,12 @@ body {
 }
 
 .wind-capsule {
-  background-color: rgba(15, 23, 42, 0.8);
-  border: 1px solid var(--border-card);
-  padding: 0.45rem 0.85rem;
+  background-color: rgba(14, 20, 36, 0.85);
+  border: 1px solid var(--border-glass);
+  padding: 0.5rem 0.95rem;
   border-radius: var(--radius-sm);
   text-align: right;
+  backdrop-filter: blur(12px);
 }
 
 .wind-label {
@@ -655,18 +819,18 @@ body {
 
 .wind-speed {
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #ffffff;
 }
 
 .weather-micro-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.65rem;
-  background-color: rgba(10, 15, 29, 0.7);
-  padding: 0.85rem;
+  gap: 0.75rem;
+  background-color: rgba(8, 12, 22, 0.75);
+  padding: 0.95rem;
   border-radius: var(--radius-md);
-  border: 1px solid var(--border-card);
+  border: 1px solid var(--border-glass);
   margin-bottom: 1.5rem;
 }
 
@@ -690,10 +854,10 @@ body {
   color: #ef4444;
 }
 
-/* 4 Immediate Activity Advisories (Like AQI.in) */
+/* 4 Health Activity Advisories */
 .advisories-title {
-  font-size: 0.88rem;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-muted);
@@ -710,33 +874,39 @@ body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.75rem 0.85rem;
+  padding: 0.8rem 0.95rem;
   border-radius: var(--radius-md);
   border: 1px solid;
+  backdrop-filter: blur(12px);
+  transition: transform 0.2s ease;
+}
+
+.advisory-chip:hover {
+  transform: translateY(-2px);
 }
 
 .advisory-chip.danger {
-  background-color: rgba(239, 68, 68, 0.1);
-  border-color: rgba(239, 68, 68, 0.3);
+  background-color: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.35);
 }
 
 .advisory-chip.warning {
-  background-color: rgba(245, 158, 11, 0.1);
-  border-color: rgba(245, 158, 11, 0.3);
+  background-color: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.35);
 }
 
 .advisory-chip.primary {
-  background-color: rgba(56, 189, 248, 0.1);
-  border-color: rgba(56, 189, 248, 0.3);
+  background-color: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.35);
 }
 
 .advisory-chip.info {
-  background-color: rgba(168, 85, 247, 0.1);
-  border-color: rgba(168, 85, 247, 0.3);
+  background-color: rgba(168, 85, 247, 0.12);
+  border-color: rgba(168, 85, 247, 0.35);
 }
 
 .advisory-icon {
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   flex-shrink: 0;
 }
 
@@ -748,29 +918,29 @@ body {
 
 .advisory-status {
   font-size: 0.88rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #ffffff;
 }
 
 /* ==========================================================================
-   5. Section Blocks & 6-Pollutants Grid
+   10. 6-Pollutants Grid & 3D Tilts
    ========================================================================== */
 .section-block {
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.75rem;
 }
 
 .section-header-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.35rem;
   flex-wrap: wrap;
   gap: 1rem;
 }
 
 .section-title {
-  font-size: 1.35rem;
-  font-weight: 800;
+  font-size: 1.4rem;
+  font-weight: 900;
   color: #ffffff;
   letter-spacing: -0.01em;
 }
@@ -778,19 +948,19 @@ body {
 .section-desc {
   font-size: 0.88rem;
   color: var(--text-muted);
-  margin-top: 0.2rem;
+  margin-top: 0.25rem;
 }
 
 .standard-tag {
   font-size: 0.78rem;
   color: var(--brand-accent);
-  background-color: rgba(56, 189, 248, 0.1);
-  padding: 0.25rem 0.65rem;
+  background-color: rgba(56, 189, 248, 0.12);
+  padding: 0.3rem 0.75rem;
   border-radius: 9999px;
-  border: 1px solid rgba(56, 189, 248, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  backdrop-filter: blur(8px);
 }
 
-/* 6-Pollutants Grid (2x3 on desktop) */
 .pollutants-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -810,18 +980,20 @@ body {
 }
 
 .pollutant-card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-card);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-top: 1px solid var(--border-specular);
   border-left: 5px solid;
-  border-radius: var(--radius-md);
-  padding: 1.25rem;
-  box-shadow: var(--shadow-card);
-  transition: transform 0.15s ease, border-color 0.15s ease;
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+  box-shadow: var(--shadow-weightless);
+  backdrop-filter: blur(20px);
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s ease;
 }
 
 .pollutant-card:hover {
-  transform: translateY(-2px);
-  border-color: #334155;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 255, 255, 0.05);
 }
 
 .pollutant-card.border-severe { border-left-color: var(--aqi-severe); }
@@ -841,35 +1013,36 @@ body {
   text-transform: uppercase;
   color: var(--text-muted);
   letter-spacing: 0.05em;
+  font-weight: 700;
 }
 
 .pollutant-name {
-  font-size: 1.2rem;
-  font-weight: 800;
+  font-size: 1.25rem;
+  font-weight: 900;
   color: #ffffff;
 }
 
 .pollutant-badge {
   font-size: 0.72rem;
   font-weight: 800;
-  padding: 0.15rem 0.5rem;
+  padding: 0.2rem 0.55rem;
   border-radius: 9999px;
 }
 
-.badge-severe { background-color: rgba(168, 85, 247, 0.2); color: #d8b4fe; }
-.badge-poor { background-color: rgba(249, 115, 22, 0.2); color: #fdba74; }
-.badge-moderate { background-color: rgba(245, 158, 11, 0.2); color: #fde68a; }
-.badge-good { background-color: rgba(16, 185, 129, 0.2); color: #6ee7b7; }
+.badge-severe { background-color: rgba(168, 85, 247, 0.25); color: #e9d5ff; }
+.badge-poor { background-color: rgba(249, 115, 22, 0.25); color: #fed7aa; }
+.badge-moderate { background-color: rgba(245, 158, 11, 0.25); color: #fef08a; }
+.badge-good { background-color: rgba(16, 185, 129, 0.25); color: #a7f3d0; }
 
 .pollutant-value-row {
   display: flex;
   align-items: baseline;
-  gap: 0.4rem;
+  gap: 0.45rem;
   margin-bottom: 0.5rem;
 }
 
 .pollutant-val {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 900;
   color: #ffffff;
   letter-spacing: -0.02em;
@@ -878,7 +1051,7 @@ body {
 .pollutant-unit {
   font-size: 0.88rem;
   color: var(--text-muted);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .pollutant-threshold {
@@ -886,30 +1059,30 @@ body {
   justify-content: space-between;
   font-size: 0.78rem;
   color: var(--text-muted);
-  padding: 0.45rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  margin-bottom: 0.65rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 0.75rem;
 }
 
 .threshold-excess {
   color: #f87171;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .pollutant-mechanism {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--text-dim);
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 /* ==========================================================================
-   6. Regional Smog Hotspots Grid
+   11. Regional Hotspots Grid
    ========================================================================== */
 .hotspots-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 1.15rem;
 }
 
 @media (max-width: 980px) {
@@ -925,31 +1098,36 @@ body {
 }
 
 .hotspot-card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-card);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-top: 1px solid var(--border-specular);
   border-radius: var(--radius-md);
-  padding: 1rem 1.25rem;
+  padding: 1.1rem 1.35rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.15s ease;
+  transition: all 0.25s ease;
   cursor: pointer;
+  box-shadow: var(--shadow-elevated);
+  backdrop-filter: blur(16px);
 }
 
 .hotspot-card:hover {
   background-color: var(--bg-card-hover);
   border-color: var(--brand-accent);
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.2);
 }
 
 .hotspot-station-name {
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #ffffff;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
 }
 
 .hotspot-meta {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
 }
 
@@ -957,45 +1135,49 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: rgba(136, 19, 55, 0.25);
-  border: 1px solid rgba(244, 63, 94, 0.4);
-  padding: 0.35rem 0.75rem;
+  background-color: rgba(136, 19, 55, 0.35);
+  border: 1px solid rgba(244, 63, 94, 0.5);
+  padding: 0.4rem 0.85rem;
   border-radius: var(--radius-sm);
   color: #fda4af;
-  font-weight: 800;
-  font-size: 1rem;
+  font-weight: 900;
+  font-size: 1.05rem;
+  box-shadow: 0 0 12px rgba(244, 63, 94, 0.3);
 }
 
 .hotspot-score-pill.very-poor {
-  background-color: rgba(168, 85, 247, 0.2);
+  background-color: rgba(168, 85, 247, 0.25);
   border-color: var(--aqi-severe);
-  color: #d8b4fe;
+  color: #e9d5ff;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.3);
 }
 
 .live-pulse-badge {
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   color: #22c55e;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 /* ==========================================================================
-   7. Core GenAI Household Resilience Planner
+   12. GenAI Resilience Planner
    ========================================================================== */
 .planner-section {
-  background: linear-gradient(180deg, rgba(14, 20, 36, 0.6) 0%, rgba(8, 12, 20, 0.8) 100%);
-  border: 1px solid var(--border-card);
+  background: linear-gradient(180deg, rgba(14, 20, 36, 0.8) 0%, rgba(8, 12, 22, 0.95) 100%);
+  border: 1px solid var(--border-glass);
+  border-top: 1px solid var(--border-specular);
   border-radius: var(--radius-xl);
-  padding: 2rem;
+  padding: 2.25rem;
+  backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-weightless);
 }
 
-/* Preset Segmented Controls */
 .preset-segmented-control {
   display: flex;
   gap: 0.4rem;
   background-color: var(--bg-deep);
-  padding: 0.3rem;
+  padding: 0.35rem;
   border-radius: var(--radius-md);
-  border: 1px solid var(--border-card);
+  border: 1px solid var(--border-glass);
 }
 
 .preset-pill {
@@ -1004,10 +1186,10 @@ body {
   color: var(--text-muted);
   font-size: 0.82rem;
   font-weight: 700;
-  padding: 0.45rem 0.85rem;
+  padding: 0.5rem 0.95rem;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
 }
 
 .preset-pill:hover {
@@ -1015,16 +1197,17 @@ body {
 }
 
 .preset-pill.active {
-  background-color: rgba(56, 189, 248, 0.15);
+  background-color: rgba(56, 189, 248, 0.18);
   color: var(--brand-accent);
-  border: 1px solid rgba(56, 189, 248, 0.35);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
 }
 
 .planner-layout {
   display: grid;
   grid-template-columns: 460px 1fr;
-  gap: 1.75rem;
-  margin-top: 1.5rem;
+  gap: 2rem;
+  margin-top: 1.75rem;
 }
 
 @media (max-width: 1080px) {
@@ -1035,20 +1218,21 @@ body {
 
 .planner-form-card {
   background-color: var(--bg-surface);
-  border: 1px solid var(--border-card);
+  border: 1px solid var(--border-glass);
   border-radius: var(--radius-lg);
-  padding: 1.75rem;
+  padding: 1.85rem;
+  backdrop-filter: blur(20px);
 }
 
 .form-card-title {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 1.2rem;
+  font-weight: 800;
   color: #ffffff;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.35rem;
 }
 
 .form-group {
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.15rem;
 }
 
 .form-row-2 {
@@ -1060,59 +1244,60 @@ body {
 .form-label {
   display: block;
   font-size: 0.82rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-dim);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.4rem;
 }
 
 .form-input, .form-select {
   width: 100%;
-  padding: 0.65rem 0.85rem;
+  padding: 0.7rem 0.9rem;
   background-color: var(--bg-input);
-  border: 1px solid var(--border-card);
+  border: 1px solid var(--border-glass);
   border-radius: var(--radius-sm);
   color: #ffffff;
   font-size: 0.88rem;
   outline: none;
-  transition: border-color 0.15s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-input:focus, .form-select:focus {
   border-color: var(--brand-accent);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
 }
 
 .form-fieldset {
-  border: 1px solid var(--border-card);
+  border: 1px solid var(--border-glass);
   border-radius: var(--radius-md);
-  padding: 1rem;
-  margin-bottom: 1.25rem;
+  padding: 1.1rem;
+  margin-bottom: 1.35rem;
 }
 
 .form-legend {
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text-dim);
-  padding: 0 0.4rem;
+  padding: 0 0.5rem;
 }
 
 .checkbox-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.55rem;
+  gap: 0.6rem;
 }
 
 .check-box-label {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  font-size: 0.84rem;
+  gap: 0.65rem;
+  font-size: 0.85rem;
   color: var(--text-dim);
   cursor: pointer;
 }
 
 .check-box-label input[type="checkbox"] {
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1.15rem;
+  height: 1.15rem;
   accent-color: var(--brand-accent);
   cursor: pointer;
 }
@@ -1123,51 +1308,55 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  font-weight: 700;
+  font-weight: 800;
   border-radius: var(--radius-sm);
   cursor: pointer;
   border: 1px solid transparent;
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
   text-decoration: none;
 }
 
 .btn-glow-sm {
   background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
   color: #ffffff;
-  padding: 0.45rem 0.85rem;
+  padding: 0.45rem 0.9rem;
   font-size: 0.82rem;
   border-radius: 9999px;
-  box-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
 }
 
 .btn-glow-sm:hover {
-  box-shadow: 0 0 16px rgba(6, 182, 212, 0.7);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.75);
+  transform: translateY(-1px);
 }
 
 .btn-primary-glow {
   background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
   color: #ffffff;
-  padding: 0.85rem 1.5rem;
-  font-size: 0.98rem;
+  padding: 0.95rem 1.6rem;
+  font-size: 1rem;
   border-radius: var(--radius-sm);
-  box-shadow: 0 0 20px rgba(2, 132, 199, 0.4);
+  box-shadow: 0 0 25px rgba(2, 132, 199, 0.5);
+  transform: translateZ(5px);
 }
 
 .btn-primary-glow:hover {
-  box-shadow: 0 0 30px rgba(6, 182, 212, 0.6);
+  box-shadow: 0 0 35px rgba(6, 182, 212, 0.7);
+  transform: translateY(-2px) translateZ(8px);
 }
 
 .btn-secondary-outline {
   background: transparent;
-  border: 1px solid var(--border-card);
+  border: 1px solid var(--border-glass);
   color: var(--text-dim);
-  padding: 0.65rem 1.25rem;
+  padding: 0.7rem 1.35rem;
   font-size: 0.88rem;
 }
 
 .btn-secondary-outline:hover {
   background-color: var(--bg-card);
   color: #ffffff;
+  border-color: var(--brand-accent);
 }
 
 .btn-block {
@@ -1175,13 +1364,14 @@ body {
 }
 
 /* ==========================================================================
-   8. Blueprint Tabs & Generated Cards
+   13. Blueprint Tabs & Generated Cards
    ========================================================================== */
 .planner-results-card {
   background-color: var(--bg-surface);
-  border: 1px solid var(--border-card);
+  border: 1px solid var(--border-glass);
   border-radius: var(--radius-lg);
-  padding: 1.75rem;
+  padding: 1.85rem;
+  backdrop-filter: blur(20px);
 }
 
 .results-header-row {
@@ -1197,21 +1387,21 @@ body {
   display: flex;
   gap: 0.35rem;
   background-color: var(--bg-deep);
-  padding: 0.3rem;
+  padding: 0.35rem;
   border-radius: var(--radius-md);
-  border: 1px solid var(--border-card);
+  border: 1px solid var(--border-glass);
 }
 
 .blueprint-tab {
   background: transparent;
   border: none;
   color: var(--text-muted);
-  padding: 0.5rem 0.85rem;
+  padding: 0.55rem 0.95rem;
   font-size: 0.84rem;
-  font-weight: 700;
+  font-weight: 800;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
 }
 
 .blueprint-tab:hover {
@@ -1221,7 +1411,8 @@ body {
 .blueprint-tab.active {
   background-color: var(--bg-card);
   color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-glass);
 }
 
 .tab-panel.hidden {
@@ -1230,11 +1421,12 @@ body {
 
 /* Risk Summary Card */
 .risk-summary-card {
-  background-color: rgba(168, 85, 247, 0.12);
+  background-color: rgba(168, 85, 247, 0.15);
   border: 1px solid var(--aqi-severe);
   border-radius: var(--radius-md);
-  padding: 1.25rem;
-  margin-bottom: 1.5rem;
+  padding: 1.35rem;
+  margin-bottom: 1.6rem;
+  box-shadow: var(--shadow-glow-severe);
 }
 
 .risk-card-header {
@@ -1243,74 +1435,98 @@ body {
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
 }
 
 .risk-badge {
-  font-size: 0.88rem;
-  font-weight: 800;
+  font-size: 0.9rem;
+  font-weight: 900;
   color: #ffffff;
   background-color: var(--aqi-severe);
-  padding: 0.25rem 0.65rem;
+  padding: 0.28rem 0.75rem;
   border-radius: var(--radius-sm);
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
 }
 
 .generator-tag {
   font-size: 0.74rem;
   font-family: var(--font-mono);
   color: var(--brand-accent);
-  background-color: rgba(56, 189, 248, 0.12);
-  padding: 0.2rem 0.55rem;
+  background-color: rgba(56, 189, 248, 0.15);
+  padding: 0.22rem 0.6rem;
   border-radius: var(--radius-sm);
 }
 
 .risk-warning-text {
-  font-size: 0.92rem;
-  color: #f1f5f9;
-  line-height: 1.5;
+  font-size: 0.94rem;
+  color: #f8fafc;
+  line-height: 1.55;
   margin-bottom: 1rem;
 }
 
 .priority-actions-box {
-  background-color: rgba(8, 12, 20, 0.7);
-  padding: 1rem;
+  background-color: rgba(6, 9, 16, 0.8);
+  padding: 1.1rem;
   border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .priority-title {
   font-size: 0.82rem;
-  font-weight: 800;
+  font-weight: 900;
   text-transform: uppercase;
   color: #ffffff;
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.5rem;
 }
 
 .priority-list {
   padding-left: 1.25rem;
-  font-size: 0.84rem;
+  font-size: 0.85rem;
   color: var(--text-dim);
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.4rem;
 }
 
-/* Recommendation Cards */
+/* Staggered Recommendation Cards */
 .cards-grid {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.15rem;
 }
 
 .rec-card {
   background-color: var(--bg-card);
-  border: 1px solid var(--border-card);
+  border: 1px solid var(--border-glass);
+  border-top: 1px solid var(--border-specular);
   border-radius: var(--radius-md);
-  padding: 1.35rem;
-  transition: border-color 0.15s ease, transform 0.15s ease;
+  padding: 1.45rem;
+  box-shadow: var(--shadow-elevated);
+  backdrop-filter: blur(16px);
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  animation: cardEntrance 0.5s ease-out backwards;
+}
+
+.rec-card:nth-child(1) { animation-delay: 0.05s; }
+.rec-card:nth-child(2) { animation-delay: 0.12s; }
+.rec-card:nth-child(3) { animation-delay: 0.19s; }
+.rec-card:nth-child(4) { animation-delay: 0.26s; }
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
 }
 
 .rec-card:hover {
-  border-color: #475569;
+  transform: translateY(-3px);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.15);
 }
 
 .rec-card-header {
@@ -1318,11 +1534,11 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   gap: 1rem;
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.75rem;
 }
 
 .rec-card-title {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 800;
   color: #ffffff;
 }
@@ -1330,50 +1546,51 @@ body {
 .rec-chip {
   font-size: 0.74rem;
   font-weight: 800;
-  padding: 0.25rem 0.6rem;
+  padding: 0.25rem 0.65rem;
   border-radius: 9999px;
   white-space: nowrap;
 }
 
 .rec-chip.free {
-  background-color: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.4);
+  background-color: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.45);
   color: #6ee7b7;
 }
 
 .rec-chip.low-cost {
-  background-color: rgba(56, 189, 248, 0.15);
-  border: 1px solid rgba(56, 189, 248, 0.4);
+  background-color: rgba(56, 189, 248, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.45);
   color: var(--brand-accent);
 }
 
 .rec-chip.equipment {
-  background-color: rgba(168, 85, 247, 0.15);
-  border: 1px solid rgba(168, 85, 247, 0.4);
+  background-color: rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(168, 85, 247, 0.45);
   color: #d8b4fe;
 }
 
 .rec-card-body {
   font-size: 0.88rem;
   color: var(--text-dim);
-  line-height: 1.55;
-  margin-bottom: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.1rem;
 }
 
-/* Direct Impact Box */
+/* Luminous Impact Box */
 .impact-badge-box {
-  background-color: rgba(8, 12, 20, 0.85);
+  background-color: rgba(6, 9, 16, 0.85);
   border-left: 4px solid var(--brand-accent);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  padding: 0.85rem 1.1rem;
+  padding: 0.95rem 1.25rem;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .impact-badge-title {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  font-size: 0.76rem;
-  font-weight: 800;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--brand-accent);
@@ -1381,7 +1598,7 @@ body {
 }
 
 .impact-badge-desc {
-  font-size: 0.84rem;
+  font-size: 0.85rem;
   color: #f1f5f9;
   line-height: 1.5;
 }
@@ -1389,32 +1606,32 @@ body {
 /* Checklist */
 .checklist-card {
   background-color: var(--bg-card);
-  border: 1px solid var(--border-card);
+  border: 1px solid var(--border-glass);
   border-radius: var(--radius-md);
-  padding: 1.5rem;
+  padding: 1.65rem;
 }
 
 .interactive-checklist {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.95rem;
   margin-bottom: 1.5rem;
 }
 
 .check-item {
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
-  font-size: 0.9rem;
+  gap: 0.85rem;
+  font-size: 0.92rem;
   color: var(--text-dim);
   cursor: pointer;
   line-height: 1.5;
 }
 
 .check-item input[type="checkbox"] {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1.25rem;
+  height: 1.25rem;
   margin-top: 0.15rem;
   accent-color: var(--brand-accent);
   flex-shrink: 0;
@@ -1427,17 +1644,18 @@ body {
 }
 
 /* ==========================================================================
-   9. Footer
+   14. Footer
    ========================================================================== */
 .app-footer {
   background-color: var(--bg-surface);
-  border-top: 1px solid var(--border-subtle);
-  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--border-glass);
+  padding: 2.25rem 1.5rem;
   margin-top: auto;
+  backdrop-filter: blur(16px);
 }
 
 .footer-container {
-  max-width: 1520px;
+  max-width: 1540px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -1447,8 +1665,8 @@ body {
 }
 
 .footer-brand-title {
-  font-size: 0.95rem;
-  font-weight: 800;
+  font-size: 1rem;
+  font-weight: 900;
   color: #ffffff;
 }
 
@@ -1481,10 +1699,33 @@ body {
   to { transform: rotate(360deg); }
 }
 
+/* ==========================================================================
+   15. Accessibility: Reduced Motion (prefers-reduced-motion)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .orb {
+    display: none !important;
+  }
+  .float-anim, .float-anim-slow, .float-badge {
+    animation: none !important;
+  }
+  .rec-card {
+    animation: none !important;
+  }
+  .hero-card, .pollutant-card, .hotspot-card {
+    transform: none !important;
+  }
+}
+
 /* Print Styles */
 @media print {
   body { background: #ffffff; color: #000000; }
-  .app-header, .emergency-ticker, .disclaimer-banner, .preset-segmented-control, .planner-form-card, .blueprint-tabs, .checklist-actions, .app-footer {
+  .spatial-bg, .app-header, .emergency-ticker, .disclaimer-banner, .preset-segmented-control, .planner-form-card, .blueprint-tabs, .checklist-actions, .app-footer {
     display: none !important;
   }
   .planner-layout { grid-template-columns: 1fr; }
