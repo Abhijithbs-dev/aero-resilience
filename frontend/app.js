@@ -742,6 +742,9 @@ document.addEventListener("DOMContentLoaded", () => {
       fetchLiveAqiBtn.disabled = true;
       fetchLiveAqiBtn.innerHTML = `<span>Syncing…</span>`;
     }
+    if (stationLabel) {
+      stationLabel.textContent = `${city} (Syncing…)`;
+    }
 
     try {
       // Step A: Attempt local backend API (when running with Python server)
@@ -1104,8 +1107,6 @@ document.addEventListener("DOMContentLoaded", () => {
       generated_by: "resilient_client_engine",
       cached: false
     };
-  }
-    });
   }
 
   function setLoading(isLoading) {
