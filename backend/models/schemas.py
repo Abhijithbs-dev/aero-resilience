@@ -24,6 +24,9 @@ class AirQualityContext:
     wind_speed: float = 4.5
     who_multiplier: float = 4.3
     cigarette_equiv: float = 3.0
+    standard_name: str = "CPCB (National AQI - India)"
+    operator_source: str = "Central Pollution Control Board (CPCB) / IMD"
+    is_indian_standard: bool = True
     hotspots: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:

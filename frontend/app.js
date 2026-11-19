@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const pinBadgeVal = document.getElementById("pin-badge-val");
   const stationLabel = document.getElementById("station-label");
   const liveTelemetryText = document.getElementById("live-telemetry-text");
+  const aqiStandardLabel = document.getElementById("aqi-standard-label");
 
   // Weather Elements
   const weatherTemp = document.getElementById("weather-temp");
@@ -107,13 +108,22 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   // 1. Calculate Spectrum Track Pin Position (0% to 100%)
-  function calculatePinLeft(aqi) {
+  function calculatePinLeft(aqi, isIndian = true) {
+    if (!isIndian) {
+      if (aqi <= 50) return Math.max(3, (aqi / 50) * 16.6);
+      if (aqi <= 100) return 16.6 + ((aqi - 50) / 50) * 16.6;
+      if (aqi <= 150) return 33.2 + ((aqi - 100) / 50) * 16.6;
+      if (aqi <= 200) return 49.8 + ((aqi - 150) / 50) * 16.6;
+      if (aqi <= 300) return 66.4 + ((aqi - 200) / 100) * 16.6;
+      return Math.min(95, 83.0 + (Math.min(200, aqi - 300) / 200) * 14.0);
+    }
+    // Official Indian CPCB NAQI Continuum (0-50 Good, 51-100 Satisfactory, 101-200 Moderate, 201-300 Poor, 301-400 Very Poor, 401-500+ Severe)
     if (aqi <= 50) return Math.max(3, (aqi / 50) * 16.6);
     if (aqi <= 100) return 16.6 + ((aqi - 50) / 50) * 16.6;
-    if (aqi <= 150) return 33.2 + ((aqi - 100) / 50) * 16.6;
-    if (aqi <= 200) return 49.8 + ((aqi - 150) / 50) * 16.6;
-    if (aqi <= 300) return 66.4 + ((aqi - 200) / 100) * 16.6;
-    return Math.min(95, 83.0 + (Math.min(200, aqi - 300) / 200) * 14.0);
+    if (aqi <= 200) return 33.2 + ((aqi - 100) / 100) * 16.6;
+    if (aqi <= 300) return 49.8 + ((aqi - 200) / 100) * 16.6;
+    if (aqi <= 400) return 66.4 + ((aqi - 300) / 100) * 16.6;
+    return Math.min(95, 83.0 + (Math.min(100, aqi - 400) / 100) * 14.0);
   }
 
   // 2. Render Regional Monitoring Stations
@@ -216,6 +226,9 @@ document.addEventListener("DOMContentLoaded", () => {
     state.cigarette_equiv = data.cigarette_equiv || Math.round((state.pm2_5 / 22.0) * 10) / 10;
     state.severity = data.severity_tier || state.severity;
     state.source = data.source || state.source;
+    state.standard_name = data.standard_name || (data.is_indian_standard !== false ? "CPCB (National AQI - India)" : "US-EPA & WHO Standard");
+    state.operator_source = data.operator_source || "Central Pollution Control Board (CPCB) / IMD SAFAR";
+    state.is_indian_standard = data.is_indian_standard !== undefined ? data.is_indian_standard : true;
 
     // Body Theme class
     document.body.className = `theme-${state.severity.toLowerCase().replace(/\s+/g, "-")}`;
@@ -223,11 +236,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // Hero AQI & Spectrum Pin
     if (heroAqiNumber) heroAqiNumber.textContent = state.aqi;
     if (pinBadgeVal) pinBadgeVal.textContent = state.aqi;
-    if (spectrumPin) spectrumPin.style.left = `${calculatePinLeft(state.aqi)}%`;
+    if (spectrumPin) spectrumPin.style.left = `${calculatePinLeft(state.aqi, state.is_indian_standard)}%`;
+    if (aqiStandardLabel) {
+      aqiStandardLabel.textContent = state.is_indian_standard ? "AQI (CPCB)" : "AQI (US-EPA)";
+    }
 
     // Station & Telemetry Labels
     if (stationLabel) stationLabel.textContent = `${state.location}`;
-    if (liveTelemetryText) liveTelemetryText.textContent = `TELEMETRY: ${state.source.toUpperCase()} · CPCB & US-EPA STANDARD`;
+    if (liveTelemetryText) {
+      const op = state.operator_source.toUpperCase();
+      liveTelemetryText.textContent = `TELEMETRY: LIVE · ${op}`;
+    }
 
     // Status Badges & Narrative
     const sev = state.severity.toLowerCase();
@@ -672,5 +691,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize
   checkHealth();
   renderHotspots(DEFAULT_HOTSPOTS);
-  if (assistantForm) assistantForm.dispatchEvent(new Event("submit"));
+  if (fetchLiveAqiBtn) {
+    fetchLiveAqiBtn.click();
+  } else if (assistantForm) {
+    assistantForm.dispatchEvent(new Event("submit"));
+  }
 });

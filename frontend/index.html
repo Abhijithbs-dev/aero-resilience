@@ -115,7 +115,7 @@
           <div class="card-top-bar">
             <div class="station-meta">
               <span class="station-location-title" id="station-label">Delhi-NCR Basin</span>
-              <span class="station-subline" id="live-telemetry-text">LIVE TELEMETRY · CPCB & US-EPA STANDARD</span>
+              <span class="station-subline" id="live-telemetry-text">LIVE TELEMETRY · CPCB (GOVT OF INDIA) & IMD SAFAR</span>
             </div>
             <div class="status-pill severe" id="hero-status-badge">
               <span class="status-dot" aria-hidden="true"></span>
@@ -125,8 +125,8 @@
 
           <div class="aqi-primary-display">
             <div class="aqi-value-lockup">
-              <span class="aqi-number" id="hero-aqi-number">420</span>
-              <span class="aqi-caption">AQI (US)</span>
+              <span class="aqi-number" id="hero-aqi-number">452</span>
+              <span class="aqi-caption" id="aqi-standard-label">AQI (CPCB)</span>
             </div>
             <div class="aqi-narrative">
               <h2 class="aqi-narrative-title" id="hero-narrative-title">Emergency Winter Inversion</h2>
@@ -161,30 +161,30 @@
             </div>
           </div>
 
-          <!-- Spectrum Continuum Track -->
+          <!-- Spectrum Continuum Track (Calibrated to Official CPCB NAQI) -->
           <div class="apple-spectrum-wrapper" role="region" aria-label="AQI Severity Spectrum Continuum">
             <div class="spectrum-track">
               <div class="spectrum-segment good" title="0–50 Good"></div>
-              <div class="spectrum-segment moderate" title="51–100 Moderate"></div>
-              <div class="spectrum-segment poor" title="101–150 Poor"></div>
-              <div class="spectrum-segment very-poor" title="151–200 Unhealthy"></div>
-              <div class="spectrum-segment severe" title="201–300 Severe"></div>
-              <div class="spectrum-segment hazardous" title="301+ Hazardous"></div>
+              <div class="spectrum-segment moderate" title="51–100 Satisfactory"></div>
+              <div class="spectrum-segment poor" title="101–200 Moderate"></div>
+              <div class="spectrum-segment very-poor" title="201–300 Poor"></div>
+              <div class="spectrum-segment severe" title="301–400 Very Poor"></div>
+              <div class="spectrum-segment hazardous" title="401–500+ Severe"></div>
               
               <!-- Smooth Indicator Pin -->
-              <div class="spectrum-pin" id="spectrum-pin" style="left: 88%;">
+              <div class="spectrum-pin" id="spectrum-pin" style="left: 90%;">
                 <div class="pin-capsule">
-                  <span id="pin-badge-val">420</span>
+                  <span id="pin-badge-val">452</span>
                 </div>
               </div>
             </div>
             <div class="spectrum-ticks">
               <span>Good</span>
+              <span>Satisfactory</span>
               <span>Moderate</span>
               <span>Poor</span>
-              <span>Unhealthy</span>
+              <span>Very Poor</span>
               <span>Severe</span>
-              <span>Hazardous</span>
             </div>
           </div>
 
