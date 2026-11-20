@@ -3,71 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AeroResilience Project Presentation: 15-Slide Comprehensive Technical & Resilience Deck on Urban Winter Smog and Atmospheric Intelligence.">
-  <title>AeroResilience · Project Slide Deck (15 Slides)</title>
+  <meta name="description" content="AeroResilience 15-Slide Presentation Deck: Atmospheric Science, Winter Smog Inversion Physics, Multi-Pollutant Telemetry, and GenAI Urban Resilience Engine.">
+  <title>AeroResilience · 15-Slide Keynote Presentation Deck</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
     /* ==========================================================================
-       AeroResilience 15-Slide Presentation Deck Styling
-       Ultra-Premium Apple HIG / Obsidian Dark Glassmorphism Theme
+       AeroResilience Keynote Presentation Deck
+       Apple Human Interface Guidelines & 3D Atmospheric Depth System
+       Calibrated via /apple-design, /3d-web-experience, /better-ui, /better-interface, /better-colors
        ========================================================================== */
     :root {
-      --bg-space: #07090e;
-      --bg-card: rgba(16, 22, 38, 0.75);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-specular: rgba(255, 255, 255, 0.16);
-      --accent-sky: #38bdf8;
-      --accent-cyan: #06b6d4;
-      --accent-emerald: #10b981;
-      --accent-amber: #f59e0b;
-      --accent-rose: #f43f5e;
-      --accent-purple: #a855f7;
-      --text-primary: #f8fafc;
-      --text-secondary: #94a3b8;
-      --text-muted: #64748b;
-      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
-      --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, monospace;
+      /* Semantic Neutral Canvas & Elevation Ramps (better-colors) */
+      --color-bg-space: #06080e;
+      --color-surface-glass: rgba(14, 20, 36, 0.72);
+      --color-surface-card: rgba(18, 26, 46, 0.76);
+      --color-surface-elevated: rgba(23, 33, 58, 0.88);
+      --color-border-subtle: rgba(255, 255, 255, 0.08);
+      --color-border-specular: rgba(255, 255, 255, 0.16);
+      --color-border-focus: #38bdf8;
+
+      /* High-Contrast Accessible Text Tokens (WCAG 2.1 AA Certified) */
+      --color-text-primary: #ffffff;
+      --color-text-secondary: #cbd5e1;
+      --color-text-tertiary: #94a3b8;
+      --color-text-muted: #64748b;
+
+      /* Functional Atmospheric Semantic Accents */
+      --color-accent-sky: #38bdf8;
+      --color-accent-sky-glow: rgba(56, 189, 248, 0.35);
+      --color-accent-cyan: #06b6d4;
+      --color-accent-emerald: #10b981;
+      --color-accent-emerald-glow: rgba(16, 185, 129, 0.35);
+      --color-accent-amber: #f59e0b;
+      --color-accent-amber-glow: rgba(245, 158, 11, 0.35);
+      --color-accent-rose: #f43f5e;
+      --color-accent-rose-glow: rgba(244, 63, 94, 0.35);
+      --color-accent-purple: #a855f7;
+      --color-accent-purple-glow: rgba(168, 85, 247, 0.35);
+
+      /* Typography & Metrics */
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+      /* Concentric Border Radii (better-ui: outer = inner + padding) */
       --radius-sm: 8px;
       --radius-md: 14px;
-      --radius-lg: 20px;
+      --radius-card: 20px;
+      --radius-inner: 14px;
       --radius-pill: 9999px;
-      --spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+      /* Apple Fluid Motion Springs (apple-design) */
+      --spring-settle: cubic-bezier(0.16, 1, 0.3, 1);
+      --spring-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --duration-fast: 150ms;
+      --duration-normal: 300ms;
+      --duration-slide: 420ms;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    body {
-      background-color: var(--bg-space);
-      background-image: 
-        radial-gradient(ellipse at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 55%),
-        radial-gradient(ellipse at 85% 85%, rgba(168, 85, 247, 0.08) 0%, transparent 55%),
-        radial-gradient(circle at 50% 50%, rgba(244, 63, 94, 0.04) 0%, transparent 60%);
-      color: var(--text-primary);
-      font-family: var(--font-sans);
-      min-height: 100vh;
+    html, body {
+      width: 100%;
+      height: 100%;
       overflow: hidden;
+      background-color: var(--color-bg-space);
+      color: var(--color-text-primary);
+      font-family: var(--font-sans);
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 3D Atmospheric Background Canvas (3d-web-experience) */
+    #atmosphere-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.88;
+      transition-property: opacity;
+      transition-duration: 500ms;
+    }
+
+    /* Subtle ambient mesh backdrop fallback behind 3D canvas */
+    .ambient-mesh {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 65% 50% at 20% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 45% at 85% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(244, 63, 94, 0.04) 0%, transparent 70%);
+    }
+
+    /* Deck Container */
+    .deck-root {
+      position: relative;
+      z-index: 10;
+      width: 100vw;
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      user-select: none;
+      overflow: hidden;
     }
 
-    /* Top Global Header Bar */
+    /* ==========================================================================
+       Global Deck Navigation Bar (Apple Frosted Glass)
+       ========================================================================== */
     .deck-header {
       height: 56px;
-      padding: 0 2rem;
+      padding: 0 1.75rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid var(--border-subtle);
-      background: rgba(7, 9, 14, 0.7);
-      backdrop-filter: blur(20px);
-      z-index: 100;
+      border-bottom: 1px solid var(--color-border-subtle);
+      background: rgba(6, 8, 14, 0.75);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      flex-shrink: 0;
     }
 
     .brand-group {
@@ -76,21 +144,22 @@
       gap: 0.75rem;
     }
 
-    .brand-logo {
-      width: 28px;
-      height: 28px;
+    .brand-logo-badge {
+      width: 32px;
+      height: 32px;
       border-radius: var(--radius-sm);
-      background: linear-gradient(135deg, var(--accent-sky), var(--accent-purple));
+      background: linear-gradient(135deg, var(--color-accent-sky), var(--color-accent-purple));
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+      box-shadow: 0 0 16px var(--color-accent-sky-glow);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .brand-title {
       font-size: 0.95rem;
       font-weight: 800;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
       color: #fff;
     }
 
@@ -98,59 +167,104 @@
       font-size: 0.625rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.2rem 0.5rem;
+      letter-spacing: 0.06em;
+      padding: 0.25rem 0.6rem;
       border-radius: var(--radius-pill);
-      background: rgba(56, 189, 248, 0.15);
+      background: rgba(56, 189, 248, 0.12);
       border: 1px solid rgba(56, 189, 248, 0.3);
-      color: var(--accent-sky);
+      color: var(--color-accent-sky);
       font-family: var(--font-mono);
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.6rem;
     }
 
-    .live-demo-link {
+    .header-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--color-border-subtle);
+      color: var(--color-text-secondary);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
+      transition-property: background-color, border-color, color, transform;
+      transition-duration: var(--duration-fast);
+      transition-timing-function: var(--spring-settle);
+    }
+
+    .header-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+
+    .header-btn:not(:disabled):active {
+      transform: scale(0.96);
+    }
+
+    .header-btn.active {
+      background: rgba(56, 189, 248, 0.18);
+      border-color: rgba(56, 189, 248, 0.45);
+      color: var(--color-accent-sky);
+    }
+
+    .live-demo-link {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.15));
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: var(--color-accent-sky);
+      text-decoration: none;
       font-size: 0.75rem;
       font-weight: 700;
-      color: var(--accent-sky);
-      text-decoration: none;
-      padding: 0.35rem 0.85rem;
+      padding: 0.4rem 0.9rem;
       border-radius: var(--radius-pill);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      background: rgba(56, 189, 248, 0.08);
-      transition: all 0.2s var(--spring);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition-property: background, border-color, transform, box-shadow;
+      transition-duration: var(--duration-fast);
     }
 
     .live-demo-link:hover {
-      background: rgba(56, 189, 248, 0.2);
-      border-color: var(--accent-sky);
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(168, 85, 247, 0.25));
+      border-color: var(--color-accent-sky);
+      box-shadow: 0 0 16px var(--color-accent-sky-glow);
       transform: translateY(-1px);
     }
 
-    /* Deck Progress Bar */
+    .live-demo-link:not(:disabled):active {
+      transform: scale(0.96);
+    }
+
+    /* Continuous Timeline Progress Bar */
     .progress-track {
       height: 3px;
       width: 100%;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.06);
       position: relative;
+      flex-shrink: 0;
     }
 
     .progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--accent-sky), var(--accent-purple));
-      width: 6.66%;
-      transition: width 0.4s var(--spring);
-      box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+      background: linear-gradient(90deg, var(--color-accent-sky), var(--color-accent-purple));
+      width: 6.666%;
+      transition-property: width;
+      transition-duration: 380ms;
+      transition-timing-function: var(--spring-settle);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
     }
 
-    /* Slide Stage */
+    /* ==========================================================================
+       Slide Viewport & Slide Stage (3D Transitions & Gestures)
+       ========================================================================== */
     .deck-viewport {
       flex: 1;
       position: relative;
@@ -158,7 +272,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem 2.5rem;
+      perspective: 1200px;
     }
 
     .slide {
@@ -167,28 +281,38 @@
       left: 0;
       width: 100%;
       height: 100%;
-      padding: 2.5rem 3.5rem;
+      padding: 2.25rem 3.5rem;
       display: flex;
       flex-direction: column;
       opacity: 0;
       visibility: hidden;
-      transform: scale(0.97) translateY(12px);
-      transition: opacity 0.4s var(--spring), transform 0.4s var(--spring), visibility 0.4s;
+      transform: scale(0.96) translate3d(40px, 0, -40px);
+      transition-property: opacity, transform, visibility;
+      transition-duration: var(--duration-slide);
+      transition-timing-function: var(--spring-settle);
       overflow-y: auto;
+      overscroll-behavior: contain;
     }
 
     .slide.active {
       opacity: 1;
       visibility: visible;
-      transform: scale(1) translateY(0);
+      transform: scale(1) translate3d(0, 0, 0);
+      z-index: 2;
     }
 
-    /* Slide Header */
+    .slide.exited-prev {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.96) translate3d(-40px, 0, -40px);
+    }
+
+    /* Slide Header Micro-Meta */
     .slide-meta-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.65rem;
     }
 
     .slide-badge {
@@ -196,11 +320,11 @@
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 0.3rem 0.75rem;
+      padding: 0.3rem 0.8rem;
       border-radius: var(--radius-pill);
       background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border-subtle);
-      color: var(--accent-sky);
+      border: 1px solid var(--color-border-subtle);
+      color: var(--color-accent-sky);
       font-family: var(--font-mono);
       display: inline-flex;
       align-items: center;
@@ -211,7 +335,7 @@
       font-family: var(--font-mono);
       font-size: 0.8125rem;
       font-weight: 700;
-      color: var(--text-muted);
+      color: var(--color-text-muted);
     }
 
     .slide-title {
@@ -219,25 +343,25 @@
       font-weight: 800;
       letter-spacing: -0.035em;
       line-height: 1.15;
-      color: #ffffff;
-      margin-bottom: 0.5rem;
+      color: var(--color-text-primary);
+      margin-bottom: 0.45rem;
     }
 
     .slide-title span.highlight {
-      background: linear-gradient(135deg, var(--accent-sky), var(--accent-purple));
+      background: linear-gradient(135deg, var(--color-accent-sky) 20%, var(--color-accent-purple) 90%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .slide-subtitle {
       font-size: 1.05rem;
-      color: var(--text-secondary);
+      color: var(--color-text-secondary);
       line-height: 1.5;
-      max-width: 900px;
-      margin-bottom: 1.75rem;
+      max-width: 960px;
+      margin-bottom: 1.6rem;
     }
 
-    /* Slide Content Grid Layouts */
+    /* Content Grids */
     .content-grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -259,21 +383,56 @@
       flex: 1;
     }
 
-    /* Glass Cards Inside Slides */
+    /* ==========================================================================
+       3D Interactive Glass Cards with Mouse Parallax & Glint (3d-web-experience & better-ui)
+       ========================================================================== */
     .slide-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-top: 1px solid var(--border-specular);
-      border-radius: var(--radius-md);
+      background: var(--color-surface-card);
+      border: 1px solid var(--color-border-subtle);
+      border-top: 1px solid var(--color-border-specular);
+      border-radius: var(--radius-card);
       padding: 1.5rem;
-      backdrop-filter: blur(24px);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
       display: flex;
       flex-direction: column;
       gap: 0.85rem;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.45);
+      transform-style: preserve-3d;
+      transition-property: transform, box-shadow, border-color;
+      transition-duration: 250ms;
+      transition-timing-function: var(--spring-settle);
     }
 
+    @media (hover: hover) {
+      .slide-card:hover {
+        transform: perspective(1000px) translateY(-3px) scale3d(1.012, 1.012, 1.012);
+        box-shadow: 0 20px 48px -6px rgba(0, 0, 0, 0.65), 0 0 24px rgba(56, 189, 248, 0.15);
+        border-color: rgba(255, 255, 255, 0.22);
+      }
+    }
+
+    /* Dynamic specular glint shine overlay */
+    .card-glint {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      background: radial-gradient(circle 280px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.08), transparent 70%);
+      opacity: 0;
+      transition-property: opacity;
+      transition-duration: 300ms;
+    }
+
+    .slide-card:hover .card-glint {
+      opacity: 1;
+    }
+
+    /* Glow Accents */
     .slide-card.accent-glow-sky::before {
       content: '';
       position: absolute;
@@ -281,7 +440,7 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent-sky), transparent);
+      background: linear-gradient(90deg, transparent, var(--color-accent-sky), transparent);
     }
 
     .slide-card.accent-glow-rose::before {
@@ -291,7 +450,7 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent-rose), transparent);
+      background: linear-gradient(90deg, transparent, var(--color-accent-rose), transparent);
     }
 
     .slide-card.accent-glow-emerald::before {
@@ -301,7 +460,17 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent-emerald), transparent);
+      background: linear-gradient(90deg, transparent, var(--color-accent-emerald), transparent);
+    }
+
+    .slide-card.accent-glow-amber::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--color-accent-amber), transparent);
     }
 
     .slide-card.accent-glow-purple::before {
@@ -311,18 +480,20 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent-purple), transparent);
+      background: linear-gradient(90deg, transparent, var(--color-accent-purple), transparent);
     }
 
     .card-icon-box {
-      width: 40px;
-      height: 40px;
-      border-radius: var(--radius-sm);
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-inner);
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--color-border-subtle);
+      font-size: 1.25rem;
+      flex-shrink: 0;
     }
 
     .card-heading {
@@ -335,7 +506,7 @@
     .card-p {
       font-size: 0.875rem;
       line-height: 1.55;
-      color: var(--text-secondary);
+      color: var(--color-text-secondary);
     }
 
     .card-list {
@@ -349,24 +520,23 @@
     .card-list li {
       font-size: 0.825rem;
       line-height: 1.45;
-      color: var(--text-secondary);
+      color: var(--color-text-secondary);
       display: flex;
       align-items: flex-start;
       gap: 0.5rem;
     }
 
     .card-list li strong {
-      color: #fff;
+      color: #ffffff;
     }
 
     .card-list li::before {
       content: '▹';
-      color: var(--accent-sky);
+      color: var(--color-accent-sky);
       font-family: var(--font-mono);
       font-weight: bold;
     }
 
-    /* Key Metric Readout Pill */
     .metric-lockup {
       display: flex;
       align-items: baseline;
@@ -378,20 +548,19 @@
       font-size: 2.25rem;
       font-weight: 800;
       font-family: var(--font-mono);
-      color: #fff;
+      color: #ffffff;
       line-height: 1;
     }
 
     .metric-sub {
       font-size: 0.8125rem;
-      color: var(--text-muted);
+      color: var(--color-text-tertiary);
       font-weight: 600;
     }
 
-    /* Code block styling */
     .code-box {
       background: #04060a;
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--color-border-subtle);
       border-radius: var(--radius-sm);
       padding: 0.85rem 1rem;
       font-family: var(--font-mono);
@@ -401,29 +570,154 @@
       overflow-x: auto;
     }
 
-    /* Bottom Deck Navigation Controller */
+    /* ==========================================================================
+       Interactive Simulation Widgets Inside Keynote Slides
+       ========================================================================== */
+    .interactive-simulator {
+      background: rgba(8, 12, 22, 0.85);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-inner);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .sim-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .sim-slider {
+      flex: 1;
+      height: 6px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.15);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .sim-status-box {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      text-align: center;
+      padding: 0.6rem;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: var(--radius-sm);
+    }
+
+    .sim-status-item span.label {
+      display: block;
+      font-size: 0.625rem;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+
+    .sim-status-item span.val {
+      font-size: 0.875rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--color-accent-sky);
+    }
+
+    /* Interactive Impact Calculator (Slide 12) */
+    .calc-toggle-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .calc-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--color-border-subtle);
+      color: var(--color-text-secondary);
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition-property: background-color, border-color, color;
+      transition-duration: var(--duration-fast);
+    }
+
+    .calc-pill.active {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: var(--color-accent-emerald);
+      color: #ffffff;
+    }
+
+    /* ==========================================================================
+       Bottom Navigation Bar & Deck HUD
+       ========================================================================== */
     .deck-footer {
       height: 64px;
-      padding: 0 2rem;
+      padding: 0 1.75rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-top: 1px solid var(--border-subtle);
-      background: rgba(7, 9, 14, 0.8);
-      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--color-border-subtle);
+      background: rgba(6, 8, 14, 0.85);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      flex-shrink: 0;
       z-index: 100;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
     }
 
     .slide-counter {
       font-family: var(--font-mono);
       font-size: 0.875rem;
       font-weight: 700;
-      color: var(--text-secondary);
+      color: var(--color-text-tertiary);
     }
 
     .slide-counter span.current {
-      color: var(--accent-sky);
-      font-size: 1.1rem;
+      color: var(--color-accent-sky);
+      font-size: 1.15rem;
+    }
+
+    .btn-hud {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--color-border-subtle);
+      color: var(--color-text-secondary);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.4rem 0.8rem;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition-property: background-color, border-color, color, transform;
+      transition-duration: var(--duration-fast);
+    }
+
+    .btn-hud:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+    }
+
+    .btn-hud:not(:disabled):active {
+      transform: scale(0.96);
+    }
+
+    .btn-hud.active {
+      background: rgba(168, 85, 247, 0.2);
+      border-color: rgba(168, 85, 247, 0.5);
+      color: #ffffff;
     }
 
     .nav-buttons {
@@ -433,25 +727,31 @@
     }
 
     .btn-nav {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle);
-      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--color-border-subtle);
+      color: #ffffff;
       font-family: var(--font-sans);
       font-size: 0.8125rem;
       font-weight: 700;
-      padding: 0.5rem 1.1rem;
+      padding: 0.5rem 1.15rem;
       border-radius: var(--radius-pill);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      transition: all 0.2s var(--spring);
+      gap: 0.45rem;
+      transition-property: background-color, border-color, transform, box-shadow;
+      transition-duration: var(--duration-fast);
+      transition-timing-function: var(--spring-settle);
     }
 
     .btn-nav:hover:not(:disabled) {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
       transform: translateY(-1px);
+    }
+
+    .btn-nav:not(:disabled):active {
+      transform: scale(0.96);
     }
 
     .btn-nav:disabled {
@@ -460,278 +760,523 @@
     }
 
     .btn-nav.primary {
-      background: linear-gradient(135deg, var(--accent-sky), #0284c7);
+      background: linear-gradient(135deg, var(--color-accent-sky), #0284c7);
       color: #041226;
       border-color: transparent;
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+      box-shadow: 0 0 16px var(--color-accent-sky-glow);
     }
 
     .btn-nav.primary:hover:not(:disabled) {
-      box-shadow: 0 0 22px rgba(56, 189, 248, 0.5);
+      box-shadow: 0 0 24px rgba(56, 189, 248, 0.6);
     }
 
-    .keyboard-hint {
-      font-size: 0.6875rem;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
+    /* ==========================================================================
+       Presenter Notes Drawer (Keynote Teleprompter)
+       ========================================================================== */
+    .notes-drawer {
+      position: absolute;
+      bottom: 64px;
+      left: 0;
+      right: 0;
+      background: rgba(12, 17, 30, 0.94);
+      border-top: 1px solid var(--color-border-specular);
+      backdrop-filter: blur(32px) saturate(200%);
+      -webkit-backdrop-filter: blur(32px) saturate(200%);
+      padding: 1.25rem 2rem;
+      max-height: 220px;
+      overflow-y: auto;
+      z-index: 90;
+      transform: translateY(105%);
+      transition-property: transform;
+      transition-duration: 320ms;
+      transition-timing-function: var(--spring-settle);
+      box-shadow: 0 -12px 36px rgba(0, 0, 0, 0.7);
+    }
+
+    .notes-drawer.open {
+      transform: translateY(0);
+    }
+
+    .notes-header {
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .notes-badge {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--color-accent-purple);
+      display: inline-flex;
       align-items: center;
       gap: 0.4rem;
     }
 
-    .key-badge {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--border-subtle);
-      padding: 0.15rem 0.35rem;
-      border-radius: 4px;
-      color: var(--text-secondary);
+    .notes-content {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--color-text-secondary);
     }
 
-    /* Fullscreen Button */
-    .btn-icon {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-secondary);
-      width: 36px;
-      height: 36px;
-      border-radius: var(--radius-sm);
+    .notes-content strong {
+      color: #ffffff;
+    }
+
+    /* ==========================================================================
+       Slide Grid Modal (Keynote Light Table / Mission Control)
+       ========================================================================== */
+    .grid-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(6, 8, 14, 0.92);
+      backdrop-filter: blur(32px) saturate(180%);
+      -webkit-backdrop-filter: blur(32px) saturate(180%);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 3rem;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.97);
+      transition-property: opacity, transform, visibility;
+      transition-duration: 280ms;
+      transition-timing-function: var(--spring-settle);
+    }
+
+    .grid-modal.open {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+
+    .grid-modal-header {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .grid-modal-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .grid-thumbnails {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.25rem;
+      overflow-y: auto;
+      padding-bottom: 2rem;
+    }
+
+    .thumb-card {
+      background: rgba(18, 26, 46, 0.8);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-inner);
+      padding: 1rem;
       cursor: pointer;
-      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      transition-property: border-color, transform, box-shadow;
+      transition-duration: var(--duration-fast);
     }
 
-    .btn-icon:hover {
+    .thumb-card:hover {
+      border-color: var(--color-accent-sky);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(56, 189, 248, 0.2);
+    }
+
+    .thumb-card.active-thumb {
+      border: 2px solid var(--color-accent-sky);
+      background: rgba(56, 189, 248, 0.12);
+    }
+
+    .thumb-num {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: var(--color-accent-sky);
+    }
+
+    .thumb-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+
+    /* Screen Reader Only Utility */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
+    /* Keyboard Shortcuts Modal */
+    .shortcuts-dialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.96);
+      background: rgba(14, 20, 36, 0.95);
+      border: 1px solid var(--color-border-specular);
+      border-radius: var(--radius-card);
+      padding: 2rem;
+      width: 90%;
+      max-width: 480px;
+      z-index: 300;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8);
+      opacity: 0;
+      visibility: hidden;
+      transition-property: opacity, transform, visibility;
+      transition-duration: 200ms;
+    }
+
+    .shortcuts-dialog.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .shortcuts-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.75rem 1rem;
+      margin-top: 1rem;
+    }
+
+    .key-badge {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--color-border-subtle);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
       color: #fff;
-      background: rgba(255, 255, 255, 0.12);
     }
 
-    /* High-contrast responsive adjustments */
-    @media (max-width: 1024px) {
+    /* Responsive Adaptation */
+    @media (max-width: 1100px) {
       .content-grid-3, .content-grid-4 {
+        grid-template-columns: 1fr;
+      }
+      .content-grid-2 {
         grid-template-columns: 1fr;
       }
       .slide {
         padding: 1.5rem;
       }
       .slide-title {
-        font-size: 1.65rem;
+        font-size: 1.75rem;
+      }
+      .grid-thumbnails {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      #atmosphere-canvas {
+        display: none !important;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Global Deck Header -->
-  <header class="deck-header">
-    <div class="brand-group">
-      <div class="brand-logo" aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
-          <path d="M12 12L2.5 7.5"></path>
-        </svg>
+  <!-- Ambient 3D Depth Layer (3d-web-experience) -->
+  <div class="ambient-mesh" aria-hidden="true"></div>
+  <canvas id="atmosphere-canvas" aria-hidden="true"></canvas>
+
+  <div class="deck-root">
+
+    <!-- Top Keynote Header Bar -->
+    <header class="deck-header">
+      <div class="brand-group">
+        <div class="brand-logo-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+            <path d="M12 12L2.5 7.5"></path>
+          </svg>
+        </div>
+        <span class="brand-title">AeroResilience</span>
+        <span class="brand-pill">15-Slide Master Keynote</span>
       </div>
-      <span class="brand-title">AeroResilience</span>
-      <span class="brand-pill">15-Slide Technical Brief</span>
+
+      <div class="header-actions">
+        <button class="header-btn" id="btn-grid" aria-label="Toggle Slide Light Table Grid (Press G)">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span>Grid (G)</span>
+        </button>
+
+        <button class="header-btn" id="btn-notes" aria-label="Toggle Speaker Notes (Press S)">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <span>Speaker Notes (S)</span>
+        </button>
+
+        <button class="header-btn" id="btn-autoplay" aria-label="Toggle Auto-Play Keynote Mode (Press P)">
+          <svg id="icon-play" viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span id="label-autoplay">Auto-Play</span>
+        </button>
+
+        <a href="./index.html" class="live-demo-link" target="_blank" rel="noopener">
+          <span>Live Interactive App</span>
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+
+        <button class="header-btn" id="btn-shortcuts" aria-label="Keyboard Shortcuts">
+          <span>?</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Progress Timeline Bar -->
+    <div class="progress-track" role="progressbar" aria-valuemin="1" aria-valuemax="15" aria-valuenow="1" id="deck-progress">
+      <div class="progress-fill" id="progress-fill"></div>
     </div>
 
-    <div class="header-actions">
-      <div class="keyboard-hint">
-        Use keys <span class="key-badge">←</span> <span class="key-badge">→</span> or <span class="key-badge">Space</span> to navigate
+    <!-- Main Deck Presentation Stage -->
+    <main class="deck-viewport" id="deck-stage" role="region" aria-roledescription="slide" aria-label="Keynote Presentation Slide Stage">
+
+      <!-- Screen Reader Live Announcer -->
+      <div id="slide-announcer" class="sr-only" aria-live="polite" role="status" aria-atomic="true">
+        Slide 1 of 15: AeroResilience Executive Briefing
       </div>
-      <a href="./index.html" class="live-demo-link" target="_blank" rel="noopener">
-        <span>Live Interactive Platform</span>
-        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
-      </a>
-      <button class="btn-icon" id="btn-fullscreen" title="Toggle Fullscreen" aria-label="Toggle Fullscreen">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
-        </svg>
-      </button>
-    </div>
-  </header>
 
-  <!-- Progress Bar Continuum -->
-  <div class="progress-track" role="progressbar" aria-valuemin="1" aria-valuemax="15" aria-valuenow="1" id="deck-progress">
-    <div class="progress-fill" id="progress-fill"></div>
-  </div>
+      <!-- ==========================================
+           SLIDE 1: Title & Executive Briefing
+           ========================================== -->
+      <section class="slide active" id="slide-1" data-slide="1" data-notes="Welcome everyone. AeroResilience is an atmospheric intelligence platform and GenAI household decision engine designed for urban communities facing extreme winter smog episodes. Rather than passive alerts, it delivers actionable physical aerosol guidance, smart scheduling, and DIY IAQ interventions.">
+        <div class="slide-meta-row">
+          <span class="slide-badge">01 · Executive Briefing</span>
+          <span class="slide-num-indicator">01 / 15</span>
+        </div>
+        <h1 class="slide-title">AeroResilience: <span class="highlight">Urban Winter Smog & Community Resilience</span></h1>
+        <p class="slide-subtitle">A zero-bloat, science-grounded atmospheric intelligence platform and GenAI household decision engine designed for families navigating catastrophic winter inversion episodes.</p>
 
-  <!-- Slide Stage Viewport -->
-  <main class="deck-viewport" id="deck-stage">
-
-    <!-- Live Region for Screen Reader Accessibility -->
-    <div id="slide-announcer" class="sr-only" aria-live="polite" role="status" aria-atomic="true">
-      Slide 1 of 15: AeroResilience Project Overview
-    </div>
-
-    <!-- ==========================================
-         SLIDE 1: Title & Executive Overview
-         ========================================== -->
-    <section class="slide active" id="slide-1" data-slide="1">
-      <div class="slide-meta-row">
-        <span class="slide-badge">01 · Executive Briefing</span>
-        <span class="slide-num-indicator">01 / 15</span>
-      </div>
-      <h1 class="slide-title">AeroResilience: <span class="highlight">Urban Winter Smog & Community Resilience</span></h1>
-      <p class="slide-subtitle">A zero-bloat, science-grounded atmospheric intelligence platform and GenAI household decision engine designed for families navigating catastrophic winter inversion episodes.</p>
-      
-      <div class="content-grid-3">
-        <div class="slide-card accent-glow-sky">
-          <div class="card-icon-box">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--accent-sky)" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
+        <div class="content-grid-3">
+          <div class="slide-card accent-glow-sky">
+            <div class="card-glint"></div>
+            <div class="card-icon-box">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--color-accent-sky)" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h2 class="card-heading">The Core Mission</h2>
+            <p class="card-p">Empower urban households with actionable low-emission routines, budget-tiered IAQ hacks, and sustainable swaps with quantified physical exposure reductions.</p>
+            <div class="metric-lockup">
+              <span class="metric-val">452</span>
+              <span class="metric-sub">CPCB Severe Peak Calibrated</span>
+            </div>
           </div>
-          <h2 class="card-heading">The Core Mission</h2>
-          <p class="card-p">Empower urban households with actionable low-emission routines, budget-tiered IAQ hacks, and sustainable swaps with quantified physical exposure reductions.</p>
-          <div class="metric-lockup">
-            <span class="metric-val">452</span>
-            <span class="metric-sub">CPCB Severe Peak Calibrated</span>
+
+          <div class="slide-card accent-glow-purple">
+            <div class="card-glint"></div>
+            <div class="card-icon-box">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--color-accent-purple)" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h2 class="card-heading">Hybrid Architecture</h2>
+            <p class="card-p">Dynamic GenAI reasoning coupled with deterministic physical rules and an offline client-side simulation engine that runs anywhere, even without API keys.</p>
+            <div class="metric-lockup">
+              <span class="metric-val">&lt; 2.6 MB</span>
+              <span class="metric-sub">Zero-bloat footprint</span>
+            </div>
+          </div>
+
+          <div class="slide-card accent-glow-emerald">
+            <div class="card-glint"></div>
+            <div class="card-icon-box">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--color-accent-emerald)" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <h2 class="card-heading">Certified Compliance</h2>
+            <p class="card-p">Strict WCAG 2.1 AA accessibility, non-medical health guardrails, CPCB official NAQI standards, and single-branch git governance.</p>
+            <div class="metric-lockup">
+              <span class="metric-val">27 / 27</span>
+              <span class="metric-sub">Automated Tests Passing</span>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="slide-card accent-glow-purple">
-          <div class="card-icon-box">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--accent-purple)" stroke-width="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-          </div>
-          <h2 class="card-heading">Hybrid Architecture</h2>
-          <p class="card-p">Dynamic GenAI reasoning coupled with deterministic physical rules and an offline client-side simulation engine that runs anywhere, even without API keys.</p>
-          <div class="metric-lockup">
-            <span class="metric-val">&lt; 2 MB</span>
-            <span class="metric-sub">Zero-bloat footprint</span>
-          </div>
+      <!-- ==========================================
+           SLIDE 2: Inversion Physics & Interactive Sim
+           ========================================== -->
+      <section class="slide" id="slide-2" data-slide="2" data-notes="Here we see the physics of winter smog. At night, ground radiational cooling traps cold dense air beneath a warm ceiling. Because vertical convection stops and winds drop below 2 km/h, soot from vehicles and biomass cannot escape and concentrates at human breathing height. Try adjusting the interactive Diurnal Time slider below to see the boundary layer morph in real time.">
+        <div class="slide-meta-row">
+          <span class="slide-badge">02 · Atmospheric Science</span>
+          <span class="slide-num-indicator">02 / 15</span>
         </div>
+        <h2 class="slide-title">The Indo-Gangetic Basin Crisis & <span class="highlight">Aerosol Inversion Physics</span></h2>
+        <p class="slide-subtitle">Why seasonal winter air pollution is an acute public health emergency, and how planetary boundary layer physics traps toxic soot at breathing level.</p>
 
-        <div class="slide-card accent-glow-emerald">
-          <div class="card-icon-box">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--accent-emerald)" stroke-width="2">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
+        <div class="content-grid-2">
+          <div class="slide-card accent-glow-rose">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Mechanics of Surface Temperature Inversion</h3>
+            <p class="card-p">During northern winter months (November–February), intense radiational cooling drops ground temperatures rapidly overnight. A stable lid of warmer air traps cold, dense air beneath a boundary layer as shallow as 100–150 meters.</p>
+            <ul class="card-list">
+              <li><strong>Thermal Stagnation:</strong> Vertical thermal convection drops to near zero; calm surface winds (&lt; 2.5 km/h) prevent horizontal ventilation.</li>
+              <li><strong>Particulate Trapping:</strong> Primary combustion soot (PM2.5, black carbon) accumulates directly in the human respiratory breathing zone.</li>
+              <li><strong>Secondary Aerosols:</strong> High humidity (80%–95%) converts atmospheric SO2 and NO2 into secondary sulfate and nitrate particulates.</li>
+            </ul>
+
+            <!-- Interactive Diurnal Simulator (Slide 2 Widget) -->
+            <div class="interactive-simulator">
+              <div class="sim-slider-row">
+                <span style="font-size: 0.75rem; font-weight: 700; font-family: var(--font-mono); color: var(--color-accent-amber);">Diurnal Time:</span>
+                <input type="range" min="0" max="23" value="7" class="sim-slider" id="sim-hour-slider" aria-label="Diurnal Time of Day Simulator">
+                <span id="sim-hour-display" style="font-size: 0.75rem; font-family: var(--font-mono); color: #fff; width: 60px;">07:00 IST</span>
+              </div>
+              <div class="sim-status-box">
+                <div class="sim-status-item">
+                  <span class="label">Boundary Layer</span>
+                  <span class="val" id="sim-bl-val">120 m (Trap)</span>
+                </div>
+                <div class="sim-status-item">
+                  <span class="label">Atmosphere</span>
+                  <span class="val" id="sim-status-val" style="color: var(--color-accent-rose);">Deep Inversion</span>
+                </div>
+                <div class="sim-status-item">
+                  <span class="label">Avg PM2.5</span>
+                  <span class="val" id="sim-pm-val">340 µg/m³</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <h2 class="card-heading">Certified Compliance</h2>
-          <p class="card-p">Strict WCAG 2.1 AA accessibility, non-medical health guardrails, CPCB official NAQI standards, and single-branch git governance.</p>
-          <div class="metric-lockup">
-            <span class="metric-val">26 / 26</span>
-            <span class="metric-sub">Automated Tests Passing</span>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ==========================================
-         SLIDE 2: The Winter Smog Crisis & Aerosol Physics
-         ========================================== -->
-    <section class="slide" id="slide-2" data-slide="2">
-      <div class="slide-meta-row">
-        <span class="slide-badge">02 · Atmospheric Science</span>
-        <span class="slide-num-indicator">02 / 15</span>
-      </div>
-      <h2 class="slide-title">The Indo-Gangetic Basin Crisis & <span class="highlight">Aerosol Inversion Physics</span></h2>
-      <p class="slide-subtitle">Why seasonal winter air pollution is an acute public health emergency, and how atmospheric physics traps toxic soot at breathing level.</p>
-
-      <div class="content-grid-2">
-        <div class="slide-card accent-glow-rose">
-          <h3 class="card-heading">Mechanics of Surface Temperature Inversion</h3>
-          <p class="card-p">During northern winter months (November–February), intense radiational cooling drops ground temperatures rapidly overnight. A stable lid of warmer air traps cold, dense air beneath a boundary layer as shallow as 100–150 meters.</p>
-          <ul class="card-list">
-            <li><strong>Thermal Stagnation:</strong> Vertical thermal convection drops to near zero; calm surface winds (&lt; 2.5 km/h) prevent horizontal ventilation.</li>
-            <li><strong>Particulate Trapping:</strong> Primary combustion soot (PM2.5, black carbon) accumulates directly in the human respiratory breathing zone.</li>
-            <li><strong>Secondary Aerosols:</strong> High humidity (80%–95%) converts atmospheric SO2 and NO2 into secondary sulfate and nitrate particulates.</li>
-          </ul>
-        </div>
-
-        <div class="slide-card accent-glow-amber">
-          <h3 class="card-heading">Crisis Scale in Metropolitan Basins</h3>
-          <div class="metric-lockup">
-            <span class="metric-val">285.0</span>
-            <span class="metric-sub">µg/m³ PM2.5 (19.0× WHO 24h limit)</span>
-          </div>
-          <p class="card-p">In cities like Delhi-NCR, Lahore, Dhaka, and Kanpur, ambient PM2.5 levels exceed 300 µg/m³ for weeks. Breathing outdoor air equates to smoking <strong>12 to 16 cigarettes daily</strong> in passive toxic inhalation.</p>
-          <div class="code-box">
+          <div class="slide-card accent-glow-amber">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Crisis Scale in Metropolitan Basins</h3>
+            <div class="metric-lockup">
+              <span class="metric-val">285.0</span>
+              <span class="metric-sub">µg/m³ PM2.5 (19.0× WHO 24h limit)</span>
+            </div>
+            <p class="card-p">In cities like Delhi-NCR, Lahore, Dhaka, and Kanpur, ambient PM2.5 levels exceed 300 µg/m³ for weeks. Breathing outdoor air equates to smoking <strong>12 to 16 cigarettes daily</strong> in passive toxic inhalation.</p>
+            <div class="code-box">
 Inversion Index: Peak Trapping (05:30 - 09:30 IST)
 Boundary Layer Height: 120m | Relative Humidity: 86%
 Passive Inhalation Rate: ~13.6 cigs/day eq. | Severity: Severe Hazardous
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ==========================================
-         SLIDE 3: Target Personas & Context Matrix
-         ========================================== -->
-    <section class="slide" id="slide-3" data-slide="3">
-      <div class="slide-meta-row">
-        <span class="slide-badge">03 · User Context Engineering</span>
-        <span class="slide-num-indicator">03 / 15</span>
-      </div>
-      <h2 class="slide-title">Human-Centric Personas & <span class="highlight">Vulnerability Matrix</span></h2>
-      <p class="slide-subtitle">AeroResilience rejects generic "stay indoors" advisories. The platform tailors actionable recommendations across nuanced urban lifestyles and physical constraints.</p>
-
-      <div class="content-grid-4">
-        <div class="slide-card">
-          <div class="card-icon-box">👶</div>
-          <h3 class="card-heading">Infants & Children</h3>
-          <p class="card-p">Higher minute ventilation rate per kg bodyweight. Exposure during school commutes causes irreversible alveolar lung capacity reduction.</p>
-          <span class="slide-badge">Intervention: School run shifts</span>
+      <!-- ==========================================
+           SLIDE 3: Target Personas & Context Matrix
+           ========================================== -->
+      <section class="slide" id="slide-3" data-slide="3" data-notes="We reject one-size-fits-all advisories. Children breathe 50% more air per pound of body weight, making morning school runs high-risk. Two-wheeler commuters absorb tailpipe soot plumes directly. We map 5 distinct lifestyle vectors to custom actions.">
+        <div class="slide-meta-row">
+          <span class="slide-badge">03 · User Context Engineering</span>
+          <span class="slide-num-indicator">03 / 15</span>
         </div>
+        <h2 class="slide-title">Human-Centric Personas & <span class="highlight">Vulnerability Matrix</span></h2>
+        <p class="slide-subtitle">AeroResilience rejects generic 'stay indoors' advisories. The platform tailors actionable recommendations across nuanced urban lifestyles and physical constraints.</p>
 
-        <div class="slide-card">
-          <div class="card-icon-box">🫁</div>
-          <h3 class="card-heading">Asthma & Bronchial</h3>
-          <p class="card-p">Hypersensitive airway inflammation triggered by ultrafine particles. Inhalation causes acute bronchial spasms and asthma emergencies.</p>
-          <span class="slide-badge">Intervention: Clean Sanctuaries</span>
+        <div class="content-grid-4">
+          <div class="slide-card accent-glow-sky">
+            <div class="card-glint"></div>
+            <div class="card-icon-box">👶</div>
+            <h3 class="card-heading">Infants & Children</h3>
+            <p class="card-p">Higher minute ventilation rate per kg bodyweight. Exposure during school commutes causes irreversible alveolar lung capacity reduction.</p>
+            <span class="slide-badge">Intervention: School run shifts</span>
+          </div>
+
+          <div class="slide-card accent-glow-rose">
+            <div class="card-glint"></div>
+            <div class="card-icon-box">🫁</div>
+            <h3 class="card-heading">Asthma & Bronchial</h3>
+            <p class="card-p">Hypersensitive airway inflammation triggered by ultrafine particles. Inhalation causes acute bronchial spasms and asthma emergencies.</p>
+            <span class="slide-badge">Intervention: Clean Sanctuaries</span>
+          </div>
+
+          <div class="slide-card accent-glow-amber">
+            <div class="card-glint"></div>
+            <div class="card-icon-box">🛵</div>
+            <h3 class="card-heading">Two-Wheeler Commuters</h3>
+            <p class="card-p">Riders on motorcycles and scooters absorb direct vehicular exhaust plumes and high-density roadway particulate soot.</p>
+            <span class="slide-badge">Intervention: Metro / N95 Transit</span>
+          </div>
+
+          <div class="slide-card accent-glow-purple">
+            <div class="card-glint"></div>
+            <div class="card-icon-box">🏢</div>
+            <h3 class="card-heading">Apartment Renters</h3>
+            <p class="card-p">High outdoor air infiltration rates through unsealed balcony doors and sliding windows with limited capital for expensive HVAC equipment.</p>
+            <span class="slide-badge">Intervention: Low-Cost DIY Hacks</span>
+          </div>
         </div>
+      </section>
 
-        <div class="slide-card">
-          <div class="card-icon-box">🛵</div>
-          <h3 class="card-heading">Two-Wheeler Commuters</h3>
-          <p class="card-p">Riders on motorcycles and scooters absorb direct vehicular exhaust plumes and high-density roadway particulate soot.</p>
-          <span class="slide-badge">Intervention: Metro / N95 Transit</span>
+      <!-- ==========================================
+           SLIDE 4: System Architecture & Zero-Bloat
+           ========================================== -->
+      <section class="slide" id="slide-4" data-slide="4" data-notes="Our engineering philosophy is zero-bloat. No heavy frameworks or node_modules checked into Git. The entire app is under 3 megabytes. It features a hybrid AI engine: cloud GenAI when configured, backed by deterministic physics rules and a client-side offline engine.">
+        <div class="slide-meta-row">
+          <span class="slide-badge">04 · Technical Architecture</span>
+          <span class="slide-num-indicator">04 / 15</span>
         </div>
+        <h2 class="slide-title">System Architecture: <span class="highlight">Zero-Bloat & Offline-Resilient</span></h2>
+        <p class="slide-subtitle">Built from the ground up without heavy frameworks, fragile build chains, or node_modules checked into Git.</p>
 
-        <div class="slide-card">
-          <div class="card-icon-box">🏢</div>
-          <h3 class="card-heading">Apartment Renters</h3>
-          <p class="card-p">High outdoor air infiltration rates through unsealed balcony doors and sliding windows with limited capital for expensive HVAC equipment.</p>
-          <span class="slide-badge">Intervention: Low-Cost DIY Hacks</span>
-        </div>
-      </div>
-    </section>
+        <div class="content-grid-2">
+          <div class="slide-card accent-glow-sky">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Lightweight Multi-Tier Stack</h3>
+            <ul class="card-list">
+              <li><strong>Backend Engine:</strong> Python standard library HTTP/Threading server (`backend/server.py`) with zero mandatory external pip dependencies for core execution.</li>
+              <li><strong>Frontend Presentation:</strong> Semantic HTML5, CSS Custom Properties with fluid clamp typography, and vanilla modern JavaScript.</li>
+              <li><strong>Offline Resilient Engine:</strong> Client-side fallback decision engine mirrors backend rules so GitHub Pages static deployments run 100% interactively.</li>
+              <li><strong>Response Caching:</strong> In-memory TTL LRU cache prevents redundant meteorological API requests and minimizes API token consumption.</li>
+            </ul>
+          </div>
 
-    <!-- ==========================================
-         SLIDE 4: System Architecture & Zero-Bloat Philosophy
-         ========================================== -->
-    <section class="slide" id="slide-4" data-slide="4">
-      <div class="slide-meta-row">
-        <span class="slide-badge">04 · Technical Architecture</span>
-        <span class="slide-num-indicator">04 / 15</span>
-      </div>
-      <h2 class="slide-title">System Architecture: <span class="highlight">Zero-Bloat & Offline-Resilient</span></h2>
-      <p class="slide-subtitle">Built from the ground up without heavy frameworks, fragile build chains, or node_modules checked into Git.</p>
-
-      <div class="content-grid-2">
-        <div class="slide-card accent-glow-sky">
-          <h3 class="card-heading">Lightweight Multi-Tier Stack</h3>
-          <ul class="card-list">
-            <li><strong>Backend Engine:</strong> Python standard library HTTP/Threading server (`backend/server.py`) with zero mandatory external pip dependencies for core execution.</li>
-            <li><strong>Frontend Presentation:</strong> Semantic HTML5, CSS Custom Properties with fluid clamp typography, and vanilla modern JavaScript.</li>
-            <li><strong>Offline Resilient Engine:</strong> Client-side fallback decision engine mirrors backend rules so GitHub Pages static deployments run 100% interactively.</li>
-            <li><strong>Response Caching:</strong> In-memory TTL LRU cache prevents redundant meteorological API requests and minimizes API token consumption.</li>
-          </ul>
-        </div>
-
-        <div class="slide-card accent-glow-purple">
-          <h3 class="card-heading">Data Flow Pipeline</h3>
-          <div class="code-box">
+          <div class="slide-card accent-glow-purple">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Data Flow Pipeline</h3>
+            <div class="code-box">
 [User Location / Coordinates]
        │
        ▼
@@ -751,571 +1296,580 @@ Passive Inhalation Rate: ~13.6 cigs/day eq. | Severity: Severe Hazardous
        │
        ▼
 [WCAG 2.1 AA Reactive UI / Printable Checklist]
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ==========================================
-         SLIDE 5: Indian CPCB NAQI Standard Integration
-         ========================================== -->
-    <section class="slide" id="slide-5" data-slide="5">
-      <div class="slide-meta-row">
-        <span class="slide-badge">05 · Standards Calibration</span>
-        <span class="slide-num-indicator">05 / 15</span>
-      </div>
-      <h2 class="slide-title">Indian CPCB NAQI Standards vs <span class="highlight">Global WMO / US-EPA</span></h2>
-      <p class="slide-subtitle">AeroResilience intelligently discriminates geographical territories to enforce the legal, scientifically accurate air quality index.</p>
-
-      <div class="content-grid-2">
-        <div class="slide-card accent-glow-amber">
-          <h3 class="card-heading">Official Indian CPCB NAQI Breakpoints</h3>
-          <p class="card-p">Calculated via official Central Pollution Control Board (CPCB) linear interpolation sub-indices across PM2.5 and PM10:</p>
-          <ul class="card-list">
-            <li><strong>Good (0–50):</strong> PM2.5: 0–30 µg/m³ · Minimal health impact</li>
-            <li><strong>Satisfactory (51–100):</strong> PM2.5: 31–60 µg/m³ · Minor breathing discomfort</li>
-            <li><strong>Moderate (101–200):</strong> PM2.5: 61–90 µg/m³ · Discomfort for sensitive groups</li>
-            <li><strong>Poor (201–300):</strong> PM2.5: 91–120 µg/m³ · Breathing discomfort to most</li>
-            <li><strong>Very Poor (301–400):</strong> PM2.5: 121–250 µg/m³ · Respiratory illness</li>
-            <li><strong>Severe (401–500+):</strong> PM2.5: 250+ µg/m³ · Acute crisis across entire population</li>
-          </ul>
+      <!-- ==========================================
+           SLIDE 5: Indian CPCB NAQI vs Global Standards
+           ========================================== -->
+      <section class="slide" id="slide-5" data-slide="5" data-notes="Accurate standards are non-negotiable. For Indian locations, we compute official CPCB NAQI breakpoints where 400+ is Severe. For international cities like London, we automatically calibrate against US-EPA / WMO standards.">
+        <div class="slide-meta-row">
+          <span class="slide-badge">05 · Standards Calibration</span>
+          <span class="slide-num-indicator">05 / 15</span>
         </div>
+        <h2 class="slide-title">Indian CPCB NAQI Standards vs <span class="highlight">Global WMO / US-EPA</span></h2>
+        <p class="slide-subtitle">AeroResilience intelligently discriminates geographical territories to enforce the legal, scientifically accurate air quality index.</p>
 
-        <div class="slide-card accent-glow-sky">
-          <h3 class="card-heading">Territory-Aware Telemetry Ingestion</h3>
-          <p class="card-p">Locations inside India are routed to official Indian weather and DPCC/CPCB monitoring standards. International locations default to verified WMO / ECMWF Copernicus feeds.</p>
-          <div class="code-box">
+        <div class="content-grid-2">
+          <div class="slide-card accent-glow-amber">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Official Indian CPCB NAQI Breakpoints</h3>
+            <p class="card-p">Calculated via official Central Pollution Control Board (CPCB) linear interpolation sub-indices across PM2.5 and PM10:</p>
+            <ul class="card-list">
+              <li><strong>Good (0–50):</strong> PM2.5: 0–30 µg/m³ · Minimal health impact</li>
+              <li><strong>Satisfactory (51–100):</strong> PM2.5: 31–60 µg/m³ · Minor breathing discomfort</li>
+              <li><strong>Moderate (101–200):</strong> PM2.5: 61–90 µg/m³ · Discomfort for sensitive groups</li>
+              <li><strong>Poor (201–300):</strong> PM2.5: 91–120 µg/m³ · Breathing discomfort to most</li>
+              <li><strong>Very Poor (301–400):</strong> PM2.5: 121–250 µg/m³ · Respiratory illness</li>
+              <li><strong>Severe (401–500+):</strong> PM2.5: 250+ µg/m³ · Acute crisis across entire population</li>
+            </ul>
+          </div>
+
+          <div class="slide-card accent-glow-sky">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Territory-Aware Telemetry Ingestion</h3>
+            <p class="card-p">Locations inside India are routed to official Indian weather and DPCC/CPCB monitoring standards. International locations default to verified WMO / ECMWF Copernicus feeds.</p>
+            <div class="code-box">
 def is_indian_territory(location, lat, lon):
     # Detects Indian metropolitan names and coordinates
     # Bounding box: 6.0N - 37.5N, 68.0E - 97.5E
     return True -> Uses CPCB NAQI algorithms
     return False -> Uses WMO / US-EPA standard
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ==========================================
-         SLIDE 6: 6-Pollutants Continuous Monitoring
-         ========================================== -->
-    <section class="slide" id="slide-6" data-slide="6">
-      <div class="slide-meta-row">
-        <span class="slide-badge">06 · Environmental Chemistry</span>
-        <span class="slide-num-indicator">06 / 15</span>
-      </div>
-      <h2 class="slide-title">Multi-Pollutant Telemetry: <span class="highlight">Beyond PM2.5 Alone</span></h2>
-      <p class="slide-subtitle">True atmospheric intelligence tracks the complete cocktail of criteria pollutants, linking chemical properties to physiological damage.</p>
-
-      <div class="content-grid-3">
-        <div class="slide-card accent-glow-rose">
-          <h3 class="card-heading">PM2.5 · 285.0 µg/m³</h3>
-          <p class="card-p">Fine microscopic soot penetrating alveolar gas barriers directly into bloodstream capillaries. Increases systemic cardiovascular and stroke risk.</p>
-          <span class="slide-badge">19.0× WHO 24h Threshold</span>
+      <!-- ==========================================
+           SLIDE 6: Multi-Pollutant Telemetry
+           ========================================== -->
+      <section class="slide" id="slide-6" data-slide="6" data-notes="Smog is a complex chemical cocktail. While PM2.5 penetrates alveolar gas barriers into the blood, NO2 triggers acute pediatric bronchospasm, and SO2 forms acidic secondary aerosols. We track all 6 criteria pollutants.">
+        <div class="slide-meta-row">
+          <span class="slide-badge">06 · Environmental Chemistry</span>
+          <span class="slide-num-indicator">06 / 15</span>
         </div>
+        <h2 class="slide-title">Multi-Pollutant Telemetry: <span class="highlight">Beyond PM2.5 Alone</span></h2>
+        <p class="slide-subtitle">True atmospheric intelligence tracks the complete cocktail of criteria pollutants, linking chemical properties to physiological damage.</p>
 
-        <div class="slide-card accent-glow-purple">
-          <h3 class="card-heading">PM10 · 460.0 µg/m³</h3>
-          <p class="card-p">Inhalable coarse dust, road silt, and tire wear particles settling in upper respiratory bronchi, triggering chronic bronchitis and airway spasm.</p>
-          <span class="slide-badge">10.2× WHO 24h Threshold</span>
+        <div class="content-grid-3">
+          <div class="slide-card accent-glow-rose">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">PM2.5 · 285.0 µg/m³</h3>
+            <p class="card-p">Fine microscopic soot penetrating alveolar gas barriers directly into bloodstream capillaries. Increases systemic cardiovascular and stroke risk.</p>
+            <span class="slide-badge">19.0× WHO 24h Threshold</span>
+          </div>
+
+          <div class="slide-card accent-glow-purple">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">PM10 · 460.0 µg/m³</h3>
+            <p class="card-p">Inhalable coarse dust, road silt, and tire wear particles settling in upper respiratory bronchi, triggering chronic bronchitis and airway spasm.</p>
+            <span class="slide-badge">10.2× WHO 24h Threshold</span>
+          </div>
+
+          <div class="slide-card accent-glow-amber">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">NO2 · 118.0 µg/m³</h3>
+            <p class="card-p">Vehicular combustion gas inducing acute bronchoconstriction and hyper-responsiveness in children with pediatric asthma.</p>
+            <span class="slide-badge">4.7× WHO 24h Threshold</span>
+          </div>
+
+          <div class="slide-card">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">SO2 · 45.0 µg/m³</h3>
+            <p class="card-p">Combustion byproduct from coal and industrial boilers converting into acidic secondary aerosol droplets in morning winter fog.</p>
+            <span class="slide-badge">1.1× WHO 24h Threshold</span>
+          </div>
+
+          <div class="slide-card">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">CO · 4.8 mg/m³</h3>
+            <p class="card-p">Incomplete vehicular fuel combustion gas binding to blood hemoglobin, reducing cellular oxygen delivery to organs and brain.</p>
+            <span class="slide-badge">1.2× WHO 24h Threshold</span>
+          </div>
+
+          <div class="slide-card accent-glow-emerald">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">O3 · 14.0 µg/m³</h3>
+            <p class="card-p">Ground ozone naturally suppressed during winter inversions due to low ultraviolet solar radiation and nitric oxide titration.</p>
+            <span class="slide-badge">Safe Level (Winter Inversion)</span>
+          </div>
         </div>
+      </section>
 
-        <div class="slide-card accent-glow-amber">
-          <h3 class="card-heading">NO2 · 118.0 µg/m³</h3>
-          <p class="card-p">Vehicular combustion gas inducing acute bronchoconstriction and hyper-responsiveness in children with pediatric asthma.</p>
-          <span class="slide-badge">4.7× WHO 24h Threshold</span>
+      <!-- ==========================================
+           SLIDE 7: Regional Station Telemetry Sync
+           ========================================== -->
+      <section class="slide" id="slide-7" data-slide="7" data-notes="Discrepancy resolution: clicking any regional station card—like Wazirpur—immediately recalibrates the hero AQI, meteorological microclimate, and recommendations across the entire platform in real time.">
+        <div class="slide-meta-row">
+          <span class="slide-badge">07 · Ground-Truth Telemetry</span>
+          <span class="slide-num-indicator">07 / 15</span>
         </div>
+        <h2 class="slide-title">Regional Monitoring Corridors & <span class="highlight">Station Telemetry Sync</span></h2>
+        <p class="slide-subtitle">Eliminating data discrepancies: Hero and station cards are 100% synchronized with authentic DPCC and CPCB ground sensors.</p>
 
-        <div class="slide-card">
-          <h3 class="card-heading">SO2 · 45.0 µg/m³</h3>
-          <p class="card-p">Combustion byproduct from coal and industrial boilers converting into acidic secondary aerosol droplets in morning winter fog.</p>
-          <span class="slide-badge">1.1× WHO 24h Threshold</span>
-        </div>
+        <div class="content-grid-2">
+          <div class="slide-card accent-glow-sky">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Calibrated Metropolitan Stations</h3>
+            <ul class="card-list">
+              <li><strong>Anand Vihar, Delhi:</strong> 488 AQI · PM2.5: 340.2 µg/m³ · Severe Hazardous Hotspot</li>
+              <li><strong>Jahangirpuri, Delhi:</strong> 465 AQI · PM2.5: 315.0 µg/m³ · Severe Inversion</li>
+              <li><strong>Wazirpur, Delhi:</strong> 452 AQI · PM2.5: 298.5 µg/m³ · Industrial/Dense Corridor</li>
+              <li><strong>RK Puram, Delhi:</strong> 418 AQI · PM2.5: 272.0 µg/m³ · Severe Residential Trap</li>
+              <li><strong>IGI Airport (T3), Delhi:</strong> 376 AQI · PM2.5: 242.0 µg/m³ · Very Poor Airfield</li>
+              <li><strong>Lodhi Road Corridor:</strong> 295 AQI · PM2.5: 168.0 µg/m³ · Lower-Density Canopy</li>
+            </ul>
+          </div>
 
-        <div class="slide-card">
-          <h3 class="card-heading">CO · 4.8 mg/m³</h3>
-          <p class="card-p">Incomplete vehicular fuel combustion gas binding to blood hemoglobin, reducing cellular oxygen delivery to organs and brain.</p>
-          <span class="slide-badge">1.2× WHO 24h Threshold</span>
-        </div>
-
-        <div class="slide-card accent-glow-emerald">
-          <h3 class="card-heading">O3 · 14.0 µg/m³</h3>
-          <p class="card-p">Ground ozone naturally suppressed during winter inversions due to low ultraviolet solar radiation and nitric oxide titration.</p>
-          <span class="slide-badge">Safe Level (Winter Inversion)</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         SLIDE 7: Ground-Truth Regional Stations
-         ========================================== -->
-    <section class="slide" id="slide-7" data-slide="7">
-      <div class="slide-meta-row">
-        <span class="slide-badge">07 · Ground-Truth Telemetry</span>
-        <span class="slide-num-indicator">07 / 15</span>
-      </div>
-      <h2 class="slide-title">Regional Monitoring Corridors & <span class="highlight">Station Telemetry Sync</span></h2>
-      <p class="slide-subtitle">Eliminating data discrepancies: Hero and station cards are 100% synchronized with authentic DPCC and CPCB ground sensors.</p>
-
-      <div class="content-grid-2">
-        <div class="slide-card accent-glow-sky">
-          <h3 class="card-heading">Calibrated Metropolitan Stations</h3>
-          <ul class="card-list">
-            <li><strong>Anand Vihar, Delhi:</strong> 488 AQI · PM2.5: 340.2 µg/m³ · Severe Hazardous Hotspot</li>
-            <li><strong>Jahangirpuri, Delhi:</strong> 465 AQI · PM2.5: 315.0 µg/m³ · Severe Inversion</li>
-            <li><strong>Wazirpur, Delhi:</strong> 452 AQI · PM2.5: 298.5 µg/m³ · Industrial/Dense Corridor</li>
-            <li><strong>RK Puram, Delhi:</strong> 418 AQI · PM2.5: 272.0 µg/m³ · Severe Residential Trap</li>
-            <li><strong>IGI Airport (T3), Delhi:</strong> 376 AQI · PM2.5: 242.0 µg/m³ · Very Poor Airfield</li>
-            <li><strong>Lodhi Road Corridor:</strong> 295 AQI · PM2.5: 168.0 µg/m³ · Lower-Density Canopy</li>
-          </ul>
-        </div>
-
-        <div class="slide-card accent-glow-emerald">
-          <h3 class="card-heading">Bidirectional Synchronization</h3>
-          <p class="card-p">Selecting any station card (e.g., Wazirpur) instantly updates the entire dashboard: hero number, spectrum pin, meteorological stats, operator labels, and resilience plan.</p>
-          <div class="code-box">
+          <div class="slide-card accent-glow-emerald">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Bidirectional Synchronization</h3>
+            <p class="card-p">Selecting any station card (e.g., Wazirpur) instantly updates the entire dashboard: hero number, spectrum pin, meteorological stats, operator labels, and resilience plan.</p>
+            <div class="code-box">
 User clicks: [Wazirpur, Delhi]
 API Route: /api/aqi?city=Wazirpur,%20Delhi
 Result: AQI 452 · CPCB NAQI Standard
 Operator: Delhi Pollution Control Committee (DPCC) / CPCB
 Atmospheric Microclimate: 14.2°C, 86% RH, 2.4 km/h Calm
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ==========================================
-         SLIDE 8: The GenAI Household Resilience Planner
-         ========================================== -->
-    <section class="slide" id="slide-8" data-slide="8">
-      <div class="slide-meta-row">
-        <span class="slide-badge">08 · Decision Engine</span>
-        <span class="slide-num-indicator">08 / 15</span>
-      </div>
-      <h2 class="slide-title">The GenAI Household Resilience Planner: <span class="highlight">Context Synthesis</span></h2>
-      <p class="slide-subtitle">Translating complex atmospheric science into customized family defense blueprints.</p>
-
-      <div class="content-grid-3">
-        <div class="slide-card accent-glow-sky">
-          <h3 class="card-heading">1. Context Intake Deck</h3>
-          <p class="card-p">Collects 5 essential vectors: commute mode, housing architecture, cooking/heating fuels, available budget, and vulnerable family members.</p>
+      <!-- ==========================================
+           SLIDE 8: GenAI Household Decision Engine
+           ========================================== -->
+      <section class="slide" id="slide-8" data-slide="8" data-notes="The GenAI engine synthesizes user context with live atmospheric microclimate data. It produces structured outputs across four core resilience quadrants.">
+        <div class="slide-meta-row">
+          <span class="slide-badge">08 · Decision Engine</span>
+          <span class="slide-num-indicator">08 / 15</span>
         </div>
+        <h2 class="slide-title">The GenAI Household Resilience Planner: <span class="highlight">Context Synthesis</span></h2>
+        <p class="slide-subtitle">Translating complex atmospheric science into customized family defense blueprints.</p>
 
-        <div class="slide-card accent-glow-purple">
-          <h3 class="card-heading">2. Dual Synthesis Engine</h3>
-          <p class="card-p">Executes strict JSON-schema GenAI reasoning when API keys are configured, seamlessly backed by an in-browser deterministic physics engine.</p>
-        </div>
+        <div class="content-grid-3">
+          <div class="slide-card accent-glow-sky">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">1. Context Intake Deck</h3>
+            <p class="card-p">Collects 5 essential vectors: commute mode, housing architecture, cooking/heating fuels, available budget, and vulnerable family members.</p>
+          </div>
 
-        <div class="slide-card accent-glow-emerald">
-          <h3 class="card-heading">3. Structured Blueprint</h3>
-          <p class="card-p">Outputs four clear operational quadrants: Low-Emission Routines, Cost-Tiered IAQ Hacks, Sustainable Swaps, and Community Action Checklists.</p>
-        </div>
-      </div>
-    </section>
+          <div class="slide-card accent-glow-purple">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">2. Dual Synthesis Engine</h3>
+            <p class="card-p">Executes strict JSON-schema GenAI reasoning when API keys are configured, seamlessly backed by an in-browser deterministic physics engine.</p>
+          </div>
 
-    <!-- ==========================================
-         SLIDE 9: Pillar 1 - Low-Emission Daily Routines
-         ========================================== -->
-    <section class="slide" id="slide-9" data-slide="9">
-      <div class="slide-meta-row">
-        <span class="slide-badge">09 · Action Pillar 1</span>
-        <span class="slide-num-indicator">09 / 15</span>
-      </div>
-      <h2 class="slide-title">Pillar 1: <span class="highlight">Low-Emission Daily Routines</span></h2>
-      <p class="slide-subtitle">Scheduling daily family activities around planetary boundary layer physics reduces particulate inhalation by up to 60% with zero financial investment.</p>
-
-      <div class="content-grid-2">
-        <div class="slide-card accent-glow-rose">
-          <h3 class="card-heading">Morning Inversion Curfew (05:30 – 09:30)</h3>
-          <p class="card-p">Coldest surface temperatures compress the boundary layer to minimum height. Particulate concentrations peak near breathing level.</p>
-          <ul class="card-list">
-            <li>Strict curfew on outdoor jogging, sports, and morning walks.</li>
-            <li>Adjust school departure to avoid waiting outdoors at surface bus stops.</li>
-            <li>Keep bedroom and exterior windows hermetically sealed.</li>
-          </ul>
-        </div>
-
-        <div class="slide-card accent-glow-emerald">
-          <h3 class="card-heading">Midday Solar Lift Ventilation (12:00 – 15:30)</h3>
-          <p class="card-p">Solar irradiance heats the urban ground, lifting the planetary boundary layer to 800m+ and dispersing surface contaminants.</p>
-          <ul class="card-list">
-            <li>Open courtyard-facing windows for 15–20 minutes to flush toxic indoor CO2.</li>
-            <li>Schedule essential outdoor commuting, errands, and deliveries in this window.</li>
-            <li>Re-seal all windows before 17:30 as the sun sets and evening re-inversion begins.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         SLIDE 10: Pillar 2 - Cost-Tiered IAQ Hacks
-         ========================================== -->
-    <section class="slide" id="slide-10" data-slide="10">
-      <div class="slide-meta-row">
-        <span class="slide-badge">10 · Action Pillar 2</span>
-        <span class="slide-num-indicator">10 / 15</span>
-      </div>
-      <h2 class="slide-title">Pillar 2: <span class="highlight">Cost-Tiered Indoor Air Quality (IAQ) Hacks</span></h2>
-      <p class="slide-subtitle">Tiered interventions accessible to every economic stratum: from zero-cost physical cleaning to high-efficiency mechanical filtration.</p>
-
-      <div class="content-grid-3">
-        <div class="slide-card accent-glow-emerald">
-          <span class="slide-badge" style="color: var(--accent-emerald);">Tier 1 · Free ($0)</span>
-          <h3 class="card-heading">Microfiber Wet Mopping</h3>
-          <p class="card-p">Mopping floors twice daily with warm water adsorbs settled soot without resuspending toxic PM2.5 into breathing zones. Prohibits dry broom sweeping.</p>
-          <div class="metric-lockup">
-            <span class="metric-val">-70%</span>
-            <span class="metric-sub">Resuspended Particulates</span>
+          <div class="slide-card accent-glow-emerald">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">3. Structured Blueprint</h3>
+            <p class="card-p">Outputs four clear operational quadrants: Low-Emission Routines, Cost-Tiered IAQ Hacks, Sustainable Swaps, and Community Action Checklists.</p>
           </div>
         </div>
+      </section>
 
-        <div class="slide-card accent-glow-sky">
-          <span class="slide-badge" style="color: var(--accent-sky);">Tier 2 · Low-Cost (&lt; $20)</span>
-          <h3 class="card-heading">DIY Corsi-Rosenthal Box</h3>
-          <p class="card-p">Four MERV-13 furnace filters taped to a standard 20-inch box fan with a circular cardboard shroud. Delivers clean air delivery rates matching $400 HEPA purifiers.</p>
-          <div class="metric-lockup">
-            <span class="metric-val">320</span>
-            <span class="metric-sub">CFM Clean Air Delivery</span>
+      <!-- ==========================================
+           SLIDE 9: Pillar 1 - Low-Emission Daily Routines
+           ========================================== -->
+      <section class="slide" id="slide-9" data-slide="9" data-notes="Pillar 1: Timing is everything. Moving outdoor chores and ventilation to the midday solar lift window reduces exposure by up to 60% with zero capital expense.">
+        <div class="slide-meta-row">
+          <span class="slide-badge">09 · Action Pillar 1</span>
+          <span class="slide-num-indicator">09 / 15</span>
+        </div>
+        <h2 class="slide-title">Pillar 1: <span class="highlight">Low-Emission Daily Routines</span></h2>
+        <p class="slide-subtitle">Scheduling daily family activities around planetary boundary layer physics reduces particulate inhalation by up to 60% with zero financial investment.</p>
+
+        <div class="content-grid-2">
+          <div class="slide-card accent-glow-rose">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Morning Inversion Curfew (05:30 – 09:30)</h3>
+            <p class="card-p">Coldest surface temperatures compress the boundary layer to minimum height. Particulate concentrations peak near breathing level.</p>
+            <ul class="card-list">
+              <li>Strict curfew on outdoor jogging, sports, and morning walks.</li>
+              <li>Adjust school departure to avoid waiting outdoors at surface bus stops.</li>
+              <li>Keep bedroom and exterior windows hermetically sealed.</li>
+            </ul>
+          </div>
+
+          <div class="slide-card accent-glow-emerald">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Midday Solar Lift Ventilation (12:00 – 15:30)</h3>
+            <p class="card-p">Solar irradiance heats the urban ground, lifting the planetary boundary layer to 800m+ and dispersing surface contaminants.</p>
+            <ul class="card-list">
+              <li>Open courtyard-facing windows for 15–20 minutes to flush toxic indoor CO2.</li>
+              <li>Schedule essential outdoor commuting, errands, and deliveries in this window.</li>
+              <li>Re-seal all windows before 17:30 as the sun sets and evening re-inversion begins.</li>
+            </ul>
           </div>
         </div>
+      </section>
 
-        <div class="slide-card accent-glow-purple">
-          <span class="slide-badge" style="color: var(--accent-purple);">Tier 3 · Equipment</span>
-          <h3 class="card-heading">Strategic HEPA Placement</h3>
-          <p class="card-p">True HEPA units positioned centrally in bedroom breathing zones, elevated 0.5m off floor, running continuously on medium speed with pre-filter cleaning.</p>
-          <div class="metric-lockup">
-            <span class="metric-val">&lt; 15</span>
-            <span class="metric-sub">µg/m³ WHO Safe Indoor Target</span>
+      <!-- ==========================================
+           SLIDE 10: Pillar 2 - Cost-Tiered IAQ Hacks
+           ========================================== -->
+      <section class="slide" id="slide-10" data-slide="10" data-notes="Pillar 2: Clean air shouldn't be a luxury. We provide tiered solutions from free wet mopping that prevents soot resuspension, to DIY Corsi-Rosenthal boxes matching $400 commercial purifiers.">
+        <div class="slide-meta-row">
+          <span class="slide-badge">10 · Action Pillar 2</span>
+          <span class="slide-num-indicator">10 / 15</span>
+        </div>
+        <h2 class="slide-title">Pillar 2: <span class="highlight">Cost-Tiered Indoor Air Quality (IAQ) Hacks</span></h2>
+        <p class="slide-subtitle">Tiered interventions accessible to every economic stratum: from zero-cost physical cleaning to high-efficiency mechanical filtration.</p>
+
+        <div class="content-grid-3">
+          <div class="slide-card accent-glow-emerald">
+            <div class="card-glint"></div>
+            <span class="slide-badge" style="color: var(--color-accent-emerald);">Tier 1 · Free ($0)</span>
+            <h3 class="card-heading">Microfiber Wet Mopping</h3>
+            <p class="card-p">Mopping floors twice daily with warm water adsorbs settled soot without resuspending toxic PM2.5 into breathing zones. Prohibits dry broom sweeping.</p>
+            <div class="metric-lockup">
+              <span class="metric-val">-70%</span>
+              <span class="metric-sub">Resuspended Particulates</span>
+            </div>
+          </div>
+
+          <div class="slide-card accent-glow-sky">
+            <div class="card-glint"></div>
+            <span class="slide-badge" style="color: var(--color-accent-sky);">Tier 2 · Low-Cost (&lt; $20)</span>
+            <h3 class="card-heading">DIY Corsi-Rosenthal Box</h3>
+            <p class="card-p">Four MERV-13 furnace filters taped to a standard 20-inch box fan with a circular cardboard shroud. Delivers clean air delivery rates matching $400 HEPA purifiers.</p>
+            <div class="metric-lockup">
+              <span class="metric-val">320</span>
+              <span class="metric-sub">CFM Clean Air Delivery</span>
+            </div>
+          </div>
+
+          <div class="slide-card accent-glow-purple">
+            <div class="card-glint"></div>
+            <span class="slide-badge" style="color: var(--color-accent-purple);">Tier 3 · Equipment</span>
+            <h3 class="card-heading">Strategic HEPA Placement</h3>
+            <p class="card-p">True HEPA units positioned centrally in bedroom breathing zones, elevated 0.5m off floor, running continuously on medium speed with pre-filter cleaning.</p>
+            <div class="metric-lockup">
+              <span class="metric-val">&lt; 15</span>
+              <span class="metric-sub">µg/m³ WHO Safe Indoor Target</span>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ==========================================
-         SLIDE 11: Pillar 3 - Sustainable Alternatives
-         ========================================== -->
-    <section class="slide" id="slide-11" data-slide="11">
-      <div class="slide-meta-row">
-        <span class="slide-badge">11 · Action Pillar 3</span>
-        <span class="slide-num-indicator">11 / 15</span>
-      </div>
-      <h2 class="slide-title">Pillar 3: <span class="highlight">Sustainable Alternatives & Community Action</span></h2>
-      <p class="slide-subtitle">Individual protection must be paired with collective emission reductions to alleviate the regional airshed burden.</p>
-
-      <div class="content-grid-2">
-        <div class="slide-card accent-glow-sky">
-          <h3 class="card-heading">Household Micro-Swaps</h3>
-          <ul class="card-list">
-            <li><strong>Transit Mode Shift:</strong> Swap solo two-wheeler and diesel car trips for electrified metro and bus rapid transit corridors.</li>
-            <li><strong>Clean Cooking Transition:</strong> Replace unvented gas cooktops with induction hobs during inversion events to eliminate indoor NO2 spikes.</li>
-            <li><strong>Zero Scented Combustion:</strong> Prohibit indoor incense sticks (agarbatti) and mosquito coils which emit dense polycyclic aromatic hydrocarbons.</li>
-          </ul>
+      <!-- ==========================================
+           SLIDE 11: Pillar 3 - Sustainable Alternatives
+           ========================================== -->
+      <section class="slide" id="slide-11" data-slide="11" data-notes="Pillar 3: Personal defense must pair with collective airshed reduction. Dry-leaf composting in residential colonies eliminates toxic biomass burning, and anti-idling zones protect school gates.">
+        <div class="slide-meta-row">
+          <span class="slide-badge">11 · Action Pillar 3</span>
+          <span class="slide-num-indicator">11 / 15</span>
         </div>
+        <h2 class="slide-title">Pillar 3: <span class="highlight">Sustainable Alternatives & Community Action</span></h2>
+        <p class="slide-subtitle">Individual protection must be paired with collective emission reductions to alleviate the regional airshed burden.</p>
 
-        <div class="slide-card accent-glow-emerald">
-          <h3 class="card-heading">Community-Scale Interventions</h3>
-          <ul class="card-list">
-            <li><strong>Dry-Leaf Composting:</strong> Organize community composting pits for fallen dry winter leaves, eliminating toxic open burning in residential colonies.</li>
-            <li><strong>School Anti-Idling Zones:</strong> Implement strict 100m zero-idling perimeters outside schools during pickup hours to protect children.</li>
-            <li><strong>Shared Delivery Consolidation:</strong> Coordinate apartment grocery orders into single delivery runs to cut delivery fleet tailpipe emissions.</li>
-          </ul>
+        <div class="content-grid-2">
+          <div class="slide-card accent-glow-sky">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Household Micro-Swaps</h3>
+            <ul class="card-list">
+              <li><strong>Transit Mode Shift:</strong> Swap solo two-wheeler and diesel car trips for electrified metro and bus rapid transit corridors.</li>
+              <li><strong>Clean Cooking Transition:</strong> Replace unvented gas cooktops with induction hobs during inversion events to eliminate indoor NO2 spikes.</li>
+              <li><strong>Zero Scented Combustion:</strong> Prohibit indoor incense sticks (agarbatti) and mosquito coils which emit dense polycyclic aromatic hydrocarbons.</li>
+            </ul>
+          </div>
+
+          <div class="slide-card accent-glow-emerald">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Community-Scale Interventions</h3>
+            <ul class="card-list">
+              <li><strong>Dry-Leaf Composting:</strong> Organize community composting pits for fallen dry winter leaves, eliminating toxic open burning in residential colonies.</li>
+              <li><strong>School Anti-Idling Zones:</strong> Implement strict 100m zero-idling perimeters outside schools during pickup hours to protect children.</li>
+              <li><strong>Shared Delivery Consolidation:</strong> Coordinate apartment grocery orders into single delivery runs to cut delivery fleet tailpipe emissions.</li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ==========================================
-         SLIDE 12: Pillar 4 - Direct Impact Explanations
-         ========================================== -->
-    <section class="slide" id="slide-12" data-slide="12">
-      <div class="slide-meta-row">
-        <span class="slide-badge">12 · Action Pillar 4</span>
-        <span class="slide-num-indicator">12 / 15</span>
-      </div>
-      <h2 class="slide-title">Pillar 4: <span class="highlight">Direct Physical Impact Quantification</span></h2>
-      <p class="slide-subtitle">Explaining the "Why" behind every recommendation: Linking physical mechanisms to personal health and community airshed benefits.</p>
+      <!-- ==========================================
+           SLIDE 12: Pillar 4 - Impact Quantification & Calc
+           ========================================== -->
+      <section class="slide" id="slide-12" data-slide="12" data-notes="Pillar 4: We explain the physical mechanism behind every action and quantify the impact—like saving 3.2 kg of CO2e daily and reducing nocturnal particulate inhalation by 80%. Try toggling the interventions below in the live calculator.">
+        <div class="slide-meta-row">
+          <span class="slide-badge">12 · Action Pillar 4</span>
+          <span class="slide-num-indicator">12 / 15</span>
+        </div>
+        <h2 class="slide-title">Pillar 4: <span class="highlight">Direct Physical Impact Quantification</span></h2>
+        <p class="slide-subtitle">Explaining the 'Why' behind every recommendation: Linking physical aerosol mechanics to personal health and community airshed benefits.</p>
 
-      <div class="content-grid-3">
-        <div class="slide-card accent-glow-sky">
-          <h3 class="card-heading">Physical Mechanism</h3>
-          <p class="card-p">Clear, non-technical explanation of the aerosol physics or atmospheric barrier that prevents particulate infiltration or inhalation.</p>
-          <div class="code-box">
+        <div class="content-grid-3">
+          <div class="slide-card accent-glow-sky">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Physical Mechanism</h3>
+            <p class="card-p">Clear, non-technical explanation of the aerosol physics or atmospheric barrier that prevents particulate infiltration or inhalation.</p>
+            <div class="code-box">
 Fibrous MERV-13 media intercepts ultrafine particulates via inertial impaction, interception, and Brownian diffusion.
+            </div>
+          </div>
+
+          <div class="slide-card accent-glow-emerald">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Personal Health Benefit</h3>
+            <p class="card-p">Quantifies the drop in direct physical exposure, protecting alveolar lung surfaces and lowering resting cardiovascular heart stress.</p>
+            <div class="metric-lockup">
+              <span class="metric-val" id="calc-exp-reduction">75%–85%</span>
+              <span class="metric-sub">Drop in Nocturnal PM2.5 Inhaled</span>
+            </div>
+          </div>
+
+          <div class="slide-card accent-glow-purple">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Airshed Emission Avoided</h3>
+            <p class="card-p">Calculates the tangible community dividend of sustainable choices, demonstrating household agency in resolving the pollution crisis.</p>
+            <div class="metric-lockup">
+              <span class="metric-val" id="calc-co2-val">-3.2 kg</span>
+              <span class="metric-sub">CO2e per commuter daily</span>
+            </div>
           </div>
         </div>
 
-        <div class="slide-card accent-glow-emerald">
-          <h3 class="card-heading">Personal Health Benefit</h3>
-          <p class="card-p">Quantifies the drop in direct physical exposure, protecting alveolar lung surfaces and lowering resting cardiovascular heart stress.</p>
-          <div class="metric-lockup">
-            <span class="metric-val">75%–85%</span>
-            <span class="metric-sub">Drop in Nocturnal PM2.5 Inhaled</span>
+        <!-- Interactive Calculator Bar (Slide 12 Widget) -->
+        <div class="interactive-simulator" style="margin-top: 1rem;">
+          <div style="font-size: 0.75rem; font-weight: 700; color: var(--color-accent-sky); font-family: var(--font-mono);">
+            Live Impact Estimator (Toggle Actions):
+          </div>
+          <div class="calc-toggle-group">
+            <button class="calc-pill active" data-action="metro">🚇 Metro Transit Swap (+1.8 kg CO2e)</button>
+            <button class="calc-pill active" data-action="wetmop">🧹 Microfiber Wet Mop (-70% Soot)</button>
+            <button class="calc-pill active" data-action="corsi">🌀 Corsi-Rosenthal Box (-80% PM2.5)</button>
+            <button class="calc-pill" data-action="induction">⚡ Clean Induction Cooking (+1.4 kg CO2e)</button>
           </div>
         </div>
+      </section>
 
-        <div class="slide-card accent-glow-purple">
-          <h3 class="card-heading">Airshed Emission Avoided</h3>
-          <p class="card-p">Calculates the tangible community dividend of sustainable choices, demonstrating household agency in resolving the pollution crisis.</p>
-          <div class="metric-lockup">
-            <span class="metric-val">-3.2 kg</span>
-            <span class="metric-sub">CO2e per commuter daily</span>
-          </div>
+      <!-- ==========================================
+           SLIDE 13: Security Hardening & Ethics
+           ========================================== -->
+      <section class="slide" id="slide-13" data-slide="13" data-notes="Security and ethics: We enforce a strict non-medical disclaimer, validate and escape all inputs, sanitize against prompt injection, and enforce zero hardcoded secrets.">
+        <div class="slide-meta-row">
+          <span class="slide-badge">13 · Security & Ethics</span>
+          <span class="slide-num-indicator">13 / 15</span>
         </div>
-      </div>
-    </section>
+        <h2 class="slide-title">Security Hardening & <span class="highlight">Public Health Guardrails</span></h2>
+        <p class="slide-subtitle">Strict compliance with enterprise security audits, zero credential exposure, and responsible public health framing.</p>
 
-    <!-- ==========================================
-         SLIDE 13: Security, Guardrails & Non-Medical Notice
-         ========================================== -->
-    <section class="slide" id="slide-13" data-slide="13">
-      <div class="slide-meta-row">
-        <span class="slide-badge">13 · Security & Ethics</span>
-        <span class="slide-num-indicator">13 / 15</span>
-      </div>
-      <h2 class="slide-title">Security Hardening & <span class="highlight">Public Health Guardrails</span></h2>
-      <p class="slide-subtitle">Strict compliance with enterprise security audits, zero credential exposure, and responsible public health framing.</p>
-
-      <div class="content-grid-2">
-        <div class="slide-card accent-glow-rose">
-          <h3 class="card-heading">Non-Medical Public Health Disclaimer</h3>
-          <p class="card-p">All recommendations are strictly environmental resilience and aerosol physics guidelines. The system never prescribes clinical medication or diagnostic claims.</p>
-          <div class="code-box">
+        <div class="content-grid-2">
+          <div class="slide-card accent-glow-rose">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Non-Medical Public Health Disclaimer</h3>
+            <p class="card-p">All recommendations are strictly environmental resilience and aerosol physics guidelines. The system never prescribes clinical medication or diagnostic claims.</p>
+            <div class="code-box">
 "Environmental Guidance Notice: Recommendations do not substitute professional medical diagnosis or clinical treatment. If experiencing acute respiratory symptoms, seek immediate emergency care."
+            </div>
+          </div>
+
+          <div class="slide-card accent-glow-purple">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Security Hardening Defense</h3>
+            <ul class="card-list">
+              <li><strong>Zero Secrets in Git:</strong> All API keys isolated in environment variables; clean `.env.example` placeholder in repository.</li>
+              <li><strong>Prompt-Injection Sanitization:</strong> User question input is stripped of markdown/script payloads and capped to 200 characters.</li>
+              <li><strong>Strict Output HTML Escaping:</strong> All dynamic strings are escaped via `escapeHtml()` to eliminate Cross-Site Scripting (XSS).</li>
+              <li><strong>Payload Size Caps:</strong> Backend limits recommendation POST payloads to 50 KB to block denial-of-service attempts.</li>
+            </ul>
           </div>
         </div>
+      </section>
 
-        <div class="slide-card accent-glow-purple">
-          <h3 class="card-heading">Security Hardening Defense</h3>
-          <ul class="card-list">
-            <li><strong>Zero Secrets in Git:</strong> All API keys isolated in environment variables; clean `.env.example` placeholder in repository.</li>
-            <li><strong>Prompt-Injection Sanitization:</strong> User question input is stripped of markdown/script payloads and capped to 200 characters.</li>
-            <li><strong>Strict Output HTML Escaping:</strong> All dynamic strings are escaped via `escapeHtml()` to eliminate Cross-Site Scripting (XSS).</li>
-            <li><strong>Payload Size Caps:</strong> Backend limits recommendation POST payloads to 50 KB to block denial-of-service attempts.</li>
-          </ul>
+      <!-- ==========================================
+           SLIDE 14: Verification Suite & Compliance
+           ========================================== -->
+      <section class="slide" id="slide-14" data-slide="14" data-notes="Quality assurance: 27 passing tests, repo size under 3 MB, single branch main compliance, and certified WCAG 2.1 AA accessibility.">
+        <div class="slide-meta-row">
+          <span class="slide-badge">14 · Quality & Compliance</span>
+          <span class="slide-num-indicator">14 / 15</span>
         </div>
-      </div>
-    </section>
+        <h2 class="slide-title">Verification, Testing Suite & <span class="highlight">WCAG 2.1 AA Standards</span></h2>
+        <p class="slide-subtitle">Rigorous verification skills enforce submission readiness across every quality dimension.</p>
 
-    <!-- ==========================================
-         SLIDE 14: Verification, Automated Testing & A11y
-         ========================================== -->
-    <section class="slide" id="slide-14" data-slide="14">
-      <div class="slide-meta-row">
-        <span class="slide-badge">14 · Quality & Compliance</span>
-        <span class="slide-num-indicator">14 / 15</span>
-      </div>
-      <h2 class="slide-title">Verification, Testing Suite & <span class="highlight">WCAG 2.1 AA Standards</span></h2>
-      <p class="slide-subtitle">Rigorous verification skills enforce submission readiness across every quality dimension.</p>
-
-      <div class="content-grid-4">
-        <div class="slide-card accent-glow-emerald">
-          <h3 class="card-heading">Unit & API Tests</h3>
-          <div class="metric-lockup">
-            <span class="metric-val">26 / 26</span>
-            <span class="metric-sub">Passing</span>
+        <div class="content-grid-4">
+          <div class="slide-card accent-glow-emerald">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Unit & API Tests</h3>
+            <div class="metric-lockup">
+              <span class="metric-val">27 / 27</span>
+              <span class="metric-sub">Passing</span>
+            </div>
+            <p class="card-p">Full test coverage across CPCB calculation, geocoding fallbacks, presets, impact estimators, and API edge cases.</p>
           </div>
-          <p class="card-p">Full test coverage across CPCB calculation, geocoding fallbacks, presets, impact estimators, and API edge cases.</p>
-        </div>
 
-        <div class="slide-card accent-glow-sky">
-          <h3 class="card-heading">Repo Guard</h3>
-          <div class="metric-lockup">
-            <span class="metric-val">2.14 MB</span>
-            <span class="metric-sub">&lt; 10 MB limit</span>
+          <div class="slide-card accent-glow-sky">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Repo Guard</h3>
+            <div class="metric-lockup">
+              <span class="metric-val">2.64 MB</span>
+              <span class="metric-sub">&lt; 10 MB limit</span>
+            </div>
+            <p class="card-p">Verified single branch (`main`), zero tracked secrets, and clean Git repository footprint.</p>
           </div>
-          <p class="card-p">Verified single branch (`main`), zero tracked secrets, and clean Git repository footprint.</p>
-        </div>
 
-        <div class="slide-card accent-glow-purple">
-          <h3 class="card-heading">WCAG 2.1 AA</h3>
-          <div class="metric-lockup">
-            <span class="metric-val">&gt; 4.5:1</span>
-            <span class="metric-sub">Contrast Ratio</span>
+          <div class="slide-card accent-glow-purple">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">WCAG 2.1 AA</h3>
+            <div class="metric-lockup">
+              <span class="metric-val">&gt; 4.5:1</span>
+              <span class="metric-sub">Contrast Ratio</span>
+            </div>
+            <p class="card-p">Semantic landmarks, visible focus rings, ARIA live regions, and non-color-alone severity cues.</p>
           </div>
-          <p class="card-p">Semantic landmarks, visible focus rings, ARIA live regions, and non-color-alone severity cues.</p>
-        </div>
 
-        <div class="slide-card accent-glow-amber">
-          <h3 class="card-heading">README Sync</h3>
-          <div class="metric-lockup">
-            <span class="metric-val">4 / 4</span>
-            <span class="metric-sub">Core Sections</span>
+          <div class="slide-card accent-glow-amber">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">README Sync</h3>
+            <div class="metric-lockup">
+              <span class="metric-val">4 / 4</span>
+              <span class="metric-sub">Core Sections</span>
+            </div>
+            <p class="card-p">Covers Chosen Vertical, Approach & Logic, How the Solution Works, and Assumptions Made.</p>
           </div>
-          <p class="card-p">Covers Chosen Vertical, Approach & Logic, How the Solution Works, and Assumptions Made.</p>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ==========================================
-         SLIDE 15: Live Deployment & Roadmap
-         ========================================== -->
-    <section class="slide" id="slide-15" data-slide="15">
-      <div class="slide-meta-row">
-        <span class="slide-badge">15 · Conclusion & Roadmap</span>
-        <span class="slide-num-indicator">15 / 15</span>
-      </div>
-      <h2 class="slide-title">Live Deployment, GitHub Pages & <span class="highlight">Future Roadmap</span></h2>
-      <p class="slide-subtitle">AeroResilience is production-deployed, globally accessible, and ready for community adoption.</p>
+      <!-- ==========================================
+           SLIDE 15: Live Deployment & Roadmap
+           ========================================== -->
+      <section class="slide" id="slide-15" data-slide="15" data-notes="The platform is fully live on GitHub Pages, with an official video walkthrough on GitHub Releases. Next on our roadmap: ESP32 indoor mesh sensors and smart plug automation. Thank you for exploring AeroResilience!">
+        <div class="slide-meta-row">
+          <span class="slide-badge">15 · Conclusion & Roadmap</span>
+          <span class="slide-num-indicator">15 / 15</span>
+        </div>
+        <h2 class="slide-title">Live Deployment, GitHub Pages & <span class="highlight">Future Roadmap</span></h2>
+        <p class="slide-subtitle">AeroResilience is production-deployed, globally accessible, and ready for community adoption.</p>
 
-      <div class="content-grid-3">
-        <div class="slide-card accent-glow-sky">
-          <h3 class="card-heading">Live Public Deployment</h3>
-          <p class="card-p">Hosted natively on GitHub Pages with automated builds and zero runtime server costs:</p>
-          <div class="code-box">
+        <div class="content-grid-3">
+          <div class="slide-card accent-glow-sky">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Live Public Deployment</h3>
+            <p class="card-p">Hosted natively on GitHub Pages with automated builds and zero runtime server costs:</p>
+            <div class="code-box">
 https://abhijithbs-dev.github.io/aero-resilience/
 Single Branch: main | License: MIT
+            </div>
+            <a href="./index.html" class="live-demo-link" style="justify-content: center; margin-top: 0.5rem;" target="_blank">
+              Open Interactive App
+            </a>
+            <a href="https://github.com/Abhijithbs-dev/aero-resilience/releases/tag/v1.0.0" class="live-demo-link" style="justify-content: center; margin-top: 0.5rem; background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.4);" target="_blank">
+              🎥 Watch Video Walkthrough
+            </a>
           </div>
-          <a href="./index.html" class="live-demo-link" style="justify-content: center; margin-top: 0.5rem;" target="_blank">
-            Open Interactive App
-          </a>
-          <a href="https://github.com/Abhijithbs-dev/aero-resilience/releases/tag/v1.0.0" class="live-demo-link" style="justify-content: center; margin-top: 0.5rem; background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.4);" target="_blank">
-            🎥 Watch Video Walkthrough
-          </a>
-        </div>
 
-        <div class="slide-card accent-glow-emerald">
-          <h3 class="card-heading">Future Expansion Roadmap</h3>
-          <ul class="card-list">
-            <li><strong>Hyper-Local Mesh Sensors:</strong> Bluetooth and ESP32 indoor sensor integration for live home-level telemetry.</li>
-            <li><strong>Automated Purifier Triggers:</strong> Home Assistant and smart plug integration to automate Corsi-Rosenthal boxes during inversion peaks.</li>
-            <li><strong>School Air Quality Corridors:</strong> Community-wide alerts alerting parent networks of safe outdoor dismissal times.</li>
-          </ul>
-        </div>
+          <div class="slide-card accent-glow-emerald">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Future Expansion Roadmap</h3>
+            <ul class="card-list">
+              <li><strong>Hyper-Local Mesh Sensors:</strong> Bluetooth and ESP32 indoor sensor integration for live home-level telemetry.</li>
+              <li><strong>Automated Purifier Triggers:</strong> Home Assistant and smart plug integration to automate Corsi-Rosenthal boxes during inversion peaks.</li>
+              <li><strong>School Air Quality Corridors:</strong> Community-wide alerts alerting parent networks of safe outdoor dismissal times.</li>
+            </ul>
+          </div>
 
-        <div class="slide-card accent-glow-purple">
-          <h3 class="card-heading">Open-Source Collaboration</h3>
-          <p class="card-p">Designed as a free public utility for urban families, community organizers, and researchers combating air pollution worldwide.</p>
-          <div class="metric-lockup">
-            <span class="metric-val">100%</span>
-            <span class="metric-sub">Open-Source & Free</span>
+          <div class="slide-card accent-glow-purple">
+            <div class="card-glint"></div>
+            <h3 class="card-heading">Open-Source Collaboration</h3>
+            <p class="card-p">Designed as a free public utility for urban families, community organizers, and researchers combating air pollution worldwide.</p>
+            <div class="metric-lockup">
+              <span class="metric-val">100%</span>
+              <span class="metric-sub">Open-Source & Free</span>
+            </div>
           </div>
         </div>
+      </section>
+
+    </main>
+
+    <!-- Presenter Notes Drawer (Keynote Teleprompter) -->
+    <div class="notes-drawer" id="notes-drawer" role="region" aria-label="Presenter Notes">
+      <div class="notes-header">
+        <span class="notes-badge">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+          Presenter Teleprompter Notes
+        </span>
+        <button class="btn-hud" id="btn-close-notes" style="padding: 0.2rem 0.5rem; font-size: 0.7rem;">Close (S)</button>
       </div>
-    </section>
-
-  </main>
-
-  <!-- Bottom Deck Controller -->
-  <footer class="deck-footer">
-    <div class="slide-counter">
-      Slide <span class="current" id="counter-current">01</span> / <span id="counter-total">15</span>
+      <div class="notes-content" id="notes-text">
+        Welcome everyone. AeroResilience is an atmospheric intelligence platform and GenAI household decision engine designed for urban communities facing extreme winter smog episodes.
+      </div>
     </div>
 
-    <div class="nav-buttons">
-      <button class="btn-nav" id="btn-prev" aria-label="Previous Slide">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-        <span>Previous</span>
-      </button>
+    <!-- Bottom Deck HUD & Controller -->
+    <footer class="deck-footer">
+      <div class="footer-left">
+        <div class="slide-counter">
+          Slide <span class="current" id="counter-current">01</span> / <span id="counter-total">15</span>
+        </div>
+        <button class="btn-hud" id="btn-footer-grid" title="Open Slide Light Table">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span>All Slides</span>
+        </button>
+      </div>
 
-      <button class="btn-nav primary" id="btn-next" aria-label="Next Slide">
-        <span>Next</span>
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
+      <div class="nav-buttons">
+        <button class="btn-nav" id="btn-prev" aria-label="Previous Slide (Press Left Arrow)">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span>Previous</span>
+        </button>
+
+        <button class="btn-nav primary" id="btn-next" aria-label="Next Slide (Press Right Arrow or Space)">
+          <span>Next</span>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Keynote Light Table / Slide Grid Modal -->
+  <div class="grid-modal" id="grid-modal" role="dialog" aria-modal="true" aria-label="Slide Grid Overview">
+    <div class="grid-modal-header">
+      <h2 class="grid-modal-title">Slide Overview & Light Table (15 Slides)</h2>
+      <button class="header-btn" id="btn-close-grid">
+        <span>Close (Esc / G)</span>
       </button>
     </div>
-  </footer>
+    <div class="grid-thumbnails" id="grid-thumbnails-container">
+      <!-- Populated via script -->
+    </div>
+  </div>
 
-  <!-- Deck Controller Logic -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const slides = document.querySelectorAll('.slide');
-      const totalSlides = slides.length;
-      let currentIndex = 0;
+  <!-- Keyboard Shortcuts Modal -->
+  <div class="shortcuts-dialog" id="shortcuts-dialog" role="dialog" aria-modal="true" aria-label="Keyboard Shortcuts">
+    <h3 style="font-size: 1.1rem; font-weight: 800; color: #fff;">Keyboard Shortcuts</h3>
+    <div class="shortcuts-grid">
+      <span>Next Slide</span> <span class="key-badge">→ / Space / PgDn</span>
+      <span>Previous Slide</span> <span class="key-badge">← / PgUp</span>
+      <span>First / Last Slide</span> <span class="key-badge">Home / End</span>
+      <span>Slide Grid Light Table</span> <span class="key-badge">G</span>
+      <span>Presenter Notes Drawer</span> <span class="key-badge">S</span>
+      <span>Toggle Auto-Play</span> <span class="key-badge">P</span>
+      <span>Toggle Fullscreen</span> <span class="key-badge">F</span>
+      <span>Direct Jump (Slide 1–9)</span> <span class="key-badge">1 – 9</span>
+    </div>
+    <button class="header-btn" id="btn-close-shortcuts" style="margin-top: 1.5rem; width: 100%; justify-content: center;">
+      Got it
+    </button>
+  </div>
 
-      const progressFill = document.getElementById('progress-fill');
-      const counterCurrent = document.getElementById('counter-current');
-      const counterTotal = document.getElementById('counter-total');
-      const btnPrev = document.getElementById('btn-prev');
-      const btnNext = document.getElementById('btn-next');
-      const btnFullscreen = document.getElementById('btn-fullscreen');
-
-      if (counterTotal) counterTotal.textContent = String(totalSlides).padStart(2, '0');
-
-      function updateSlide(index) {
-        if (index < 0 || index >= totalSlides) return;
-        currentIndex = index;
-
-        slides.forEach((s, idx) => {
-          s.classList.toggle('active', idx === currentIndex);
-          if (idx === currentIndex) s.scrollTop = 0;
-        });
-
-        // Update Counter
-        if (counterCurrent) counterCurrent.textContent = String(currentIndex + 1).padStart(2, '0');
-
-        // Update Progress Bar
-        if (progressFill) {
-          const pct = ((currentIndex + 1) / totalSlides) * 100;
-          progressFill.style.width = `${pct}%`;
-        }
-
-        // Update Button States
-        if (btnPrev) btnPrev.disabled = currentIndex === 0;
-        if (btnNext) {
-          if (currentIndex === totalSlides - 1) {
-            btnNext.innerHTML = '<span>Finish</span>';
-          } else {
-            btnNext.innerHTML = '<span>Next</span> <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>';
-          }
-        }
-
-        // Live Announcer for Screen Readers
-        const announcer = document.getElementById('slide-announcer');
-        if (announcer && slides[currentIndex]) {
-          const currentTitle = slides[currentIndex].querySelector('.slide-title');
-          announcer.textContent = `Slide ${currentIndex + 1} of ${totalSlides}: ${currentTitle ? currentTitle.textContent.trim() : 'Project Overview'}`;
-        }
-      }
-
-      function nextSlide() {
-        if (currentIndex < totalSlides - 1) {
-          updateSlide(currentIndex + 1);
-        }
-      }
-
-      function prevSlide() {
-        if (currentIndex > 0) {
-          updateSlide(currentIndex - 1);
-        }
-      }
-
-      if (btnNext) btnNext.addEventListener('click', nextSlide);
-      if (btnPrev) btnPrev.addEventListener('click', prevSlide);
-
-      // Keyboard Navigation
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
-          e.preventDefault();
-          nextSlide();
-        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-          e.preventDefault();
-          prevSlide();
-        } else if (e.key === 'Home') {
-          e.preventDefault();
-          updateSlide(0);
-        } else if (e.key === 'End') {
-          e.preventDefault();
-          updateSlide(totalSlides - 1);
-        } else if (e.key.toLowerCase() === 'f') {
-          toggleFullscreen();
-        }
-      });
-
-      // Fullscreen Toggle
-      function toggleFullscreen() {
-        if (!document.fullscreenElement) {
-          document.documentElement.requestFullscreen().catch(() => {});
-        } else {
-          if (document.exitFullscreen) document.exitFullscreen();
-        }
-      }
-
-      if (btnFullscreen) btnFullscreen.addEventListener('click', toggleFullscreen);
-
-      // Initialize
-      updateSlide(0);
-    });
-  </script>
+  <!-- ==========================================================================
+       Interactive Deck Engine: 3D Particle Canvas & Keynote Controller
+       ========================================================================== -->
+  <script src="./slides.js"></script>
 </body>
 </html>
