@@ -5,7 +5,8 @@ for low-emission daily routines, IAQ hacks, and sustainable community alternativ
 from typing import Dict, Any, List
 from backend.models.schemas import (
     AirQualityContext, HouseholdProfile, RecommendationResponse,
-    RiskSummary, RoutineItem, IAQHackItem, SustainableAlternativeItem, DirectImpactItem
+    RiskSummary, RoutineItem, IAQHackItem, SustainableAlternativeItem, DirectImpactItem,
+    ActivityEvaluationResponse
 )
 from backend.services.impact_estimator import ImpactEstimator
 
@@ -353,3 +354,169 @@ class DecisionEngine:
         ))
 
         return impacts
+
+    def evaluate_activity(
+        self,
+        activity: str,
+        aqi_ctx: AirQualityContext,
+        profile: HouseholdProfile
+    ) -> ActivityEvaluationResponse:
+        """
+        Deterministic, science-grounded activity exposure and safety evaluator.
+        Provides robust fallback when Gemini API is offline or unconfigured.
+        """
+        act_lower = (activity or "").lower()
+        aqi = aqi_ctx.aqi
+        pm2_5 = aqi_ctx.pm2_5
+
+        # Feature keyword detection
+        is_strenuous = any(k in act_lower for k in [
+            "run", "jog", "sprint", "fast", "marathon", "cycling", "cycle", "bike",
+            "cardio", "training", "workout", "exercise", "football", "cricket", "sports"
+        ])
+        is_outdoor = any(k in act_lower for k in [
+            "outdoor", "park", "road", "street", "terrace", "balcony", "market",
+            "recess", "playground", "run", "jog", "walk", "cycling", "commute"
+        ]) and not ("indoor" in act_lower or "treadmill" in act_lower)
+        is_ventilation = any(k in act_lower for k in ["ventilat", "window", "open door", "open window", "airing", "cross-vent"])
+        is_cleaning = any(k in act_lower for k in ["sweep", "broom", "dust", "vacuum"])
+        is_indoor_filtered = any(k in act_lower for k in ["indoor", "treadmill", "hepa", "filter", "air purifier", "sealed", "room", "home gym"])
+
+        has_vulnerable = bool(profile.vulnerable_members)
+        is_morning = any(k in act_lower for k in ["morning", "6", "7", "8", "9", "am", "dawn"]) or profile.time_of_day == "morning"
+
+        # Special Case: Dry sweeping / dusting
+        if is_cleaning and not ("wet" in act_lower or "damp" in act_lower or "mop" in act_lower):
+            return ActivityEvaluationResponse(
+                activity=activity,
+                verdict="UNSAFE_AVOID",
+                safety_score=28,
+                risk_tier="High",
+                exposure_mechanism=(
+                    "Dry sweeping with conventional brooms mechanically resuspends settled thoracic particles (PM10 and PM2.5) "
+                    "directly into breathing height, creating acute indoor spikes exceeding 350 µg/m³."
+                ),
+                actionable_mitigation="Never dry sweep during winter smog episodes. Wear an N95 mask if cleaning cannot be delayed.",
+                safer_alternative="Switch to damp microfiber mopping or a sealed HEPA-filtered vacuum cleaner.",
+                recommended_time_window="Afternoon hours (12:00–16:00) with indoor HEPA filtration active.",
+                community_smog_impact="Prevents indoor fugitive dust from circulating to adjoining shared apartments.",
+                non_medical_disclaimer=NON_MEDICAL_DISCLAIMER,
+                generated_by="deterministic_safety_rules"
+            )
+
+        # Special Case: Window cross-ventilation during morning/severe smog
+        if is_ventilation:
+            if aqi >= 200 or (is_morning and aqi >= 100):
+                return ActivityEvaluationResponse(
+                    activity=activity,
+                    verdict="UNSAFE_AVOID",
+                    safety_score=15 if aqi >= 300 else 25,
+                    risk_tier="Extreme" if aqi >= 300 else "High",
+                    exposure_mechanism=(
+                        f"Opening exterior apertures during nocturnal/morning temperature inversion allows outdoor ambient smog "
+                        f"(PM2.5 {pm2_5} µg/m³) to rapidly equilibrate with indoor air via pressure gradients, erasing indoor clean air buffer."
+                    ),
+                    actionable_mitigation="Keep all external doors and windows hermetically sealed. Use draft sweeps along floor gaps.",
+                    safer_alternative="Postpone brief (10-minute) cross-ventilation strictly to 13:00–15:00 when solar insolation elevates the mixing layer, then run purifiers on high.",
+                    recommended_time_window="13:00 – 15:00 strictly (solar peak boundary layer mixing)",
+                    community_smog_impact="Reduces building-wide infiltration and maintains purified indoor microclimates.",
+                    non_medical_disclaimer=NON_MEDICAL_DISCLAIMER,
+                    generated_by="deterministic_safety_rules"
+                )
+            else:
+                return ActivityEvaluationResponse(
+                    activity=activity,
+                    verdict="CAUTION_WITH_RESTRICTIONS",
+                    safety_score=60,
+                    risk_tier="Moderate",
+                    exposure_mechanism="Moderate outdoor particulate levels can enter, but lower ambient concentrations allow short ventilation cycles.",
+                    actionable_mitigation="Limit open duration to 15 minutes, preferably with window mesh screen or pre-filter curtain.",
+                    safer_alternative="Run indoor mechanical air purifiers / DIY Corsi-Rosenthal boxes for continuous air circulation without open windows.",
+                    recommended_time_window="12:00 – 15:30",
+                    community_smog_impact="Minimizes indoor pollution buildup naturally.",
+                    non_medical_disclaimer=NON_MEDICAL_DISCLAIMER,
+                    generated_by="deterministic_safety_rules"
+                )
+
+        # Indoor exercise or filtered room
+        if is_indoor_filtered:
+            score = 88 if aqi < 300 else 78
+            verdict = "SAFE" if score >= 80 else "CAUTION_WITH_RESTRICTIONS"
+            return ActivityEvaluationResponse(
+                activity=activity,
+                verdict=verdict,
+                safety_score=score,
+                risk_tier="Low" if score >= 80 else "Moderate",
+                exposure_mechanism=(
+                    "Enclosed indoor environments with air purifiers maintain 70–90% lower PM2.5 concentrations than outdoors. "
+                    "Inhalation rate is elevated during exercise, but the purified indoor envelope protects alveolar membranes."
+                ),
+                actionable_mitigation="Verify door/window seals and run HEPA or DIY Corsi-Rosenthal unit on medium-high speed 30 minutes prior to exercise.",
+                safer_alternative="Continue indoor exercise in sealed sanctuary room; avoid opening exterior balcony doors.",
+                recommended_time_window="Anytime indoors with continuous active filtration.",
+                community_smog_impact="Zero vehicle emissions generated; zero outdoor smog exposure.",
+                non_medical_disclaimer=NON_MEDICAL_DISCLAIMER,
+                generated_by="deterministic_safety_rules"
+            )
+
+        # Outdoor activities: evaluate based on exertion, AQI, time of day, and vulnerability
+        if aqi >= 300:  # Severe
+            verdict = "CRITICAL_HAZARD"
+            score = 8 if is_strenuous else 18
+            risk_tier = "Extreme"
+            mech = (
+                f"Severe ambient smog (AQI {aqi}, PM2.5 {pm2_5} µg/m³) during thermal boundary trapping. "
+                + ("Strenuous aerobic breathing increases minute ventilation volume from 6 L/min to 60+ L/min, bypassing nasal filtration and causing deep alveolar deposition of toxic sulfates, nitrates, and black carbon." if is_strenuous else
+                   "Walking or resting outdoors in severe smog exposes mucous membranes and airways to particulate levels over 20x WHO daily limits.")
+            )
+            mitigation = "If outdoor presence is strictly unavoidable, wear a certified, leak-free N95/FFP2 respirator. Limit outdoor duration to under 15 minutes."
+            alt = "Shift workout or children's recess to a sealed indoor room with HEPA / DIY box-fan filtration."
+            window = "Cancel outdoor session; reschedule indoors or postpone until severe inversion subsides."
+
+        elif aqi >= 200:  # Very Poor
+            verdict = "CRITICAL_HAZARD" if (is_strenuous or has_vulnerable) else "UNSAFE_AVOID"
+            score = 18 if is_strenuous else 32
+            risk_tier = "High"
+            mech = (
+                f"Very poor air quality (AQI {aqi}, PM2.5 {pm2_5} µg/m³). Outdoor exposure causes bronchial irritation, "
+                "endothelial oxidative stress, and rapid asthma exacerbation in vulnerable family members."
+            )
+            mitigation = "Wear certified N95 respirator. Keep glasses/sunglasses on to minimize ocular particulate stinging."
+            alt = "Replace outdoor training with indoor resistance, stretching, or treadmill workouts in a filtered room."
+            window = "13:00 – 15:30 (solar thermal mixing provides marginal particulate dispersion; avoid morning 06:00–09:30 entirely)."
+
+        elif aqi >= 100:  # Poor
+            verdict = "UNSAFE_AVOID" if (is_strenuous and has_vulnerable) else "CAUTION_WITH_RESTRICTIONS"
+            score = 45 if is_strenuous else 58
+            risk_tier = "Moderate"
+            mech = (
+                f"Poor air quality (AQI {aqi}). Moderate particulate inhalation can trigger coughing, throat tickle, "
+                "and reduced peak expiratory flow rate during sustained outdoor exertion."
+            )
+            mitigation = "Wear a well-fitted N95 mask. Reduce exercise intensity to low-moderate walking."
+            alt = "Move cardio training indoors; schedule casual outdoor errands for early afternoon."
+            window = "12:00 – 16:00 (optimal vertical atmospheric dispersion window)."
+
+        else:  # Moderate / Acceptable
+            verdict = "CAUTION_WITH_RESTRICTIONS" if has_vulnerable else "SAFE"
+            score = 72 if is_strenuous else 85
+            risk_tier = "Low"
+            mech = f"Moderate air quality (AQI {aqi}). Normal healthy individuals experience low acute risk; sensitive respiratory cohorts may feel slight throat irritation."
+            mitigation = "Sensitive individuals (asthma/elderly) should carry rescue inhalers and avoid prolonged heavy exertion."
+            alt = "Enjoy moderate outdoor activities during midday hours."
+            window = "11:00 – 16:30"
+
+        return ActivityEvaluationResponse(
+            activity=activity,
+            verdict=verdict,
+            safety_score=score,
+            risk_tier=risk_tier,
+            exposure_mechanism=mech,
+            actionable_mitigation=mitigation,
+            safer_alternative=alt,
+            recommended_time_window=window,
+            community_smog_impact="Avoiding motorized solo car travel for this activity cuts community NOx and primary soot emissions.",
+            non_medical_disclaimer=NON_MEDICAL_DISCLAIMER,
+            generated_by="deterministic_safety_rules"
+        )
+

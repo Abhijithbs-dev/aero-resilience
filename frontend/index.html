@@ -513,6 +513,56 @@
       </div>
     </section>
 
+    <!-- Gemini Smog Activity Safety & Exposure Evaluator Section -->
+    <section class="section-container gemini-evaluator-section" aria-labelledby="gemini-evaluator-heading">
+      <div class="section-title-bar">
+        <div>
+          <div class="gemini-badge-row">
+            <span class="sf-gemini-badge">GOOGLE GEMINI 4 HYDROGEN</span>
+            <span class="sf-feature-badge">ACTIVITY EXPOSURE & SAFETY API</span>
+          </div>
+          <h2 id="gemini-evaluator-heading" class="apple-section-title">Gemini Smog Activity & Exposure Evaluator</h2>
+          <p class="apple-section-subtitle">Real-time aerosol deposition modeling, calibrated risk grading, and safe timing advice</p>
+        </div>
+      </div>
+
+      <div class="gemini-evaluator-card apple-card">
+        <div class="evaluator-form-wrap">
+          <label for="gemini-activity-input" class="field-label">Evaluate Any Planned Routine or Daily Activity</label>
+          <div class="gemini-input-group">
+            <input 
+              type="text" 
+              id="gemini-activity-input" 
+              class="apple-text-input" 
+              placeholder="e.g. Morning 5km outdoor run at 6:30 AM, or Opening windows to air the kitchen..."
+              maxlength="200"
+              value="Morning 5km outdoor run at 6:30 AM"
+            >
+            <button type="button" id="gemini-eval-btn" class="apple-primary-button eval-button" aria-label="Evaluate activity with Gemini AI">
+              <span id="gemini-eval-spinner" class="spinner hidden" aria-hidden="true"></span>
+              <span id="gemini-eval-text">Evaluate Safety</span>
+            </button>
+          </div>
+
+          <!-- Quick Preset Activity Chips -->
+          <div class="preset-chips-container" role="group" aria-label="Quick Activity Presets">
+            <span class="chips-label">Quick Presets:</span>
+            <button type="button" class="activity-chip" data-activity="Morning 5km outdoor run at 6:30 AM">🏃 Morning Jog (6:30 AM)</button>
+            <button type="button" class="activity-chip" data-activity="Kindergarten outdoor playground recess at 8:30 AM">🚸 School Outdoor Recess</button>
+            <button type="button" class="activity-chip" data-activity="Opening windows for cross-ventilation at 7:00 AM">🪟 Morning Window Ventilation</button>
+            <button type="button" class="activity-chip" data-activity="Indoor treadmill workout in bedroom with HEPA purifier">🏠 Filtered Indoor Workout</button>
+            <button type="button" class="activity-chip" data-activity="Commuting on motorcycle without N95 respirator">🏍️ Unmasked Motorbike Commute</button>
+            <button type="button" class="activity-chip" data-activity="Dry broom sweeping of outdoor balcony and living area">🧹 Dry Broom Sweeping</button>
+          </div>
+        </div>
+
+        <!-- Dynamic Evaluation Result Container (ARIA Live Region) -->
+        <div id="gemini-eval-result" class="gemini-eval-result" aria-live="polite" role="status">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
     <!-- GenAI Household Resilience Planner (Sticky Command Deck & Action Blueprint) -->
     <section class="section-container planner-section" aria-labelledby="planner-heading">
       <div class="section-title-bar">

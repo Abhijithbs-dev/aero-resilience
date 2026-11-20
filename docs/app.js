@@ -1304,6 +1304,276 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ==========================================================================
+  // Gemini Smog Activity Safety & Exposure Evaluator Logic
+  // ==========================================================================
+  const geminiActivityInput = document.getElementById("gemini-activity-input");
+  const geminiEvalBtn = document.getElementById("gemini-eval-btn");
+  const geminiEvalSpinner = document.getElementById("gemini-eval-spinner");
+  const geminiEvalText = document.getElementById("gemini-eval-text");
+  const geminiEvalResult = document.getElementById("gemini-eval-result");
+  const activityChips = document.querySelectorAll(".activity-chip");
+
+  function getCheckedVulnerabilities() {
+    const checked = [];
+    const boxes = document.querySelectorAll('input[name="vulnerable"]:checked');
+    boxes.forEach(b => checked.push(b.value));
+    return checked;
+  }
+
+  async function evaluateActivity(activityText) {
+    const act = (activityText || (geminiActivityInput && geminiActivityInput.value.trim()) || "Morning 5km outdoor run at 6:30 AM");
+    if (geminiActivityInput) geminiActivityInput.value = act;
+
+    if (geminiEvalSpinner) geminiEvalSpinner.classList.remove("hidden");
+    if (geminiEvalText) geminiEvalText.textContent = "Analyzing Aerosols…";
+    if (geminiEvalBtn) geminiEvalBtn.disabled = true;
+
+    const payload = {
+      activity: act,
+      location: (locationInput && locationInput.value.trim()) || state.location || "Delhi-NCR",
+      aqi_input_type: "preset",
+      preset_severity: state.severity || "Severe",
+      custom_aqi: state.aqi || 420,
+      time_of_day: "morning",
+      housing_type: (document.getElementById("housing-select") || {}).value || "apartment",
+      vulnerable_members: getCheckedVulnerabilities()
+    };
+
+    try {
+      const resp = await fetch("/api/gemini/evaluate-activity", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if (resp.ok) {
+        const data = await resp.json();
+        renderGeminiEvaluation(data);
+        return;
+      }
+    } catch (e) {
+      console.warn("Gemini evaluation API offline, falling back to client engine:", e);
+    } finally {
+      if (geminiEvalSpinner) geminiEvalSpinner.classList.add("hidden");
+      if (geminiEvalText) geminiEvalText.textContent = "Evaluate Safety";
+      if (geminiEvalBtn) geminiEvalBtn.disabled = false;
+    }
+
+    // Client fallback evaluation
+    const fallbackData = evaluateClientFallbackActivity(payload);
+    renderGeminiEvaluation(fallbackData);
+  }
+
+  function evaluateClientFallbackActivity(payload) {
+    const act = (payload.activity || "").toLowerCase();
+    const aqi = payload.custom_aqi || state.aqi || 420;
+    const isStrenuous = /run|jog|sprint|marathon|cycling|cycle|workout|exercise|sports|cardio/.test(act);
+    const isOutdoor = /outdoor|park|road|street|terrace|balcony|market|recess|walk/.test(act) && !/indoor|treadmill/.test(act);
+    const isVentilation = /ventilat|window|open door|open window|airing|cross-vent/.test(act);
+    const isCleaning = /sweep|broom|dust/.test(act) && !/wet|damp|mop/.test(act);
+    const isIndoorFiltered = /indoor|treadmill|hepa|filter|purifier|sealed/.test(act);
+
+    if (isCleaning) {
+      return {
+        activity: payload.activity,
+        verdict: "UNSAFE_AVOID",
+        safety_score: 28,
+        risk_tier: "High",
+        exposure_mechanism: "Dry sweeping mechanically resuspends settled thoracic particles (PM10 and PM2.5) directly into the breathing zone, creating acute indoor spikes exceeding 350 µg/m³.",
+        actionable_mitigation: "Never dry sweep during winter smog episodes. Wear an N95 respirator if cleaning cannot be delayed.",
+        safer_alternative: "Switch to damp microfiber mopping or a sealed HEPA-filtered vacuum cleaner.",
+        recommended_time_window: "12:00 – 16:00 with indoor air purifier active.",
+        community_smog_impact: "Prevents indoor particulate drift between neighboring apartments.",
+        generated_by: "Deterministic Resilience Engine"
+      };
+    }
+
+    if (isVentilation) {
+      return {
+        activity: payload.activity,
+        verdict: "UNSAFE_AVOID",
+        safety_score: aqi >= 300 ? 15 : 28,
+        risk_tier: aqi >= 300 ? "Extreme" : "High",
+        exposure_mechanism: `Opening windows during morning inversion allows ambient smog (AQI ${aqi}) to rapidly flood indoor living zones, destroying the clean air envelope.`,
+        actionable_mitigation: "Keep all exterior windows and doors hermetically sealed with draft sweeps.",
+        safer_alternative: "Postpone brief 10-minute ventilation strictly to 13:00–15:00 when solar heating lifts the inversion layer.",
+        recommended_time_window: "13:00 – 15:00 strictly (solar peak boundary layer mixing)",
+        community_smog_impact: "Maintains purified indoor microclimates without overloading HVAC.",
+        generated_by: "Deterministic Resilience Engine"
+      };
+    }
+
+    if (isIndoorFiltered) {
+      const score = aqi < 300 ? 88 : 78;
+      return {
+        activity: payload.activity,
+        verdict: score >= 80 ? "SAFE" : "CAUTION_WITH_RESTRICTIONS",
+        safety_score: score,
+        risk_tier: score >= 80 ? "Low" : "Moderate",
+        exposure_mechanism: "Enclosed indoor environments with active air purifiers maintain 70–90% lower PM2.5 concentrations than outdoors, protecting pulmonary alveoli during elevated respiration.",
+        actionable_mitigation: "Ensure door/window perimeter seals are tight and run HEPA or DIY Corsi-Rosenthal unit on medium-high speed.",
+        safer_alternative: "Continue indoor workout in sealed room; avoid opening exterior balcony doors.",
+        recommended_time_window: "Anytime indoors with continuous active filtration.",
+        community_smog_impact: "Zero vehicle emissions and zero ambient smog exposure.",
+        generated_by: "Deterministic Resilience Engine"
+      };
+    }
+
+    if (aqi >= 300) {
+      return {
+        activity: payload.activity,
+        verdict: "CRITICAL_HAZARD",
+        safety_score: isStrenuous ? 8 : 18,
+        risk_tier: "Extreme",
+        exposure_mechanism: `Severe ambient smog (AQI ${aqi}). Strenuous outdoor exertion increases minute ventilation from 6 L/min to 60+ L/min, depositing fine particulate matter (PM2.5) deep into pulmonary alveoli.`,
+        actionable_mitigation: "If outdoor presence is strictly mandatory, wear a certified, airtight N95/FFP2 respirator. Limit duration to under 15 minutes.",
+        safer_alternative: "Move physical activity indoors to a sealed room with active HEPA or DIY box-fan filtration.",
+        recommended_time_window: "Cancel outdoor activity; reschedule indoors.",
+        community_smog_impact: "Avoiding motor vehicle trips avoids worsening local combustion soot.",
+        generated_by: "Deterministic Resilience Engine"
+      };
+    }
+
+    return {
+      activity: payload.activity,
+      verdict: "CAUTION_WITH_RESTRICTIONS",
+      safety_score: 55,
+      risk_tier: "Moderate",
+      exposure_mechanism: `Elevated particulate soot at AQI ${aqi} causes mucosal irritation and reduced peak expiratory flow rate during sustained exertion.`,
+      actionable_mitigation: "Wear a well-fitted N95 mask and throttle intensity to low-moderate walking.",
+      safer_alternative: "Move cardio indoors; schedule outdoor errands for the midday solar window.",
+      recommended_time_window: "12:00 – 16:00 (optimal boundary layer dispersion).",
+      community_smog_impact: "Low-emission choice reduces ambient airshed burden.",
+      generated_by: "Deterministic Resilience Engine"
+    };
+  }
+
+  function renderGeminiEvaluation(data) {
+    if (!geminiEvalResult) return;
+
+    let verdictClass = "verdict-unsafe";
+    let verdictIcon = "⚠️";
+    let verdictTitle = "UNSAFE · AVOID";
+    let barColor = "var(--accent-amber)";
+
+    if (data.verdict === "CRITICAL_HAZARD") {
+      verdictClass = "verdict-critical";
+      verdictIcon = "⛔";
+      verdictTitle = "CRITICAL HAZARD";
+      barColor = "var(--accent-rose)";
+    } else if (data.verdict === "CAUTION_WITH_RESTRICTIONS") {
+      verdictClass = "verdict-caution";
+      verdictIcon = "⚠️";
+      verdictTitle = "CAUTION · RESTRICTIONS APPLY";
+      barColor = "#facc15";
+    } else if (data.verdict === "SAFE") {
+      verdictClass = "verdict-safe";
+      verdictIcon = "✅";
+      verdictTitle = "SAFE WITH PRECAUTIONS";
+      barColor = "var(--accent-emerald)";
+    }
+
+    const score = Math.max(0, Math.min(100, data.safety_score || 25));
+
+    geminiEvalResult.innerHTML = `
+      <div class="eval-verdict-box ${verdictClass}">
+        <div class="verdict-header-row">
+          <div class="verdict-badge">
+            <span aria-hidden="true">${verdictIcon}</span>
+            <span>${verdictTitle}</span>
+          </div>
+          <div class="score-gauge-wrap" aria-label="Activity Safety Score: ${score} out of 100">
+            <span class="score-label">Safety Index:</span>
+            <div class="score-bar-bg" role="progressbar" aria-valuenow="${score}" aria-valuemin="0" aria-valuemax="100">
+              <div class="score-bar-fill" style="width: ${score}%; background: ${barColor};"></div>
+            </div>
+            <span class="score-number">${score} / 100</span>
+          </div>
+        </div>
+
+        <div class="eval-details-grid">
+          <div class="eval-detail-card">
+            <span class="eval-detail-title">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              Aerosol Inhalation Mechanism
+            </span>
+            <p class="eval-detail-body">${escapeHtml(data.exposure_mechanism)}</p>
+          </div>
+
+          <div class="eval-detail-card">
+            <span class="eval-detail-title">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              Actionable Protection & Mitigation
+            </span>
+            <p class="eval-detail-body">${escapeHtml(data.actionable_mitigation)}</p>
+          </div>
+
+          <div class="eval-detail-card">
+            <span class="eval-detail-title">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <polyline points="17 1 21 5 17 9"></polyline>
+                <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                <polyline points="7 23 3 19 7 15"></polyline>
+                <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+              </svg>
+              Science-Backed Safer Alternative
+            </span>
+            <p class="eval-detail-body">${escapeHtml(data.safer_alternative)}</p>
+          </div>
+
+          <div class="eval-detail-card">
+            <span class="eval-detail-title">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              Optimal Diurnal Timing Window
+            </span>
+            <p class="eval-detail-body"><strong>${escapeHtml(data.recommended_time_window)}</strong></p>
+          </div>
+        </div>
+
+        <div class="eval-meta-bar">
+          <span>Airshed Impact: ${escapeHtml(data.community_smog_impact || "Reduces community exposure footprint.")}</span>
+          <span>Engine: <strong>${escapeHtml(data.generated_by || "Google Gemini")}</strong></span>
+        </div>
+      </div>
+    `;
+  }
+
+  // Wire up Gemini Evaluator listeners
+  if (geminiEvalBtn) {
+    geminiEvalBtn.addEventListener("click", () => {
+      evaluateActivity();
+    });
+  }
+
+  if (geminiActivityInput) {
+    geminiActivityInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        evaluateActivity();
+      }
+    });
+  }
+
+  activityChips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      const act = chip.dataset.activity;
+      if (geminiActivityInput) geminiActivityInput.value = act;
+      evaluateActivity(act);
+    });
+  });
+
+  // Trigger initial evaluation for default preset activity
+  evaluateActivity("Morning 5km outdoor run at 6:30 AM");
+
   // Initialize
   checkHealth();
   syncLocation((locationInput && locationInput.value.trim()) || "Delhi-NCR");

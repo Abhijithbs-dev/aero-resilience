@@ -119,3 +119,21 @@ class RecommendationResponse:
             "generated_by": self.generated_by,
             "cached": self.cached
         }
+
+@dataclass
+class ActivityEvaluationResponse:
+    activity: str
+    verdict: str  # SAFE, CAUTION_WITH_RESTRICTIONS, UNSAFE_AVOID, CRITICAL_HAZARD
+    safety_score: int  # 0 to 100
+    risk_tier: str  # Low, Moderate, High, Extreme
+    exposure_mechanism: str
+    actionable_mitigation: str
+    safer_alternative: str
+    recommended_time_window: str
+    community_smog_impact: str
+    non_medical_disclaimer: str
+    generated_by: str = "gemini-4-hydrogen"
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+

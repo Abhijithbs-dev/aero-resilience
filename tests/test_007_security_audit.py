@@ -9,7 +9,28 @@ import urllib.error
 import urllib.request
 
 class Test007SecurityAudit(unittest.TestCase):
-    BASE_URL = "http://127.0.0.1:8000"
+    port = 8998
+    BASE_URL = f"http://127.0.0.1:{port}"
+    server = None
+    thread = None
+
+    @classmethod
+    def setUpClass(cls):
+        import threading
+        import time
+        from http.server import ThreadingHTTPServer
+        from backend.server import SmogAssistantRequestHandler
+        cls.server = ThreadingHTTPServer(("127.0.0.1", cls.port), SmogAssistantRequestHandler)
+        cls.thread = threading.Thread(target=cls.server.serve_forever)
+        cls.thread.daemon = True
+        cls.thread.start()
+        time.sleep(0.3)
+
+    @classmethod
+    def tearDownClass(cls):
+        if cls.server:
+            cls.server.shutdown()
+            cls.server.server_close()
 
     def test_red_team_oversized_payload_dos(self):
         """Red Team Attack 1: Send oversized payload (>50KB) to attempt buffer overflow / DoS."""

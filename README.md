@@ -59,6 +59,15 @@ AeroResilience integrates dynamic meteorological and lifestyle variables into a 
   └── 5. Direct Impact Explanations (Action ➔ Physical Mechanism ➔ Quantified Drop)
 ```
 
+### Gemini Activity Exposure & Safety Evaluator
+In addition to holistic household planning, families face acute daily dilemmas during winter smog (e.g., *"Is morning jogging safe at 6:30 AM?"*, *"Can kindergarteners play outdoor recess?"*, *"Should we open windows to ventilate the kitchen?"*).
+The integrated **Gemini Activity & Exposure Evaluator** leverages modern Google Gemini models (`gemini-4-hydrogen` / `gemini-3.5-flash-lite`) with structured JSON contracts and deterministic fallback to deliver:
+1. **Calibrated Multi-Modal Verdicts:** `CRITICAL_HAZARD` (Extreme), `UNSAFE_AVOID` (High), `CAUTION_WITH_RESTRICTIONS` (Moderate), and `SAFE` (Low), pairing text badges, icons, and contrast-compliant colors for WCAG 2.1 AA compliance.
+2. **Calibrated Safety Index (0–100):** Visual gauge indicating immediate respiratory hazard.
+3. **Aerosol Inhalation Mechanics:** Detailed physiological explanation of minute ventilation volume during exercise (e.g., $6\text{ L/min}$ to $60+\text{ L/min}$) and deep alveolar particulate deposition during ground inversion.
+4. **Actionable Mitigations & Safe Alternatives:** Explicit protective guidance (airtight N95 respirators, switching to sealed indoor rooms with continuous HEPA/Corsi-Rosenthal filtration).
+5. **Optimal Diurnal Timing:** Recommends the specific diurnal window (typically $13:00\text{–}15:30$) when solar heating lifts the thermal boundary layer and vertical dispersion peaks.
+
 ### Direct Impact Explanation Framework
 Rather than generic tips ("stay indoors"), every single recommendation is paired with an actionable **Direct Impact** breakdown:
 - **Physical Mechanism:** Grounded in fluid dynamics, building air infiltration rates (ACH), and aerosol physics (Brownian diffusion, inertial impaction in MERV-13 fibers).
@@ -77,6 +86,7 @@ To satisfy the strict **< 10 MB total repository limit**, AeroResilience is engi
 - **Security & Hardening (/007):** STRIDE threat modeled, OWASP Top 10 hardened with strict Content Security Policy (CSP), nosniff headers, frame denier, 50 KB request cap, and directory traversal barriers.
 - **Code Optimization (@CodeRabbit):** Memory-bounded TTL cache with FIFO capacity limits and proactive eviction; zero external bloat; 100% portable Python 3.10+ standard library.
 - **Live Air Quality Layer:** Open-Meteo Air Quality and Geocoding APIs (free, keyless, rate-limit friendly) with automatic caching and 4 instant winter smog presets (Moderate, Poor, Very Poor, Severe).
+- **Gemini Activity Exposure & Safety Evaluator:** Powered by modern Google Gemini API (`gemini-4-hydrogen` / `gemini-3.5-flash-lite`), providing calibrated activity risk grading, particulate inhalation mechanics, actionable mitigations, and safe diurnal timing windows.
 - **GenAI Hybrid Layer:** Compatible with Google Gemini API (`GEMINI_API_KEY`) and OpenAI API (`OPENAI_API_KEY`), backed by a deterministic rule engine that guarantees 100% uptime and offline demo resilience.
 
 ### Quickstart Setup & Run Instructions

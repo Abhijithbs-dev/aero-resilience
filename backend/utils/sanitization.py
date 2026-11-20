@@ -108,3 +108,58 @@ def sanitize_household_payload(payload: Dict[str, Any]) -> Dict[str, Any]:
         "vulnerable_members": valid_vulnerable,
         "user_question": user_question
     }
+
+def sanitize_activity_payload(payload: Dict[str, Any]) -> Dict[str, Any]:
+    """Validate and sanitize activity evaluation request payload."""
+    activity = sanitize_string(payload.get("activity", ""), max_length=200)
+    if not activity:
+        activity = "Outdoor Morning Jog"
+
+    location = sanitize_string(payload.get("location", "Delhi"), max_length=80)
+    if not location:
+        location = "Delhi"
+
+    aqi_input_type = validate_choice(
+        payload.get("aqi_input_type", "preset"),
+        ["live", "preset", "custom"],
+        "preset"
+    )
+
+    preset_severity = validate_choice(
+        payload.get("preset_severity", "Severe"),
+        ["moderate", "poor", "very poor", "severe"],
+        "severe"
+    ).title()
+
+    custom_aqi = validate_aqi(payload.get("custom_aqi", 150))
+    time_of_day = validate_choice(
+        payload.get("time_of_day", "morning"),
+        ["morning", "afternoon", "evening", "night"],
+        "morning"
+    )
+
+    housing_type = validate_choice(
+        payload.get("housing_type", "apartment"),
+        ["apartment", "independent_house", "multistory_flat"],
+        "apartment"
+    )
+
+    raw_vulnerable = payload.get("vulnerable_members", [])
+    valid_vulnerable = []
+    allowed_vulnerable = {"children", "seniors", "asthma", "pregnant"}
+    if isinstance(raw_vulnerable, list):
+        for v in raw_vulnerable:
+            if isinstance(v, str) and v.lower() in allowed_vulnerable:
+                valid_vulnerable.append(v.lower())
+
+    return {
+        "activity": activity,
+        "location": location,
+        "aqi_input_type": aqi_input_type,
+        "preset_severity": preset_severity,
+        "custom_aqi": custom_aqi,
+        "time_of_day": time_of_day,
+        "housing_type": housing_type,
+        "vulnerable_members": valid_vulnerable
+    }
+

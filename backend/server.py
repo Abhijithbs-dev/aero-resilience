@@ -13,7 +13,7 @@ from typing import Dict, Any
 from backend.models.schemas import HouseholdProfile
 from backend.services.aqi_service import AQIService, SEVERITY_PRESETS
 from backend.services.ai_service import AIService
-from backend.utils.sanitization import sanitize_household_payload, sanitize_string
+from backend.utils.sanitization import sanitize_household_payload, sanitize_activity_payload, sanitize_string
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FRONTEND_DIR = os.path.realpath(os.path.join(BASE_DIR, "frontend"))
@@ -51,10 +51,11 @@ class SmogAssistantRequestHandler(BaseHTTPRequestHandler):
             payload = {
                 "status": "healthy",
                 "service": "GenAI Winter Smog & Urban Air Quality Assistant",
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "engine": "hybrid_genai_rules",
                 "has_gemini": bool(ai_service.gemini_key and ai_service.gemini_key != "your_gemini_api_key_here"),
-                "has_openai": bool(ai_service.openai_key and ai_service.openai_key != "your_openai_api_key_here")
+                "has_openai": bool(ai_service.openai_key and ai_service.openai_key != "your_openai_api_key_here"),
+                "gemini_features": ["resilience_blueprint", "activity_safety_evaluator", "calibrated_risk_grading"]
             }
             self.wfile.write(json.dumps(payload).encode("utf-8"))
             return
@@ -129,6 +130,50 @@ class SmogAssistantRequestHandler(BaseHTTPRequestHandler):
 
             self._set_headers(200)
             self.wfile.write(json.dumps(response_data).encode("utf-8"))
+            return
+
+        if path == "/api/gemini/evaluate-activity":
+            content_length = int(self.headers.get("Content-Length", 0))
+            if content_length > 50000:  # 50 KB payload cap
+                self._set_headers(413)
+                self.wfile.write(json.dumps({"error": "Payload too large. Maximum size is 50 KB."}).encode("utf-8"))
+                return
+
+            body = self.rfile.read(content_length).decode("utf-8")
+            try:
+                raw_payload = json.loads(body) if body else {}
+            except Exception:
+                self._set_headers(400)
+                self.wfile.write(json.dumps({"error": "Invalid JSON format"}).encode("utf-8"))
+                return
+
+            clean = sanitize_activity_payload(raw_payload)
+
+            # Determine AQI Context
+            if clean["aqi_input_type"] == "live":
+                aqi_ctx = aqi_service.fetch_live_aqi(clean["location"])
+            elif clean["aqi_input_type"] == "custom":
+                aqi_ctx = aqi_service.get_custom(clean["custom_aqi"], location=clean["location"])
+            else:
+                aqi_ctx = aqi_service.get_preset(clean["preset_severity"], location=clean["location"])
+
+            profile = HouseholdProfile(
+                housing_type=clean["housing_type"],
+                vulnerable_members=clean["vulnerable_members"],
+                time_of_day=clean["time_of_day"]
+            )
+
+            eval_res = ai_service.evaluate_activity(
+                activity=clean["activity"],
+                aqi_ctx=aqi_ctx,
+                profile=profile
+            )
+
+            resp_data = eval_res.to_dict()
+            resp_data["aqi_context"] = aqi_ctx.to_dict()
+
+            self._set_headers(200)
+            self.wfile.write(json.dumps(resp_data).encode("utf-8"))
             return
 
         self._set_headers(404)
